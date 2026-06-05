@@ -7,7 +7,12 @@ ACTION="${1:-all}"
 TARGET="${TARGET:-3}"
 TOP="${TOP:-1}"
 
-run() {
+run_fn() {
+  echo ">> modal run modal_app.py --action $*"
+  uv run modal run modal_app.py --action "$@"
+}
+
+run_gpu() {
   echo ">> $*"
   uv run modal run "$@"
 }
@@ -25,16 +30,16 @@ check_auth
 
 case "$ACTION" in
   rank)
-    run modal_app.py::rank_snippets --target "$TARGET"
+    uv run modal run modal_app.py --action rank --target "$TARGET"
     ;;
   eval)
-    run modal_app.py::run_eval
+    run_fn eval
     ;;
   packs)
     if [[ -z "${HF_TOKEN:-}" ]]; then
       echo "Tip: export HF_TOKEN=hf_... for build_clue_packs (or: modal secret create huggingface HF_TOKEN=...)"
     fi
-    run modal_gpu.py::build_clue_packs --top "$TOP"
+    run_gpu modal_gpu.py::build_clue_packs --top "$TOP"
     ;;
   pull)
     mkdir -p data/raw data/eval data/clue_packs
@@ -44,8 +49,8 @@ case "$ACTION" in
     echo "Pulled ranked.json + eval artifacts into data/"
     ;;
   all)
-    run modal_app.py::rank_snippets --target "$TARGET"
-    run modal_app.py::run_eval
+    uv run modal run modal_app.py --action rank --target "$TARGET"
+    run_fn eval
     echo "Skipping build_clue_packs in 'all' (GPU cost). Run: ./scripts/run_modal.sh packs"
   ;;
   *)

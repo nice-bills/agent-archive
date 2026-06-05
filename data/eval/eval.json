@@ -1,7 +1,8 @@
 {
   "summary": {
-    "samples": 12,
-    "avg_mystery": 0.557
+    "samples": 3,
+    "avg_mystery": 0.6,
+    "avg_entities": 8.0
   },
   "rows": [
     {
@@ -10,7 +11,9 @@
       "raw_len": 1134,
       "clean_len": 1134,
       "entity_count": 8,
-      "evidence_count": 1
+      "evidence_count": 1,
+      "raw_preview": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the tes",
+      "clean_preview": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the tes"
     },
     {
       "snippet_id": "1953_05_10_resource_sn83045462_1953_05_10_ed_1",
@@ -18,47 +21,9 @@
       "raw_len": 1094,
       "clean_len": 1094,
       "entity_count": 8,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1925_04_04_resource_sn82016181_1925_04_04_ed_1",
-      "mystery_score": 0.6,
-      "raw_len": 1156,
-      "clean_len": 1156,
-      "entity_count": 7,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1919_01_05_resource_sn84026749_1919_01_05_ed_1",
-      "mystery_score": 0.6,
-      "raw_len": 1104,
-      "clean_len": 1104,
-      "entity_count": 8,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1935_11_29_resource_sn84026749_1935_11_29_ed_1",
-      "mystery_score": 0.6,
-      "raw_len": 1139,
-      "clean_len": 1139,
-      "entity_count": 4,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1925_07_20_resource_sn84026749_1925_07_20_ed_1",
-      "mystery_score": 0.6,
-      "raw_len": 1040,
-      "clean_len": 1040,
-      "entity_count": 8,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1963_09_02_resource_sn83045462_1963_09_02_ed_1",
-      "mystery_score": 0.53,
-      "raw_len": 1126,
-      "clean_len": 1126,
-      "entity_count": 8,
-      "evidence_count": 1
+      "evidence_count": 1,
+      "raw_preview": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secr",
+      "clean_preview": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secr"
     },
     {
       "snippet_id": "1805_10_29_resource_gdc_sn88063570_16096",
@@ -66,39 +31,9 @@
       "raw_len": 1148,
       "clean_len": 1148,
       "entity_count": 8,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1934_12_21_resource_sn84026749_1934_12_21_ed_1",
-      "mystery_score": 0.52,
-      "raw_len": 1140,
-      "clean_len": 1140,
-      "entity_count": 3,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1819_05_15_resource_gdc_sn88063570_16119",
-      "mystery_score": 0.52,
-      "raw_len": 1045,
-      "clean_len": 1045,
-      "entity_count": 8,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1819_06_01_resource_gdc_sn88063570_16133",
-      "mystery_score": 0.52,
-      "raw_len": 1154,
-      "clean_len": 1154,
-      "entity_count": 7,
-      "evidence_count": 1
-    },
-    {
-      "snippet_id": "1937_06_05_resource_sn82016181_1937_06_05_ed_1",
-      "mystery_score": 0.4,
-      "raw_len": 1120,
-      "clean_len": 1120,
-      "entity_count": 8,
-      "evidence_count": 1
+      "evidence_count": 1,
+      "raw_preview": "ae ane PAR RAS AO THE HURKARU TUESDAY OCTOBER 29 1805 CALCUTTA GAZETTE EXTRAORDINARY SATURDAY OCTOBER 26 1805 Proceedings of 4 General Meeting of the Bri tith Inhabitants ot Calcutta held onSaturday the 26th Od\u00e9tober 1805 in purfuance of a ",
+      "clean_preview": "Ae ane PAR RAS AO THE HURKARU TUESDAY OCTOBER 29 1805 CALCUTTA GAZETTE EXTRAORDINARY SATURDAY OCTOBER 26 1805 Proceedings of 4 General Meeting of the Bri tith Inhabitants ot Calcutta held onSaturday the 26th Od\u00e9tober 1805 in purfuance of a "
     }
   ]
 }
