@@ -1,0 +1,27 @@
+[project]
+name = "archive-detective"
+version = "0.1.0"
+description = "Playable micro-mysteries from public-domain newspaper fragments (HF Build Small Hackathon)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gradio>=6.16.0",
+    "httpx>=0.28.1",
+    "pillow>=12.2.0",
+    "pydantic>=2.13.4",
+]
+
+[project.scripts]
+archive-detective = "archive_detective.ui:launch"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/archive_detective"]
+
+[tool.uv]
+package = true
+
+[tool.uv.sources]

@@ -1,0 +1,262 @@
+{
+  "case_id": "georgetown_notice",
+  "title": "The Hart Notice",
+  "tagline": "A clipped notice from 1912 refuses to stay ordinary.",
+  "start_beat": "opening",
+  "beats": {
+    "opening": {
+      "artifact_id": "ca_1912_notice_0042",
+      "beat_intro": "A torn column from the Evening Star lands on your board. The ink is uneven; someone wanted this seen.",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/collections/chronicling-america/",
+        "date": "1912-03-14",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": "assets/georgetown_notice.png",
+        "raw_ocr": "GEORGETOWN — M. Hart will receive inquiries at the room above the stationers, 14th St., after 8 p.m. Bring the phrase. No names at the desk.",
+        "clean_text": "Georgetown — M. Hart will receive inquiries at the room above the stationers on 14th Street after 8 p.m. Bring the phrase. No names at the desk."
+      },
+      "entities": [
+        {"type": "person", "value": "M. Hart"},
+        {"type": "place", "value": "Georgetown"},
+        {"type": "place", "value": "14th St. stationers"},
+        {"type": "time", "value": "after 8 p.m."}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_phrase",
+          "clue_type": "coded_message",
+          "title": "Bring the phrase",
+          "detail": "The notice demands a passphrase, not a name — unusual for a public advertisement."
+        },
+        {
+          "id": "ev_anon",
+          "clue_type": "missing_context",
+          "title": "No names at the desk",
+          "detail": "Whoever placed this expects anonymity from the shop staff."
+        },
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "After 8 p.m. only",
+          "detail": "Late-hour meetings suggest discretion or something to hide from daylight trade."
+        }
+      ],
+      "clue_types": ["coded_message", "missing_context", "time_gap"],
+      "mystery_score": 0.88,
+      "lead_options": [
+        {"id": "person", "label": "Who is M. Hart?"},
+        {"id": "place", "label": "Why Georgetown?"},
+        {"id": "phrase", "label": "Decode the wording"}
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening Star, 1912-03-14",
+          "Quoted lines match the OCR fragment verbatim",
+          "Georgetown and 14th St. appear in the clipping"
+        ],
+        "synthetic_bridge_allowed": false,
+        "bridge_notes": null
+      }
+    },
+    "person": {
+      "artifact_id": "ca_1912_notice_0042_person",
+      "beat_intro": "City directories and society pages disagree on the initial — but not on the reputation.",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/collections/chronicling-america/",
+        "date": "1912-03-10",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "M. Hart — lately of the canal office — has been seen conferring with counsel. Initial uncertain in directory.",
+        "clean_text": "M. Hart — lately of the canal office — has been seen conferring with counsel. The city directory lists the initial as uncertain."
+      },
+      "entities": [
+        {"type": "person", "value": "M. Hart"},
+        {"type": "org", "value": "canal office"},
+        {"type": "role", "value": "counsel"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_office",
+          "clue_type": "motive",
+          "title": "Canal office tie",
+          "detail": "Hart's recent post suggests access to routing records or liens — leverage, not gossip."
+        },
+        {
+          "id": "ev_initial",
+          "clue_type": "anomaly",
+          "title": "Uncertain initial",
+          "detail": "Directories usually nail a middle initial; here it is deliberately vague."
+        }
+      ],
+      "clue_types": ["motive", "anomaly"],
+      "mystery_score": 0.76,
+      "lead_options": [
+        {"id": "phrase", "label": "Return to the phrase"},
+        {"id": "close", "label": "Close the case — for now"}
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Canal office reference appears in a related society brief",
+          "Directory uncertainty is quoted from the fragment"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Connecting Hart to the original notice is editorial glue; the notice text itself is unchanged from beat one."
+      }
+    },
+    "place": {
+      "artifact_id": "ca_1912_georgetown_0011",
+      "beat_intro": "Georgetown in March is mud, gaslight, and whispers carried faster than the streetcars.",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/collections/chronicling-america/",
+        "date": "1912-03-12",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "GEORGETOWN — The stationers' row sees heavy foot traffic from clerks leaving the canal hearings. Rooms above shops let by the week.",
+        "clean_text": "Georgetown — The stationers' row sees heavy foot traffic from clerks leaving the canal hearings. Rooms above the shops are let by the week."
+      },
+      "entities": [
+        {"type": "place", "value": "Georgetown"},
+        {"type": "place", "value": "stationers' row"},
+        {"type": "event", "value": "canal hearings"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_hearings",
+          "clue_type": "missing_context",
+          "title": "Canal hearings nearby",
+          "detail": "The same week as the notice, Georgetown clerks shuttle between shops and testimony."
+        },
+        {
+          "id": "ev_room",
+          "clue_type": "place",
+          "title": "Room above the shop",
+          "detail": "Weekly lets explain why Hart can use a stationer's address without working the counter."
+        }
+      ],
+      "clue_types": ["missing_context", "place"],
+      "mystery_score": 0.71,
+      "lead_options": [
+        {"id": "person", "label": "Back to M. Hart"},
+        {"id": "close", "label": "Close the case — for now"}
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Stationers' row and canal hearings language from the fragment",
+          "Date within 48 hours of the original notice"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Geographic context is archival; the causal link to Hart's meeting is inferred for play."
+      }
+    },
+    "phrase": {
+      "artifact_id": "ca_1912_notice_phrase",
+      "beat_intro": "Two words in the notice repeat nowhere else on the page — except the margins.",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/collections/chronicling-america/",
+        "date": "1912-03-14",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Margin note (illegible) — clerk copies: 'Bring the phrase' matches ledger shorthand for sealed routing.",
+        "clean_text": "Margin note — clerk copies: 'Bring the phrase' matches ledger shorthand for sealed routing instructions."
+      },
+      "entities": [
+        {"type": "phrase", "value": "Bring the phrase"},
+        {"type": "concept", "value": "sealed routing"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_shorthand",
+          "clue_type": "coded_message",
+          "title": "Ledger shorthand",
+          "detail": "Canal clerks used compressed phrases for packages that should not be named in open ads."
+        },
+        {
+          "id": "ev_margin",
+          "clue_type": "anomaly",
+          "title": "Margin echo",
+          "detail": "The same phrase appears in the margin of an unrelated shipping brief — copyist error or signal?"
+        }
+      ],
+      "clue_types": ["coded_message", "anomaly"],
+      "mystery_score": 0.82,
+      "lead_options": [
+        {"id": "person", "label": "Who is M. Hart?"},
+        {"id": "close", "label": "Close the case — for now"}
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "'Bring the phrase' appears verbatim in the primary notice",
+          "Shorthand explanation paraphrases a clerks' glossary also on Chronicling America"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Margin-note beat is a compressed reading of multiple tiny fragments for demo pacing."
+      }
+    },
+    "closed": {
+      "artifact_id": "case_closed",
+      "beat_intro": "You pin the board shut. Enough truth for one night — the archive keeps the rest.",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/collections/chronicling-america/",
+        "date": "1912-03-14",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "",
+        "clean_text": "Case tabled. Three leads examined. Archive fragments logged."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_summary",
+          "clue_type": "summary",
+          "title": "What you proved",
+          "detail": "The notice was real, time-bound, and designed for anonymous contact — not a prank classified."
+        }
+      ],
+      "clue_types": ["summary"],
+      "mystery_score": 1.0,
+      "lead_options": [],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "All quoted notice language originated from beat one OCR",
+          "Supporting beats used paraphrased public-domain adjacent snippets for demo"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Demo case — swap in fully sourced clue packs before submission."
+      }
+    }
+  },
+  "transitions": {
+    "opening": {
+      "person": "person",
+      "place": "place",
+      "phrase": "phrase"
+    },
+    "person": {
+      "phrase": "phrase",
+      "close": "closed"
+    },
+    "place": {
+      "person": "person",
+      "close": "closed"
+    },
+    "phrase": {
+      "person": "person",
+      "close": "closed"
+    }
+  }
+}
