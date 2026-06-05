@@ -16,6 +16,7 @@ RAW_DIR = ROOT / "data" / "raw"
 MANIFEST_NAME = "manifest.json"
 
 LOC_NEWSPAPERS = "https://www.loc.gov/newspapers/"
+LOC_REFERER = "https://www.loc.gov/newspapers/"
 DEFAULT_QUERIES = [
     "secret meeting",
     "missing person",
@@ -143,10 +144,19 @@ def _search_page(
     page: int = 1,
 ) -> list[dict[str, Any]]:
     params = {"fo": "json", "q": query, "c": count, "sp": page}
-    r = client.get(LOC_NEWSPAPERS, params=params)
-    r.raise_for_status()
-    data = r.json()
-    return list(data.get("results") or [])
+    last_err: Exception | None = None
+    for attempt in range(4):
+        try:
+            r = client.get(LOC_NEWSPAPERS, params=params)
+            r.raise_for_status()
+            data = r.json()
+            return list(data.get("results") or [])
+        except (httpx.HTTPError, json.JSONDecodeError) as exc:
+            last_err = exc
+            time.sleep(0.8 * (attempt + 1))
+    if last_err:
+        raise last_err
+    return []
 
 
 def _result_to_snippet(
@@ -154,6 +164,7 @@ def _result_to_snippet(
     item: dict[str, Any],
     query: str,
     images_dir: Path,
+    raw_dir: Path,
     *,
     download_images: bool,
 ) -> RawSnippet | None:
@@ -185,7 +196,7 @@ def _result_to_snippet(
         ext = ".jpg"
         dest = images_dir / f"{sid}{ext}"
         if _download_image(client, iiif, dest):
-            rel_image = str(dest.relative_to(ROOT))
+            rel_image = str(dest.relative_to(raw_dir))
 
     return RawSnippet(
         snippet_id=sid,
@@ -218,18 +229,25 @@ def fetch_snippets(
     if download_images:
         images_dir.mkdir(parents=True, exist_ok=True)
 
-    seen_urls: set[str] = set()
+    existing = load_raw_manifest(out)
+    seen_urls: set[str] = {s.get("citation_url", "") for s in existing}
     collected: list[RawSnippet] = []
     search_queries = queries or DEFAULT_QUERIES
+    errors: list[str] = []
 
-    headers = {"User-Agent": USER_AGENT}
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Accept": "application/json",
+        "Referer": LOC_REFERER,
+    }
     with httpx.Client(headers=headers, timeout=httpx.Timeout(90.0, connect=20.0)) as client:
         for query in search_queries:
             if len(collected) >= target:
                 break
             try:
                 results = _search_page(client, query, count=per_query)
-            except httpx.HTTPError:
+            except httpx.HTTPError as exc:
+                errors.append(f"{query}: {exc}")
                 time.sleep(1.0)
                 continue
             for item in results:
@@ -242,6 +260,7 @@ def fetch_snippets(
                     item,
                     query,
                     images_dir,
+                    out,
                     download_images=download_images,
                 )
                 if snippet is None:
@@ -256,12 +275,25 @@ def fetch_snippets(
                     break
                 time.sleep(delay_s)
 
-    manifest = {
-        "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "count": len(collected),
-        "snippets": [s.snippet_id for s in collected],
-    }
-    (out / MANIFEST_NAME).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    if collected:
+        all_ids = list({s["snippet_id"] for s in existing} | {s.snippet_id for s in collected})
+        manifest = {
+            "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "count": len(all_ids),
+            "snippets": all_ids,
+            "fetch_errors": errors[:10],
+        }
+        (out / MANIFEST_NAME).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    elif errors:
+        manifest_path = out / MANIFEST_NAME
+        payload: dict[str, Any] = {"fetch_errors": errors[:10]}
+        if manifest_path.is_file():
+            payload = {**json.loads(manifest_path.read_text(encoding="utf-8")), **payload}
+        else:
+            payload["count"] = 0
+            payload["snippets"] = []
+        (out / MANIFEST_NAME).write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
     return collected
 
 

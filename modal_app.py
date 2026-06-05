@@ -40,22 +40,44 @@ def _sync_src():
     timeout=60 * 20,
     memory=2048,
 )
-def rank_snippets(target: int = 20, per_query: int = 5) -> dict:
+def rank_snippets(
+    target: int = 20,
+    per_query: int = 5,
+    download_images: bool = False,
+) -> dict:
     """Fetch + heuristic-rank Chronicling America fragments."""
     _sync_src()
-    from archive_detective.ingest.chronicling_america import fetch_snippets
+    import json
+
+    from archive_detective.ingest.chronicling_america import fetch_snippets, load_raw_manifest
     from archive_detective.ingest.ranking import rank_snippets as rank_local
 
     out = Path(DATA_MOUNT) / "raw"
+    before = len(load_raw_manifest(out))
     snippets = fetch_snippets(
         target=target,
         per_query=per_query,
         out_dir=out,
-        download_images=True,
+        download_images=download_images,
     )
+    after = len(load_raw_manifest(out))
     ranked = rank_local(raw_dir=out)
+    manifest_path = out / "manifest.json"
+    fetch_errors: list[str] = []
+    if manifest_path.is_file():
+        try:
+            fetch_errors = list(json.loads(manifest_path.read_text(encoding="utf-8")).get("fetch_errors") or [])
+        except json.JSONDecodeError:
+            pass
     vol.commit()
-    return {"fetched": len(snippets), "ranked": len(ranked), "top": ranked[:5]}
+    return {
+        "fetched": len(snippets),
+        "on_disk": after,
+        "had_before": before,
+        "ranked": len(ranked),
+        "top": ranked[:5],
+        "fetch_errors": fetch_errors[:5],
+    }
 
 
 @app.function(
@@ -122,10 +144,31 @@ def run_eval(sample: int = 8) -> dict:
     return {"summary": summary, "eval_dir": str(eval_dir)}
 
 
+@app.function(
+    image=cpu_image,
+    volumes={DATA_MOUNT: vol},
+    timeout=60 * 10,
+    memory=1024,
+)
+def rank_only() -> dict:
+    """Re-score snippets already on the volume (no LOC fetch)."""
+    _sync_src()
+    from archive_detective.ingest.chronicling_america import load_raw_manifest
+    from archive_detective.ingest.ranking import rank_snippets as rank_local
+
+    out = Path(DATA_MOUNT) / "raw"
+    count = len(load_raw_manifest(out))
+    ranked = rank_local(raw_dir=out)
+    vol.commit()
+    return {"on_disk": count, "ranked": len(ranked), "top": ranked[:5]}
+
+
 @app.local_entrypoint()
 def main(action: str = "rank", target: int = 15, top: int = 5) -> None:
     if action == "rank":
         print(rank_snippets.remote(target=target))
+    elif action == "rank-only":
+        print(rank_only.remote())
     elif action == "packs":
         fn = modal.Function.from_name("archive-detective-gpu", "build_clue_packs")
         print(fn.remote(top=top))

@@ -32,6 +32,13 @@ case "$ACTION" in
   rank)
     uv run modal run modal_app.py --action rank --target "$TARGET"
     ;;
+  rank-only)
+    uv run modal run modal_app.py --action rank-only
+    ;;
+  seed)
+    echo ">> Uploading local data/raw to Modal volume..."
+    uv run modal volume put archive-detective-data data/raw /raw --force
+    ;;
   eval)
     run_fn eval
     ;;
@@ -54,7 +61,7 @@ case "$ACTION" in
     echo "Skipping build_clue_packs in 'all' (GPU cost). Run: ./scripts/run_modal.sh packs"
   ;;
   *)
-    echo "Usage: $0 {rank|eval|packs|pull|all}"
+    echo "Usage: $0 {rank|rank-only|seed|eval|packs|pull|all}"
     echo "  TARGET=15 TOP=5 $0 rank"
     exit 1
     ;;
