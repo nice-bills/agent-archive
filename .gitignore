@@ -14,3 +14,6 @@ build/
 .mypy_cache/
 .DS_Store
 *.log
+data/raw/images/
+data/clue_cache/
+.modal/

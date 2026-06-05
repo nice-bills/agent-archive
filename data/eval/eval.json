@@ -1,0 +1,104 @@
+{
+  "summary": {
+    "samples": 12,
+    "avg_mystery": 0.557
+  },
+  "rows": [
+    {
+      "snippet_id": "1937_04_22_resource_sn83045462_1937_04_22_ed_1",
+      "mystery_score": 0.68,
+      "raw_len": 1134,
+      "clean_len": 1134,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1953_05_10_resource_sn83045462_1953_05_10_ed_1",
+      "mystery_score": 0.6,
+      "raw_len": 1094,
+      "clean_len": 1094,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1925_04_04_resource_sn82016181_1925_04_04_ed_1",
+      "mystery_score": 0.6,
+      "raw_len": 1156,
+      "clean_len": 1156,
+      "entity_count": 7,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1919_01_05_resource_sn84026749_1919_01_05_ed_1",
+      "mystery_score": 0.6,
+      "raw_len": 1104,
+      "clean_len": 1104,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1935_11_29_resource_sn84026749_1935_11_29_ed_1",
+      "mystery_score": 0.6,
+      "raw_len": 1139,
+      "clean_len": 1139,
+      "entity_count": 4,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1925_07_20_resource_sn84026749_1925_07_20_ed_1",
+      "mystery_score": 0.6,
+      "raw_len": 1040,
+      "clean_len": 1040,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1963_09_02_resource_sn83045462_1963_09_02_ed_1",
+      "mystery_score": 0.53,
+      "raw_len": 1126,
+      "clean_len": 1126,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1805_10_29_resource_gdc_sn88063570_16096",
+      "mystery_score": 0.52,
+      "raw_len": 1148,
+      "clean_len": 1148,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1934_12_21_resource_sn84026749_1934_12_21_ed_1",
+      "mystery_score": 0.52,
+      "raw_len": 1140,
+      "clean_len": 1140,
+      "entity_count": 3,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1819_05_15_resource_gdc_sn88063570_16119",
+      "mystery_score": 0.52,
+      "raw_len": 1045,
+      "clean_len": 1045,
+      "entity_count": 8,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1819_06_01_resource_gdc_sn88063570_16133",
+      "mystery_score": 0.52,
+      "raw_len": 1154,
+      "clean_len": 1154,
+      "entity_count": 7,
+      "evidence_count": 1
+    },
+    {
+      "snippet_id": "1937_06_05_resource_sn82016181_1937_06_05_ed_1",
+      "mystery_score": 0.4,
+      "raw_len": 1120,
+      "clean_len": 1120,
+      "entity_count": 8,
+      "evidence_count": 1
+    }
+  ]
+}

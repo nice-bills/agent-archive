@@ -1,0 +1,402 @@
+{
+  "case_id": "case_1953_05_10_resource_sn83045462_1",
+  "title": "Longshot at Belmont",
+  "tagline": "Evening Star, 1953 \u2014 a horse named Secret Meeting upsets the Acorn Stakes.",
+  "start_beat": "opening",
+  "beats": {
+    "opening": {
+      "artifact_id": "ca_1953_05_10_resource_sn83045462_1953_05_10_ed_1",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": "assets/1953_05_10_resource_sn83045462_1953_05_1.jpg",
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening star (Washington, D.C.), 1953-05-10",
+          "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "A torn column from the Evening Star (1953-05-10) lands on your board \u2014 real ink, real headline."
+    },
+    "names": {
+      "artifact_id": "ca_1953_05_10_resource_sn83045462_1953_05_10_ed_1_names",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "close",
+          "label": "Close the case \u2014 for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening star (Washington, D.C.), 1953-05-10",
+          "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Who is named here?** \u2014 another angle on the same ink-stained fragment."
+    },
+    "place": {
+      "artifact_id": "ca_1953_05_10_resource_sn83045462_1953_05_10_ed_1_place",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "close",
+          "label": "Close the case \u2014 for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening star (Washington, D.C.), 1953-05-10",
+          "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Trace the place** \u2014 another angle on the same ink-stained fragment."
+    },
+    "close": {
+      "artifact_id": "ca_1953_05_10_resource_sn83045462_1953_05_10_ed_1_close",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Close the case \u2014 for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening star (Washington, D.C.), 1953-05-10",
+          "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Table this fragment** \u2014 another angle on the same ink-stained fragment."
+    },
+    "closed": {
+      "artifact_id": "ca_1953_05_10_resource_sn83045462_1953_05_10_ed_1_closed",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Case tabled. Fragment logged on the board."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_close",
+          "clue_type": "summary",
+          "title": "Board pinned",
+          "detail": "Enough for tonight \u2014 the archive keeps the rest."
+        }
+      ],
+      "clue_types": [
+        "summary"
+      ],
+      "mystery_score": 1.0,
+      "lead_options": [],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: Evening star (Washington, D.C.), 1953-05-10",
+          "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You pin the board shut. The clipping stays real; the rest waits."
+    }
+  },
+  "transitions": {
+    "opening": {
+      "names": "names",
+      "place": "place",
+      "close": "close"
+    },
+    "names": {
+      "close": "closed",
+      "place": "place"
+    },
+    "place": {
+      "close": "closed",
+      "names": "names"
+    },
+    "close": {
+      "close": "closed",
+      "names": "names",
+      "place": "place"
+    }
+  }
+}

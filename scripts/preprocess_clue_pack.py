@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stub for Modal / offline clue-pack generation from Chronicling America snippets."""
+"""Validate or normalize clue-pack JSON (Pydantic). For generation, use clue_builder or Modal."""
 
 from __future__ import annotations
 
