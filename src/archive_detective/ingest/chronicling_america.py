@@ -212,6 +212,34 @@ def _result_to_snippet(
     )
 
 
+def discover_snippets_on_disk(raw_dir: Path) -> list[dict[str, Any]]:
+    """Load all snippet JSON files under raw_dir/snippets (ignores manifest)."""
+    json_dir = raw_dir / "snippets"
+    if not json_dir.is_dir():
+        return []
+    rows: list[dict[str, Any]] = []
+    for path in sorted(json_dir.glob("*.json")):
+        try:
+            rows.append(json.loads(path.read_text(encoding="utf-8")))
+        except (json.JSONDecodeError, OSError):
+            continue
+    return rows
+
+
+def rebuild_manifest_from_disk(raw_dir: Path) -> dict[str, Any]:
+    """Rebuild manifest.json from snippet files on disk."""
+    rows = discover_snippets_on_disk(raw_dir)
+    ids = [r["snippet_id"] for r in rows if r.get("snippet_id")]
+    manifest = {
+        "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "count": len(ids),
+        "snippets": ids,
+        "rebuilt_from_disk": True,
+    }
+    (raw_dir / MANIFEST_NAME).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    return manifest
+
+
 def fetch_snippets(
     *,
     queries: list[str] | None = None,
@@ -222,7 +250,17 @@ def fetch_snippets(
     delay_s: float = 0.35,
 ) -> list[RawSnippet]:
     """Pull newspaper page snippets from LOC Chronicling America search."""
+    from archive_detective.debug_log import debug_log
+
     out = out_dir or RAW_DIR
+    # #region agent log
+    debug_log(
+        "chronicling_america.py:fetch_snippets:entry",
+        "fetch_start",
+        {"out_dir": str(out), "target": target, "download_images": download_images},
+        "H1",
+    )
+    # #endregion
     json_dir = out / "snippets"
     images_dir = out / "images"
     json_dir.mkdir(parents=True, exist_ok=True)
@@ -234,6 +272,8 @@ def fetch_snippets(
     collected: list[RawSnippet] = []
     search_queries = queries or DEFAULT_QUERIES
     errors: list[str] = []
+    rejected_short = 0
+    results_seen = 0
 
     headers = {
         "User-Agent": USER_AGENT,
@@ -246,6 +286,7 @@ def fetch_snippets(
                 break
             try:
                 results = _search_page(client, query, count=per_query)
+                results_seen += len(results)
             except httpx.HTTPError as exc:
                 errors.append(f"{query}: {exc}")
                 time.sleep(1.0)
@@ -264,6 +305,7 @@ def fetch_snippets(
                     download_images=download_images,
                 )
                 if snippet is None:
+                    rejected_short += 1
                     continue
                 path = json_dir / f"{snippet.snippet_id}.json"
                 path.write_text(
@@ -293,19 +335,60 @@ def fetch_snippets(
             payload["count"] = 0
             payload["snippets"] = []
         (out / MANIFEST_NAME).write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    elif not collected and discover_snippets_on_disk(out):
+        rebuild_manifest_from_disk(out)
 
+    on_disk = len(discover_snippets_on_disk(out))
+    # #region agent log
+    debug_log(
+        "chronicling_america.py:fetch_snippets:exit",
+        "fetch_done",
+        {
+            "collected": len(collected),
+            "on_disk": on_disk,
+            "errors": len(errors),
+            "results_seen": results_seen,
+            "rejected_short": rejected_short,
+        },
+        "H2",
+    )
+    # #endregion
     return collected
 
 
 def load_raw_manifest(raw_dir: Path | None = None) -> list[dict[str, Any]]:
+    from archive_detective.debug_log import debug_log
+
     base = raw_dir or RAW_DIR
     manifest_path = base / MANIFEST_NAME
-    if not manifest_path.is_file():
-        return []
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest_ids: list[str] = []
+    if manifest_path.is_file():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest_ids = list(manifest.get("snippets") or [])
+        except json.JSONDecodeError:
+            manifest_ids = []
+
     snippets: list[dict[str, Any]] = []
-    for sid in manifest.get("snippets", []):
+    for sid in manifest_ids:
         p = base / "snippets" / f"{sid}.json"
         if p.is_file():
             snippets.append(json.loads(p.read_text(encoding="utf-8")))
+
+    disk = discover_snippets_on_disk(base)
+    if not snippets and disk:
+        rebuild_manifest_from_disk(base)
+        snippets = disk
+    # #region agent log
+    debug_log(
+        "chronicling_america.py:load_raw_manifest",
+        "manifest_loaded",
+        {
+            "manifest_ids": len(manifest_ids),
+            "loaded": len(snippets),
+            "disk_files": len(disk),
+        },
+        "H1",
+    )
+    # #endregion
     return snippets

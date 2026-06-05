@@ -90,7 +90,20 @@ def rank_snippets(
 ) -> list[dict[str, Any]]:
     from archive_detective.ingest.chronicling_america import load_raw_manifest
 
+    from archive_detective.debug_log import debug_log
+    from archive_detective.ingest.chronicling_america import discover_snippets_on_disk
+
     rows = snippets if snippets is not None else load_raw_manifest(raw_dir)
+    out_dir = raw_dir or RAW_DIR
+    disk_count = len(discover_snippets_on_disk(out_dir))
+    # #region agent log
+    debug_log(
+        "ranking.py:rank_snippets:entry",
+        "rank_start",
+        {"rows_in": len(rows), "disk_snippet_files": disk_count},
+        "H3",
+    )
+    # #endregion
     ranked: list[dict[str, Any]] = []
     for row in rows:
         ms = score_snippet(row.get("raw_ocr", ""), title=row.get("title", ""))
@@ -99,10 +112,18 @@ def rank_snippets(
     if top_n:
         ranked = ranked[:top_n]
 
-    out_dir = raw_dir or RAW_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "ranked.json").write_text(
-        json.dumps({"snippets": ranked}, indent=2) + "\n",
-        encoding="utf-8",
+    if ranked or disk_count == 0:
+        (out_dir / "ranked.json").write_text(
+            json.dumps({"snippets": ranked}, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    # #region agent log
+    debug_log(
+        "ranking.py:rank_snippets:exit",
+        "rank_done",
+        {"ranked": len(ranked), "wrote_ranked": bool(ranked or disk_count == 0)},
+        "H3",
     )
+    # #endregion
     return ranked

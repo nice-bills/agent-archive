@@ -36,7 +36,7 @@ def main() -> None:
     )
     print(f"Saved {len(snippets)} snippets under {RAW_DIR}")
 
-    if args.rank or snippets:
+    if args.rank:
         ranked = rank_snippets()
         print(f"Ranked {len(ranked)} snippets → {RAW_DIR / 'ranked.json'}")
         for row in ranked[:5]:
