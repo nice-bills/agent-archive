@@ -70,11 +70,16 @@ def rank_snippets(target: int = 20, per_query: int = 5) -> dict:
 
 
 @app.function(
-    image=image.gpu("A10G"),
+    image=image,
+    gpu="A10G",
     volumes={DATA_MOUNT: vol},
     timeout=60 * 45,
     memory=16384,
-    secrets=[modal.Secret.from_name("huggingface", required=False)],
+    secrets=(
+        [modal.Secret.from_local_environ(["HF_TOKEN"])]
+        if os.environ.get("HF_TOKEN")
+        else [modal.Secret.from_name("huggingface")]
+    ),
 )
 def build_clue_packs(top: int = 5, use_model: bool = True) -> dict:
     """Build clue-pack JSON for top-ranked snippets (MiniCPM on GPU when enabled)."""
