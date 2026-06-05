@@ -48,9 +48,6 @@ def rank_snippets(
     """Fetch + heuristic-rank Chronicling America fragments."""
     _sync_src()
     import json
-    import os
-
-    os.environ.setdefault("ARCHIVE_DEBUG_LOG", f"{DATA_MOUNT}/debug-08eda1.log")
 
     from archive_detective.ingest.chronicling_america import fetch_snippets, load_raw_manifest
     from archive_detective.ingest.ranking import rank_snippets as rank_local
@@ -72,11 +69,6 @@ def rank_snippets(
             fetch_errors = list(json.loads(manifest_path.read_text(encoding="utf-8")).get("fetch_errors") or [])
         except json.JSONDecodeError:
             pass
-    debug_tail: list[str] = []
-    debug_path = Path(DATA_MOUNT) / "debug-08eda1.log"
-    if debug_path.is_file():
-        debug_tail = debug_path.read_text(encoding="utf-8").splitlines()[-8:]
-
     vol.commit()
     return {
         "fetched": len(snippets),
@@ -85,7 +77,6 @@ def rank_snippets(
         "ranked": len(ranked),
         "top": ranked[:5],
         "fetch_errors": fetch_errors[:5],
-        "debug_tail": debug_tail,
     }
 
 

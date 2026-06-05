@@ -33,8 +33,14 @@ modal volume get archive-detective-data raw/ranked.json data/raw/ranked.json
 ## Commands
 
 ```bash
-# Fetch ~15 LOC snippets + heuristic rank (CPU, ~5–15 min)
-modal run modal_app.py::rank_snippets --target 15
+# Fetch + rank (CPU). LOC may fail from Modal cloud — existing volume snippets are still ranked.
+uv run modal run modal_app.py --action rank --target 15
+
+# Re-score only (no LOC fetch)
+uv run modal run modal_app.py --action rank-only
+
+# Upload local data/raw first if volume is empty
+./scripts/run_modal.sh seed
 
 # Top-N clue packs — GPU + MiniCPM when use_model=True
 modal run modal_app.py::build_clue_packs --top 5

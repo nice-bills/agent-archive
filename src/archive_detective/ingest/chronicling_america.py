@@ -250,17 +250,7 @@ def fetch_snippets(
     delay_s: float = 0.35,
 ) -> list[RawSnippet]:
     """Pull newspaper page snippets from LOC Chronicling America search."""
-    from archive_detective.debug_log import debug_log
-
     out = out_dir or RAW_DIR
-    # #region agent log
-    debug_log(
-        "chronicling_america.py:fetch_snippets:entry",
-        "fetch_start",
-        {"out_dir": str(out), "target": target, "download_images": download_images},
-        "H1",
-    )
-    # #endregion
     json_dir = out / "snippets"
     images_dir = out / "images"
     json_dir.mkdir(parents=True, exist_ok=True)
@@ -338,27 +328,10 @@ def fetch_snippets(
     elif not collected and discover_snippets_on_disk(out):
         rebuild_manifest_from_disk(out)
 
-    on_disk = len(discover_snippets_on_disk(out))
-    # #region agent log
-    debug_log(
-        "chronicling_america.py:fetch_snippets:exit",
-        "fetch_done",
-        {
-            "collected": len(collected),
-            "on_disk": on_disk,
-            "errors": len(errors),
-            "results_seen": results_seen,
-            "rejected_short": rejected_short,
-        },
-        "H2",
-    )
-    # #endregion
     return collected
 
 
 def load_raw_manifest(raw_dir: Path | None = None) -> list[dict[str, Any]]:
-    from archive_detective.debug_log import debug_log
-
     base = raw_dir or RAW_DIR
     manifest_path = base / MANIFEST_NAME
     manifest_ids: list[str] = []
@@ -379,16 +352,4 @@ def load_raw_manifest(raw_dir: Path | None = None) -> list[dict[str, Any]]:
     if not snippets and disk:
         rebuild_manifest_from_disk(base)
         snippets = disk
-    # #region agent log
-    debug_log(
-        "chronicling_america.py:load_raw_manifest",
-        "manifest_loaded",
-        {
-            "manifest_ids": len(manifest_ids),
-            "loaded": len(snippets),
-            "disk_files": len(disk),
-        },
-        "H1",
-    )
-    # #endregion
     return snippets
