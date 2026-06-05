@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import gradio as gr
 
 from archive_detective.cases import list_cases
@@ -12,42 +15,33 @@ from archive_detective.engine import (
     start_session,
 )
 
-CUSTOM_CSS = """
-.gradio-container {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif !important;
-  max-width: 1180px !important;
-}
-#hero-title {
-  font-family: Georgia, "Iowan Old Style", serif;
-  font-size: 2rem;
-  letter-spacing: -0.03em;
-}
-.mystery-pill {
-  color: #fff1cc;
-  border: 1px solid rgba(215,164,73,0.45);
-  background: rgba(215,164,73,0.12);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  display: inline-block;
-}
-"""
+STATIC_DIR = Path(__file__).resolve().parent / "static"
+THEME_CSS = (STATIC_DIR / "theme.css").read_text(encoding="utf-8")
 
 
 def _mystery_badge(score: float) -> str:
-    return f'<span class="mystery-pill">Mystery score {score:.0%}</span>'
+    tier = "COLD" if score < 0.4 else "WARM" if score < 0.7 else "HOT"
+    return (
+        f'<span class="mystery-pill">{tier} · mystery {score:.0%}</span>'
+    )
 
 
 def _source_md(session: CaseSession) -> str:
     src = session.pack.source
     return (
-        f"**{src.publication}** · {src.date}  \n"
-        f"_{src.archive}_ · [citation]({src.citation_url})"
+        f'<div class="ad-board-header">'
+        f"<strong>{src.publication}</strong> · {src.date}<br/>"
+        f'<span style="color:#8b9aab">{src.archive}</span> · '
+        f'<a href="{src.citation_url}" target="_blank" rel="noopener">citation</a>'
+        f"</div>"
     )
 
 
 def _case_header(session: CaseSession) -> str:
-    return f"## {session.case.title}\n_{session.case.tagline}_"
+    return (
+        f'<div id="hero-title">{session.case.title}</div>'
+        f'<p class="ad-tagline">{session.case.tagline}</p>'
+    )
 
 
 def _leads_md(session: CaseSession) -> str:
@@ -65,7 +59,21 @@ def _history_md(session: CaseSession) -> str:
     if not session.history:
         return ""
     steps = " → ".join(f"{beat}: {label}" for beat, label in session.history)
-    return f"**Trail:** {steps}"
+    return f'<div class="trail-line"><strong>Trail</strong> {steps}</div>'
+
+
+def _model_reading_md(session: CaseSession) -> str:
+    pack = session.pack
+    payload = {
+        "artifact_id": pack.artifact_id,
+        "mystery_score": pack.mystery_score,
+        "clue_types": pack.clue_types,
+        "entities": [e.model_dump() for e in pack.entities],
+        "evidence_cards": [c.model_dump() for c in pack.evidence_cards],
+        "reveal_notes": pack.reveal_notes.model_dump(),
+    }
+    body = json.dumps(payload, indent=2)
+    return f'<pre>{body}</pre>'
 
 
 def render(session: CaseSession, *, show_reveal: bool) -> tuple:
@@ -89,31 +97,45 @@ def render(session: CaseSession, *, show_reveal: bool) -> tuple:
         gr.update(interactive=bool(labels)),
         _history_md(session),
         gr.update(visible=show_reveal, value=format_reveal(pack) if show_reveal else ""),
+        _model_reading_md(session),
     )
 
 
 def build_app() -> gr.Blocks:
     case_ids = list_cases() or ["georgetown_notice"]
 
-    theme = gr.themes.Base(primary_hue="amber", neutral_hue="slate").set(
-        body_background_fill="#0b0d10",
-        block_background_fill="#12171e",
-        border_color_primary="#2a3442",
-        body_text_color="#edf2f7",
+    theme = (
+        gr.themes.Base(
+            primary_hue=gr.themes.colors.amber,
+            neutral_hue=gr.themes.colors.slate,
+            font=gr.themes.GoogleFont("DM Sans"),
+        )
+        .set(
+            body_background_fill="#0a0c0f",
+            block_background_fill="#12171e",
+            block_border_width="1px",
+            block_label_text_color="#d7a449",
+            body_text_color="#e8edf4",
+            border_color_primary="#2a3442",
+            button_primary_background_fill="linear-gradient(180deg, #c4923f, #9a6f2a)",
+            button_primary_text_color="#1a1408",
+            input_background_fill="#0d1117",
+        )
     )
 
     with gr.Blocks(title="Archive Detective") as demo:
         demo.theme = theme
-        demo.css = CUSTOM_CSS
+        demo.css = THEME_CSS
         session_state = gr.State(None)
 
         gr.Markdown(
-            "# Archive Detective",
-            elem_id="hero-title",
+            "## Archive Detective",
+            elem_classes=["panel-label"],
         )
         gr.Markdown(
-            "Playable micro-mysteries from public-domain newspaper fragments. "
-            "Read the artifact, follow the clues, pick a lead."
+            "Playable micro-mysteries from **public-domain** newspaper fragments. "
+            "Read the artifact · follow the evidence · pick a lead.",
+            elem_classes=["ad-tagline"],
         )
 
         with gr.Row():
@@ -121,34 +143,57 @@ def build_app() -> gr.Blocks:
                 choices=case_ids,
                 value=case_ids[0],
                 label="Case file",
+                scale=2,
             )
-            reset_btn = gr.Button("New investigation", variant="secondary")
+            reset_btn = gr.Button("New investigation", variant="secondary", scale=1)
 
-        case_header = gr.Markdown("")
+        case_header = gr.HTML("")
         beat_intro = gr.Markdown("")
         mystery_html = gr.HTML("")
-        source_md = gr.Markdown("")
+        source_md = gr.HTML("")
 
-        with gr.Row():
-            with gr.Column():
-                gr.Markdown("### Artifact")
-                artifact_img = gr.Image(label="Clipping", type="filepath", height=320)
-                raw_ocr = gr.Textbox(label="Raw OCR", lines=4, interactive=False)
-                clean_text = gr.Textbox(label="Cleaned reading", lines=4, interactive=False)
-            with gr.Column():
-                gr.Markdown("### Evidence board")
-                entities_md = gr.Markdown()
-                evidence_md = gr.Markdown()
-                clue_types = gr.Textbox(label="Clue types", interactive=False)
-            with gr.Column():
-                gr.Markdown("### Leads")
-                leads_md = gr.Markdown()
-                lead_radio = gr.Radio(choices=[], label="Your next move")
-                advance_btn = gr.Button("Follow lead", variant="primary")
-                reveal_btn = gr.Button("Reveal: archive vs bridge", variant="secondary")
-                reveal_md = gr.Markdown(visible=False)
+        with gr.Tabs():
+            with gr.Tab("Evidence board"):
+                with gr.Row():
+                    with gr.Column(scale=5):
+                        gr.Markdown("### Artifact", elem_classes=["panel-label"])
+                        artifact_img = gr.Image(
+                            label="Clipping",
+                            type="filepath",
+                            height=340,
+                            show_label=False,
+                        )
+                        with gr.Accordion("OCR layers", open=False):
+                            raw_ocr = gr.Textbox(label="Raw OCR", lines=5, interactive=False)
+                            clean_text = gr.Textbox(
+                                label="Cleaned reading",
+                                lines=5,
+                                interactive=False,
+                            )
+                    with gr.Column(scale=4):
+                        gr.Markdown("### Tagged entities", elem_classes=["panel-label"])
+                        entities_md = gr.Markdown()
+                        gr.Markdown("### Evidence cards", elem_classes=["panel-label"])
+                        evidence_md = gr.Markdown()
+                        clue_types = gr.Textbox(label="Clue types", interactive=False)
+                    with gr.Column(scale=3):
+                        gr.Markdown("### Leads", elem_classes=["panel-label"])
+                        leads_md = gr.Markdown()
+                        lead_radio = gr.Radio(choices=[], label="Your next move")
+                        with gr.Row():
+                            advance_btn = gr.Button("Follow lead", variant="primary")
+                            reveal_btn = gr.Button("Reveal", variant="secondary")
+                        reveal_md = gr.Markdown(visible=False, elem_classes=["reveal-panel"])
 
-        history_md = gr.Markdown("")
+            with gr.Tab("Model reading"):
+                gr.Markdown(
+                    "Structured clue pack for this beat (cached case JSON — "
+                    "live MiniCPM when `ARCHIVE_DETECTIVE_USE_MODEL=1`).",
+                    elem_classes=["ad-tagline"],
+                )
+                model_md = gr.HTML(elem_classes=["model-tab"])
+
+        history_md = gr.HTML("")
 
         outputs = [
             session_state,
@@ -167,6 +212,7 @@ def build_app() -> gr.Blocks:
             advance_btn,
             history_md,
             reveal_md,
+            model_md,
         ]
 
         def on_start(case_id: str):
