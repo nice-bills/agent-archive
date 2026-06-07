@@ -8,29 +8,40 @@ from pathlib import Path
 from typing import Any
 
 from archive_detective.clue_builder import parse_vision_json
+from archive_detective.env import load_project_env
 from archive_detective.prompts import build_extraction_prompt
+
+load_project_env()
 
 MODEL_ID = os.environ.get("ARCHIVE_DETECTIVE_MODEL", "openbmb/MiniCPM-V-4_6")
 
 
-def model_enabled() -> bool:
-    return os.environ.get("ARCHIVE_DETECTIVE_USE_MODEL", "").lower() in {"1", "true", "yes"}
+def _hf_token() -> str | None:
+    return os.environ.get("HF_TOKEN") or None
 
 
 def _load_model():
     import torch
     from transformers import AutoModel, AutoTokenizer
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+    token = _hf_token()
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL_ID, trust_remote_code=True, token=token
+    )
     model = AutoModel.from_pretrained(
         MODEL_ID,
         trust_remote_code=True,
         attn_implementation="sdpa",
         torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+        token=token,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model = model.eval().to(device)
     return model, tokenizer, device
+
+
+def model_enabled() -> bool:
+    return os.environ.get("ARCHIVE_DETECTIVE_USE_MODEL", "").lower() in {"1", "true", "yes"}
 
 
 def _run_minicpm_chat(

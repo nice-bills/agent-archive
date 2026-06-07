@@ -21,11 +21,12 @@ Playable micro-mystery machine built from **public-domain newspaper fragments** 
 
 ```bash
 cd archive-detective
+cp .env.example .env   # add HF_TOKEN for MiniCPM / Hub
 uv sync
-uv run python -c "from archive_detective.cases import list_cases; print(list_cases())"
-uv run python -c "import app"
 uv run python main.py   # http://127.0.0.1:7860
 ```
+
+**Secrets:** `.env` is gitignored. For Modal GPU jobs, create `modal secret create huggingface HF_TOKEN=hf_...` (see [MODAL.md](MODAL.md)).
 
 ## Ingest (real LOC data)
 

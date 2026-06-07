@@ -39,7 +39,7 @@ gpu_image = (
 def _hf_secrets() -> list[modal.Secret]:
     if os.environ.get("HF_TOKEN"):
         return [modal.Secret.from_local_environ(["HF_TOKEN"])]
-    return []
+    return [modal.Secret.from_name("huggingface")]
 
 
 def _sync_src():
