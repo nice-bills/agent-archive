@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Detective — Field Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #14110f;
+      --paper: #f3ead6;
+      --ink: #e8dfd0;
+      --muted: #9a8d7c;
+      --brass: #a67c3d;
+      --wax: #9c2f2f;
+      --mono: "IBM Plex Mono", monospace;
+      --display: "Cormorant Garamond", Georgia, serif;
+      --body: "Literata", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: linear-gradient(165deg, #1a1612, var(--bg));
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    .kicker {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin: 0 0 0.5rem;
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      margin: 0 0 0.5rem;
+      color: #faf3e6;
+    }
+    .deck { color: var(--muted); margin: 0 0 2rem; max-width: 55ch; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(166,124,61,0.25);
+    }
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--brass);
+      text-decoration: none;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid rgba(166,124,61,0.3);
+    }
+    nav a:hover { background: rgba(166,124,61,0.12); }
+    section { margin-bottom: 2.5rem; scroll-margin-top: 1rem; }
+    h2 {
+      font-family: var(--display);
+      font-size: 1.65rem;
+      color: #faf3e6;
+      margin: 0 0 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--wax);
+    }
+    h3 { font-size: 1.05rem; color: #ddd0bc; margin: 1.25rem 0 0.5rem; }
+    p { margin: 0 0 0.85rem; }
+    ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 1rem 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 1px solid rgba(166,124,61,0.2);
+    }
+    th {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .badge-ok { color: #a8c4a0; }
+    .badge-partial { color: #f0d49a; }
+    .badge-future { color: #9eb8c4; }
+    pre {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      line-height: 1.5;
+      background: #0f0d0b;
+      border: 1px solid rgba(166,124,61,0.25);
+      padding: 1rem;
+      overflow-x: auto;
+      color: #c9baa8;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .stat {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(166,124,61,0.25);
+      padding: 0.85rem;
+      text-align: center;
+    }
+    .stat strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.8rem;
+      color: #faf3e6;
+    }
+    .stat span {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .copy-row { margin-top: 2rem; }
+    button {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.55rem 0.85rem;
+      background: var(--wax);
+      color: #fff8f0;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.08); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">HF Build Small Hackathon · Field Notes</p>
+    <h1>Archive Detective</h1>
+    <p class="deck">What we built, what broke, and what we'd do with another week — before any Hugging Face deploy.</p>
+
+    <nav>
+      <a href="#summary">Summary</a>
+      <a href="#badges">Badges</a>
+      <a href="#pipeline">LOC ingest</a>
+      <a href="#ui">gr.Server UI</a>
+      <a href="#llama">llama.cpp</a>
+      <a href="#mistakes">Mistakes</a>
+      <a href="#future">LocateAnything-3B</a>
+    </nav>
+
+    <section id="summary">
+      <h2>Executive summary</h2>
+      <p>Archive Detective turns <strong>Library of Congress Chronicling America</strong> newspaper fragments into playable micro-mysteries. Players read real OCR text and clippings, follow branching leads, then reveal what is archive fact vs editorial glue.</p>
+      <div class="stat-grid">
+        <div class="stat"><strong>5</strong><span>Playable cases</span></div>
+        <div class="stat"><strong>12</strong><span>LOC snippets ingested</span></div>
+        <div class="stat"><strong>~5.4k</strong><span>Lines (src + scripts + cases)</span></div>
+        <div class="stat"><strong>0</strong><span>Cloud APIs at runtime</span></div>
+      </div>
+      <p>The shipping UI is a custom <strong>gradio.Server</strong> board (HTML/CSS/JS) — not default Gradio Blocks. Prebuilt case JSON means the demo runs fully offline.</p>
+    </section>
+
+    <section id="badges">
+      <h2>Badge checklist</h2>
+      <table>
+        <thead><tr><th>Badge</th><th>Status</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>Off-Brand</td><td class="badge-ok">Ready</td><td>Custom cork-desk UI via gr.Server; warm monochrome / gallery editorial direction</td></tr>
+          <tr><td>Off the Grid</td><td class="badge-ok">Ready</td><td>Prebuilt cases; no HF/OpenAI at play time; <code>scripts/verify_local.py</code></td></tr>
+          <tr><td>Llama Champion</td><td class="badge-partial">Wired</td><td><code>scripts/run_llama.sh</code> + <code>llama.py</code> OCR extraction; needs GGUF download</td></tr>
+          <tr><td>Sharing is Caring</td><td class="badge-partial">Prepared</td><td><code>scripts/prepare_agent_trace.py</code> → redacted JSONL (340 turns); upload gated on HF_TOKEN</td></tr>
+          <tr><td>Field Notes</td><td class="badge-ok">This doc</td><td><code>docs/artifacts/field-notes.html</code></td></tr>
+          <tr><td>Well-Tuned</td><td class="badge-future">Skipped</td><td>MiniCPM fine-tune deferred; heuristic + prebuilt packs sufficient</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pipeline">
+      <h2>LOC ingest pipeline</h2>
+      <ol>
+        <li><strong>Fetch</strong> — <code>scripts/fetch_chronicling_america.py</code> pulls snippets + IIIF images into <code>data/raw/snippets/</code></li>
+        <li><strong>Rank</strong> — <code>ingest/ranking.py</code> scores OCR for mystery signals (questions, secrets, proper nouns, noise)</li>
+        <li><strong>Build packs</strong> — <code>clue_builder.py</code> heuristics or optional MiniCPM-V / llama.cpp JSON extraction</li>
+        <li><strong>Case graph</strong> — <code>build_cases_from_ingest.py</code> emits branching JSON in <code>data/cases/</code></li>
+      </ol>
+      <h3>Hero demos</h3>
+      <ul>
+        <li><strong>The Hart Notice</strong> (<code>georgetown_notice</code>) — synthetic passphrase notice; teaches coded-message mechanics</li>
+        <li><strong>The Midnight Brief</strong> (1937 Aimee McPherson organ signal) — real LOC OCR + scan; highest mystery score</li>
+      </ul>
+    </section>
+
+    <section id="ui">
+      <h2>gr.Server custom board</h2>
+      <p>We replaced Gradio Blocks with <code>gradio.Server</code> + static board. The frontend calls <code>/gradio_api/call/{api}</code> and parses SSE <code>data:</code> lines — same contract Gradio uses internally.</p>
+      <pre>main.py → server_app.build_server()
+  GET  /              index.html
+  GET  /board.css     /board.js
+  GET  /assets/*      clipping scans
+  API  catalog | start_case | choose_lead | reveal</pre>
+      <h3>Design direction</h3>
+      <p>Warm monochrome detective desk: cork panels, newsprint cards, brass labels, wax-seal primary actions. Case picker shows titles (★ for hero cases), inline loading on lead follow, scroll-to-reveal animation.</p>
+      <h3>Mistakes we hit</h3>
+      <ul>
+        <li>Deployed to HF Space before local browser QA — user blocked further deploy until <code>--confirm-local</code></li>
+        <li>Static files lived under <code>src/archive_detective/static/board/</code> but early docs referenced <code>static/board/</code> at repo root</li>
+        <li>Gradio SSE poll format is easy to get wrong; must parse <code>data: [...]</code> not raw JSON</li>
+        <li>Premature Modal/MiniCPM path added complexity; prebuilt cases were the right MVP</li>
+      </ul>
+    </section>
+
+    <section id="llama">
+      <h2>Local llama.cpp path</h2>
+      <pre>./scripts/run_llama.sh          # llama-server on :8080
+export ARCHIVE_DETECTIVE_USE_LLAMA=1
+uv run python scripts/build_cases_from_ingest.py --top 2</pre>
+      <p>Recommended GGUF: <strong>Qwen2.5-3B-Instruct-Q4_K_M</strong> (~2GB). Text-from-OCR extraction only — images stay as LOC scans; no cloud vision API required.</p>
+    </section>
+
+    <section id="future">
+      <h2>LocateAnything-3B (future fit)</h2>
+      <p><a href="https://huggingface.co/FanqingM/LocateAnything-3B" style="color:var(--brass)">LocateAnything-3B</a> grounds text queries on document images — a natural next step for pointing at <em>which line</em> of a noisy clipping supports each evidence card. Not integrated for hackathon deadline; would replace heuristic entity pinning with bbox highlights on the cork board.</p>
+    </section>
+
+    <section id="lessons">
+      <h2>Lessons</h2>
+      <ul>
+        <li>Ship prebuilt content first; wire live models second</li>
+        <li>Custom UI on gr.Server is viable for Off-Brand without ejecting from HF Spaces</li>
+        <li>LOC OCR is already a game mechanic — lean into noise, don't over-clean</li>
+        <li>Always run <code>verify_local.py</code> + browser click-through before <code>deploy_space.py</code></li>
+      </ul>
+    </section>
+
+    <div class="copy-row">
+      <button type="button" id="copy-md">Copy as markdown</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById("copy-md").addEventListener("click", () => {
+      const md = `# Archive Detective — Field Notes
+
+## Summary
+- 5 playable cases from LOC Chronicling America ingest
+- Custom gr.Server UI (offline-ready)
+- llama.cpp path for OCR → clue extraction
+
+## Badges
+| Badge | Status |
+| Off-Brand | Ready |
+| Off the Grid | Ready |
+| Llama Champion | Wired (needs GGUF) |
+| Sharing is Caring | Redacted trace prepared |
+| Field Notes | This document |
+
+## Run locally
+\`\`\`bash
+uv run python scripts/verify_local.py
+uv run python main.py
+\`\`\`
+Open http://127.0.0.1:7860/
+
+## Future: LocateAnything-3B for clipping grounding`;
+      navigator.clipboard.writeText(md).then(() => {
+        document.getElementById("copy-md").textContent = "Copied!";
+      });
+    });
+  </script>
+</body>
+</html>

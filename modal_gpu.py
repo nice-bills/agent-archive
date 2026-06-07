@@ -26,7 +26,8 @@ gpu_image = (
         "pillow>=12.2",
         "pydantic>=2.13",
         "torch>=2.4",
-        "transformers>=4.48",
+        "transformers>=5.7.0",
+        "torchvision>=0.19.0",
         "accelerate>=1.2",
         "sentencepiece>=0.2",
         "protobuf>=5.0",
@@ -60,6 +61,7 @@ def build_clue_packs(top: int = 5, use_model: bool = True) -> dict:
     """Build clue-pack JSON for top-ranked snippets (MiniCPM on GPU when enabled)."""
     _sync_src()
     from archive_detective.clue_builder import build_clue_pack_from_snippet
+    from archive_detective.ingest.chronicling_america import resolve_snippet_image
     from archive_detective.ingest.ranking import rank_snippets
 
     raw_dir = Path(DATA_MOUNT) / "raw"
@@ -71,34 +73,31 @@ def build_clue_packs(top: int = 5, use_model: bool = True) -> dict:
     packs_dir = Path(DATA_MOUNT) / "clue_packs"
     packs_dir.mkdir(parents=True, exist_ok=True)
     built: list[str] = []
-    repo_root = Path("/root")
+    model_used: list[str] = []
 
     if use_model:
         if not os.environ.get("HF_TOKEN"):
             raise RuntimeError(
-                "GPU clue packs need HF_TOKEN. Run: export HF_TOKEN=hf_... "
-                "or: modal secret create huggingface HF_TOKEN=hf_..."
+                "GPU clue packs need HF_TOKEN via Modal secret `huggingface`."
             )
         os.environ["ARCHIVE_DETECTIVE_USE_MODEL"] = "1"
         from archive_detective import vision
 
     for row in ranked[:top]:
         vision_payload = None
-        img = row.get("image_path")
-        if use_model and img:
-            full = repo_root / img
-            if not full.is_file():
-                full = raw_dir.parent.parent / img
-            if full.is_file():
+        if use_model:
+            img_path = resolve_snippet_image(row, raw_dir)
+            if img_path and img_path.is_file():
                 try:
                     vision_payload = vision.extract_clues_from_image(
-                        str(full),
+                        str(img_path),
                         publication=row.get("publication", ""),
                         date=row.get("date", ""),
                         raw_ocr=row.get("raw_ocr", ""),
                     )
-                except Exception:
-                    vision_payload = None
+                    model_used.append(row["snippet_id"])
+                except Exception as exc:
+                    vision_payload = {"_error": str(exc)[:500]}
 
         pack = build_clue_pack_from_snippet(row, vision_payload=vision_payload)
         out_path = packs_dir / f"{pack.artifact_id}.json"
@@ -106,7 +105,7 @@ def build_clue_packs(top: int = 5, use_model: bool = True) -> dict:
         built.append(pack.artifact_id)
 
     vol.commit()
-    return {"built": built, "dir": str(packs_dir)}
+    return {"built": built, "model_used": model_used, "dir": str(packs_dir)}
 
 
 @app.local_entrypoint()

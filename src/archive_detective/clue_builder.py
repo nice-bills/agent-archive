@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from typing import Any
 
@@ -110,25 +111,85 @@ def build_clue_pack_from_snippet(
     date = snippet.get("date", "unknown")
     citation = snippet.get("citation_url", "https://www.loc.gov/newspapers/")
 
-    if vision_payload:
+    if vision_payload and not vision_payload.get("_error"):
         clean = vision_payload.get("clean_text") or _clean_text(raw)
         entities = [
             Entity.model_validate(e) for e in vision_payload.get("entities", [])[:12]
         ]
-        cards = [
-            EvidenceCard.model_validate(c)
-            for c in vision_payload.get("evidence_cards", [])[:6]
-        ]
+        cards = []
+        for i, c in enumerate(vision_payload.get("evidence_cards", [])[:6]):
+            if isinstance(c, dict):
+                cards.append(
+                    EvidenceCard(
+                        id=c.get("id") or f"ev_{i+1}",
+                        clue_type=c.get("clue_type") or "anomaly",
+                        title=c.get("title") or "Evidence",
+                        detail=c.get("detail") or "",
+                    )
+                )
+            else:
+                cards.append(EvidenceCard.model_validate(c))
         clue_types = list(vision_payload.get("clue_types", []))[:8]
-        leads = [
-            LeadOption.model_validate(o)
-            for o in vision_payload.get("lead_options", [])[:4]
-        ]
+        leads = []
+        for i, o in enumerate(vision_payload.get("lead_options", [])[:4]):
+            if isinstance(o, dict):
+                oid = o.get("id") or f"lead_{i+1}"
+                label = o.get("label") or oid
+                leads.append(LeadOption(id=str(oid), label=str(label)))
+            else:
+                leads.append(LeadOption.model_validate(o))
+        if len(leads) < 2:
+            for d in (
+                LeadOption(id="names", label="Who is named here?"),
+                LeadOption(id="place", label="Trace the place"),
+                LeadOption(id="close", label="Table this fragment"),
+            ):
+                if not any(existing.id == d.id for existing in leads):
+                    leads.append(d)
+                if len(leads) >= 3:
+                    break
         beat_intro = vision_payload.get("beat_intro") or (
             f"A fragment from {pub} ({date}) lands on your board."
         )
         mystery = float(vision_payload.get("mystery_score", score_snippet(raw)))
-    else:
+        if not cards or not leads:
+            vision_payload = None  # fall through to heuristics
+        else:
+            if os.environ.get("ARCHIVE_DETECTIVE_USE_LLAMA", "").lower() in {"1", "true", "yes"}:
+                extraction_note = "llama.cpp OCR extraction + LOC Chronicling America"
+            else:
+                extraction_note = "MiniCPM-V structured extraction + LOC OCR"
+            return CluePack(
+                artifact_id=artifact_id or f"ca_{sid}",
+                source=Source(
+                    archive="Chronicling America (Library of Congress)",
+                    citation_url=citation,
+                    date=date,
+                    publication=pub,
+                ),
+                fragment=Fragment(
+                    image_path=snippet.get("image_path"),
+                    raw_ocr=raw[:6000],
+                    clean_text=clean[:6000],
+                ),
+                entities=entities,
+                evidence_cards=cards,
+                clue_types=clue_types or ["anomaly"],
+                mystery_score=round(min(1.0, max(0.0, mystery)), 3),
+                lead_options=leads,
+                reveal_notes=RevealNotes(
+                    direct_archive_facts=[
+                        f"Publication: {pub}, {date}",
+                        f"Citation: {citation}",
+                        extraction_note,
+                    ],
+                    synthetic_bridge_allowed=True,
+                    bridge_notes="Lead branches may use editorial glue; quoted lines match the fragment.",
+                ),
+                beat_intro=beat_intro,
+            )
+
+    if vision_payload is None or vision_payload.get("_error"):
         clean = _clean_text(raw)
         entities = _heuristic_entities(raw)
         cards, clue_types = _heuristic_evidence(raw)

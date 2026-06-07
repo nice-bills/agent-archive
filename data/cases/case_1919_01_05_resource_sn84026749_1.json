@@ -1,0 +1,402 @@
+{
+  "case_id": "case_1919_01_05_resource_sn84026749_1",
+  "title": "Warehouse Ledger",
+  "tagline": "Commerce ink hides a sharper question in the margin.",
+  "start_beat": "opening",
+  "beats": {
+    "opening": {
+      "artifact_id": "ca_1919_01_05_resource_sn84026749_1919_01_05_ed_1",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "fragment": {
+        "image_path": "assets/case_1919_01_05_resource_sn84026749_1.jpg",
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "clue_types": [
+        "anomaly"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+          "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "A clipping from The Washington times (Washington [D.C.]) (1919-01-05) — ink faded, story not."
+    },
+    "names": {
+      "artifact_id": "ca_1919_01_05_resource_sn84026749_1919_01_05_ed_1_names",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "clue_types": [
+        "anomaly"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+          "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Who is named here?** — another angle on the same ink-stained fragment."
+    },
+    "place": {
+      "artifact_id": "ca_1919_01_05_resource_sn84026749_1919_01_05_ed_1_place",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "clue_types": [
+        "anomaly"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+          "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Trace the place** — another angle on the same ink-stained fragment."
+    },
+    "close": {
+      "artifact_id": "ca_1919_01_05_resource_sn84026749_1919_01_05_ed_1_close",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "clue_types": [
+        "anomaly"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+          "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Table this fragment** — another angle on the same ink-stained fragment."
+    },
+    "closed": {
+      "artifact_id": "ca_1919_01_05_resource_sn84026749_1919_01_05_ed_1_closed",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "Case tabled. Fragment logged on the board."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_close",
+          "clue_type": "summary",
+          "title": "Board pinned",
+          "detail": "Enough for tonight — the archive keeps the rest."
+        }
+      ],
+      "clue_types": [
+        "summary"
+      ],
+      "mystery_score": 1.0,
+      "lead_options": [],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+          "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You pin the board shut. The clipping stays real; the rest waits."
+    }
+  },
+  "transitions": {
+    "opening": {
+      "names": "names",
+      "place": "place",
+      "close": "close"
+    },
+    "names": {
+      "close": "closed",
+      "place": "place"
+    },
+    "place": {
+      "close": "closed",
+      "names": "names"
+    },
+    "close": {
+      "close": "closed",
+      "names": "names",
+      "place": "place"
+    }
+  }
+}

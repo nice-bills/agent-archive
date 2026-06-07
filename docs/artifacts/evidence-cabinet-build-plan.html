@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Detective: Evidence Cabinet Build Plan</title>
+  <style>
+    :root {
+      --bg: #10100e;
+      --panel: #191714;
+      --panel-2: #221e19;
+      --paper: #eee6d6;
+      --ink: #201a14;
+      --text: #f2eadc;
+      --muted: #a89b89;
+      --line: #3a332a;
+      --gold: #b98945;
+      --red: #9d352d;
+      --green: #6f916c;
+      --blue: #788ea6;
+      --warn: #d4a650;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .38);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(185, 137, 69, .12), transparent 34rem),
+        radial-gradient(circle at 92% 18%, rgba(157, 53, 45, .09), transparent 28rem),
+        linear-gradient(180deg, #13120f, var(--bg));
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.58;
+    }
+
+    a { color: #e0b56b; }
+    code {
+      font-family: var(--mono);
+      font-size: .92em;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: .08rem .3rem;
+      border-radius: .25rem;
+    }
+    pre {
+      margin: 0;
+      overflow: auto;
+      white-space: pre-wrap;
+      background: #0b0b0a;
+      border: 1px solid var(--line);
+      border-radius: .55rem;
+      padding: 1rem;
+      color: #ddd1bf;
+      font-family: var(--mono);
+      font-size: .84rem;
+      line-height: 1.5;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      border-right: 1px solid var(--line);
+      background: rgba(15, 14, 12, .78);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem;
+    }
+    main {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.25rem clamp(1rem, 3vw, 3rem) 5rem;
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--paper);
+      margin: 0 0 .25rem;
+    }
+    .aside-note {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    nav a {
+      display: block;
+      padding: .42rem .5rem;
+      margin: .1rem 0;
+      color: #cfc2af;
+      text-decoration: none;
+      border-radius: .35rem;
+      font-size: .9rem;
+    }
+    nav a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+
+    .hero {
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(34, 30, 25, .96), rgba(20, 18, 15, .96)),
+        radial-gradient(circle at 85% 15%, rgba(185, 137, 69, .16), transparent 18rem);
+      box-shadow: var(--shadow);
+      border-radius: .9rem;
+      padding: clamp(1.25rem, 3vw, 2.2rem);
+      margin-bottom: 1.5rem;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gold);
+      font-size: .72rem;
+      margin: 0 0 .7rem;
+    }
+    h1, h2, h3 {
+      color: var(--paper);
+      text-wrap: balance;
+      line-height: 1.12;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      margin: 0 0 .8rem;
+    }
+    h2 {
+      margin: 2.25rem 0 .85rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+    }
+    h3 {
+      margin: 1.1rem 0 .45rem;
+      font-size: 1rem;
+      font-weight: 650;
+    }
+    p { max-width: 78ch; }
+    .lead {
+      color: #d8ccb9;
+      font-size: 1.06rem;
+      max-width: 84ch;
+      margin-bottom: 0;
+    }
+
+    .grid { display: grid; gap: 1rem; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+      padding: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    }
+    .paper-card {
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid #d7cbb9;
+      box-shadow: 2px 3px 0 rgba(0,0,0,.25);
+    }
+    .paper-card h3 { color: var(--ink); }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: var(--mono);
+      font-size: .72rem;
+      padding: .22rem .5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      color: #d7c9b4;
+      background: rgba(255,255,255,.05);
+      margin: .12rem .16rem .12rem 0;
+    }
+    .tag.good { color: #b8d3b5; border-color: rgba(111,145,108,.4); }
+    .tag.warn { color: #f0cf84; border-color: rgba(212,166,80,.4); }
+    .tag.stop { color: #e8aaa4; border-color: rgba(157,53,45,.5); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+      overflow: hidden;
+      display: table;
+    }
+    th, td {
+      padding: .7rem .75rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: .93rem;
+    }
+    th {
+      color: #dfc38b;
+      font-family: var(--mono);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: rgba(185,137,69,.08);
+    }
+    tr:last-child td { border-bottom: 0; }
+
+    .timeline {
+      display: grid;
+      gap: .75rem;
+      counter-reset: step;
+    }
+    .step {
+      counter-increment: step;
+      position: relative;
+      padding: 1rem 1rem 1rem 3.25rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+    }
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 1.55rem;
+      height: 1.55rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #160f08;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: .78rem;
+    }
+    .step h3 { margin-top: 0; }
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: .5rem 0 0;
+    }
+    .checklist li {
+      padding-left: 1.45rem;
+      position: relative;
+      margin: .34rem 0;
+    }
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-family: var(--mono);
+    }
+
+    .diagram {
+      background: #11100e;
+      border: 1px solid var(--line);
+      border-radius: .8rem;
+      padding: 1rem;
+      overflow: auto;
+    }
+    svg { max-width: 100%; min-width: 720px; }
+    .svg-box { fill: #221e19; stroke: #584b3b; }
+    .svg-box.gold { stroke: #b98945; }
+    .svg-text { fill: #f1e7d7; font-family: var(--sans); font-size: 14px; }
+    .svg-small { fill: #a89b89; font-family: var(--mono); font-size: 11px; }
+    .svg-line { stroke: #6b5b47; stroke-width: 2; marker-end: url(#arrow); }
+
+    .callout {
+      border: 1px solid rgba(185,137,69,.35);
+      background: rgba(185,137,69,.08);
+      border-radius: .75rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .danger {
+      border-color: rgba(157,53,45,.5);
+      background: rgba(157,53,45,.12);
+    }
+
+    .copy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      align-items: center;
+      margin: .8rem 0 0;
+    }
+    button {
+      border: 1px solid rgba(185,137,69,.5);
+      background: linear-gradient(180deg, #c3914a, #93652e);
+      color: #160f08;
+      border-radius: .45rem;
+      padding: .58rem .82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .small { font-size: .88rem; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      aside {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .2rem; }
+      .grid.two, .grid.three { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <p class="brand">Evidence Cabinet Plan</p>
+      <p class="aside-note">A handoff spec for the next agent. Build locally, browser-test, do not deploy until explicitly told.</p>
+      <nav>
+        <a href="#summary">Summary</a>
+        <a href="#north-star">North Star</a>
+        <a href="#sources">Source Strategy</a>
+        <a href="#gameplay">Gameplay Loop</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#schema">Data Model</a>
+        <a href="#ui">UI/UX</a>
+        <a href="#phases">Build Phases</a>
+        <a href="#files">File Plan</a>
+        <a href="#verification">Verification</a>
+        <a href="#badges">Badge Plan</a>
+        <a href="#handoff">Agent Prompt</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="hero" id="summary">
+        <p class="eyebrow">Archive Detective · A-to-Z handoff</p>
+        <h1>Turn the newspaper demo into a mixed-evidence archive mystery game.</h1>
+        <p class="lead">
+          The current project proves the pipeline, but newspaper-only gameplay feels too much like OCR dressed up as a game.
+          The next agent should pivot the product into <strong>Archive Detective: Evidence Cabinet</strong>: a local-first detective board
+          where each case is assembled from public-domain artifacts: maps, letters, photos, court records, objects, postcards, and newspapers.
+        </p>
+        <div class="copy-row">
+          <button onclick="copyText('agentPrompt')">Copy Agent Build Prompt</button>
+          <button class="secondary" onclick="copyText('phaseChecklist')">Copy Phase Checklist</button>
+        </div>
+      </section>
+
+      <section id="north-star">
+        <h2>1. Product North Star</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>One-sentence pitch</h3>
+            <p>
+              <strong>Open a public-domain archival case box, inspect real artifacts, and reconstruct what happened from clues the model helps organize.</strong>
+            </p>
+          </div>
+          <div class="card">
+            <h3>What it is not</h3>
+            <p>
+              It is not a generic archive search app, not a chatbot, and not “newspaper OCR in a nice UI.” Newspapers become one artifact type inside a richer case file.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Design scene:</strong> A late-night archivist opens a wooden evidence cabinet under a desk lamp. The player pulls physical-feeling records from trays, compares them, and writes a final deduction. The UI should feel tactile and purposeful, not like a dashboard.
+        </div>
+
+        <h3>Primary goals</h3>
+        <ul>
+          <li>Make the product instantly more fun by giving players multiple artifact types per case.</li>
+          <li>Preserve the local-first path: all demo assets live on disk, no cloud API required at play time.</li>
+          <li>Keep `gradio.Server` as the custom backend/UI foundation for the Off-Brand badge.</li>
+          <li>Keep llama.cpp optional but wired as the route for local generated clue cards.</li>
+          <li>Do not chase fine-tuning unless everything else is already excellent.</li>
+        </ul>
+      </section>
+
+      <section id="sources">
+        <h2>2. Source Strategy: Better Than Newspapers</h2>
+        <p>
+          The next agent should use mixed public-domain evidence sources. The goal is not to build every integration immediately.
+          The goal is to support the data shape and create one polished hero case that proves the new format.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Why It Helps</th>
+              <th>Access Notes</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Library of Congress</td>
+              <td>Maps, manuscripts, photos, books, newspapers, IIIF images, no key.</td>
+              <td>Use loc.gov JSON API and IIIF images. Formats include `maps`, `photos`, `manuscripts`, `newspapers`.</td>
+              <td><span class="tag good">Hero source</span></td>
+            </tr>
+            <tr>
+              <td>NYPL Digital Collections</td>
+              <td>Public-domain photos, maps, manuscripts, prints, ephemera.</td>
+              <td>API supports `publicDomainOnly=true`, but may need API token. Good later integration.</td>
+              <td><span class="tag warn">Next</span></td>
+            </tr>
+            <tr>
+              <td>Smithsonian Open Access</td>
+              <td>CC0 objects, portraits, tools, artifacts, 2D/3D images.</td>
+              <td>API key needed for live API; bulk metadata exists. Great object evidence.</td>
+              <td><span class="tag warn">Next</span></td>
+            </tr>
+            <tr>
+              <td>Old Bailey Online</td>
+              <td>Criminal trial transcripts, 1674–1913. Strong mystery material.</td>
+              <td>API/XML. Not U.S. public-domain archive, but very relevant to deduction gameplay.</td>
+              <td><span class="tag good">Excellent case source</span></td>
+            </tr>
+            <tr>
+              <td>Dallas Police Historical Case Files</td>
+              <td>Actual police case files, photos, letters, clippings, 1920s–1950s.</td>
+              <td>Portal to Texas History collection. Rights must be checked per item.</td>
+              <td><span class="tag warn">High impact</span></td>
+            </tr>
+            <tr>
+              <td>DPLA</td>
+              <td>Broad discovery layer across libraries and museums.</td>
+              <td>Metadata only, API key required, links out to originals. Good for discovery, not first build.</td>
+              <td><span class="tag">Later</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Recommended first hero case</h3>
+        <div class="grid two">
+          <div class="paper-card card">
+            <h3>The Hart Notice, expanded</h3>
+            <p>
+              Use the existing Georgetown notice as the first artifact, then add 3–4 fabricated-but-clearly-marked local fixture artifacts only if public-domain assets cannot be found fast. Prefer real LOC map/photo assets if available.
+            </p>
+          </div>
+          <div class="paper-card card">
+            <h3>The Midnight Brief, expanded</h3>
+            <p>
+              Use the 1937 “organ signal” newspaper clipping as a sensational anchor. Add venue photo, Los Angeles map crop, temple-related public-domain image, and a short directory/card artifact.
+            </p>
+          </div>
+        </div>
+        <p class="small">
+          If time is tight, expand one existing case manually with local static artifacts and citations. Build the game layer first, then add more ingest automation.
+        </p>
+      </section>
+
+      <section id="gameplay">
+        <h2>3. Gameplay Loop</h2>
+        <div class="diagram">
+          <svg viewBox="0 0 920 260" role="img" aria-label="Gameplay flow diagram">
+            <defs>
+              <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#6b5b47"></path>
+              </marker>
+            </defs>
+            <rect class="svg-box gold" x="25" y="40" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="92" y="70" text-anchor="middle">Open Case Box</text>
+            <text class="svg-small" x="92" y="90" text-anchor="middle">artifact tray</text>
+            <line class="svg-line" x1="160" y1="75" x2="220" y2="75"></line>
+
+            <rect class="svg-box" x="220" y="40" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="288" y="70" text-anchor="middle">Inspect Artifact</text>
+            <text class="svg-small" x="288" y="90" text-anchor="middle">zoom, OCR, metadata</text>
+            <line class="svg-line" x1="355" y1="75" x2="415" y2="75"></line>
+
+            <rect class="svg-box" x="415" y="40" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="482" y="70" text-anchor="middle">Pin Evidence</text>
+            <text class="svg-small" x="482" y="90" text-anchor="middle">cards + entities</text>
+            <line class="svg-line" x1="550" y1="75" x2="610" y2="75"></line>
+
+            <rect class="svg-box" x="610" y="40" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="678" y="70" text-anchor="middle">Follow Lead</text>
+            <text class="svg-small" x="678" y="90" text-anchor="middle">unlock next item</text>
+            <line class="svg-line" x1="745" y1="75" x2="805" y2="75"></line>
+
+            <rect class="svg-box gold" x="805" y="40" width="90" height="70" rx="8"></rect>
+            <text class="svg-text" x="850" y="70" text-anchor="middle">Deduce</text>
+            <text class="svg-small" x="850" y="90" text-anchor="middle">final sheet</text>
+
+            <path class="svg-line" d="M850,110 C850,200 90,200 90,120" fill="none"></path>
+            <text class="svg-small" x="460" y="222" text-anchor="middle">Loop until enough facts are discovered, then reveal what was real vs inferred.</text>
+          </svg>
+        </div>
+
+        <h3>Core mechanics to implement</h3>
+        <table>
+          <thead>
+            <tr><th>Mechanic</th><th>Purpose</th><th>First implementation</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Artifact tray</td>
+              <td>Makes cases feel like physical evidence boxes.</td>
+              <td>Horizontal list of artifact cards with type icons and status.</td>
+            </tr>
+            <tr>
+              <td>Artifact viewer</td>
+              <td>Focus on one artifact at a time: image/text/metadata.</td>
+              <td>Replace single clipping panel with selected artifact panel.</td>
+            </tr>
+            <tr>
+              <td>Evidence pins</td>
+              <td>Give players digestible clue cards extracted from artifacts.</td>
+              <td>Show cards grouped by artifact and allow “pin to board”.</td>
+            </tr>
+            <tr>
+              <td>Search console</td>
+              <td>Her Story-style active play, not passive reading.</td>
+              <td>Local search across artifact OCR/transcripts; highlight matching artifacts.</td>
+            </tr>
+            <tr>
+              <td>Deduction sheet</td>
+              <td>Golden Idol-style payoff.</td>
+              <td>3–5 fill-in/select fields with validation against `solution`.</td>
+            </tr>
+            <tr>
+              <td>Archive reveal</td>
+              <td>Preserve truth boundary.</td>
+              <td>Show direct facts, citations, and synthetic bridge notes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="architecture">
+        <h2>4. Target Architecture</h2>
+        <div class="diagram">
+          <svg viewBox="0 0 920 330" role="img" aria-label="Architecture diagram">
+            <defs>
+              <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#6b5b47"></path>
+              </marker>
+            </defs>
+            <rect class="svg-box gold" x="30" y="40" width="180" height="70" rx="8"></rect>
+            <text class="svg-text" x="120" y="70" text-anchor="middle">Custom UI</text>
+            <text class="svg-small" x="120" y="90" text-anchor="middle">static/board HTML/CSS/JS</text>
+
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="210" y1="75" x2="285" y2="75"></line>
+            <rect class="svg-box" x="285" y="40" width="160" height="70" rx="8"></rect>
+            <text class="svg-text" x="365" y="70" text-anchor="middle">gradio.Server</text>
+            <text class="svg-small" x="365" y="90" text-anchor="middle">server_app.py APIs</text>
+
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="445" y1="75" x2="520" y2="75"></line>
+            <rect class="svg-box" x="520" y="40" width="170" height="70" rx="8"></rect>
+            <text class="svg-text" x="605" y="70" text-anchor="middle">Game Engine</text>
+            <text class="svg-small" x="605" y="90" text-anchor="middle">case state + transitions</text>
+
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="690" y1="75" x2="755" y2="75"></line>
+            <rect class="svg-box gold" x="755" y="40" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="822" y="70" text-anchor="middle">Case JSON</text>
+            <text class="svg-small" x="822" y="90" text-anchor="middle">artifacts + clues</text>
+
+            <rect class="svg-box" x="285" y="170" width="160" height="70" rx="8"></rect>
+            <text class="svg-text" x="365" y="200" text-anchor="middle">Local Search</text>
+            <text class="svg-small" x="365" y="220" text-anchor="middle">OCR/transcripts only</text>
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="520" y1="110" x2="445" y2="175"></line>
+
+            <rect class="svg-box" x="520" y="170" width="170" height="70" rx="8"></rect>
+            <text class="svg-text" x="605" y="200" text-anchor="middle">llama.cpp</text>
+            <text class="svg-small" x="605" y="220" text-anchor="middle">optional local clue read</text>
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="605" y1="170" x2="605" y2="115"></line>
+
+            <rect class="svg-box" x="755" y="170" width="135" height="70" rx="8"></rect>
+            <text class="svg-text" x="822" y="200" text-anchor="middle">Ingest Scripts</text>
+            <text class="svg-small" x="822" y="220" text-anchor="middle">dev-only fetchers</text>
+            <line class="svg-line" style="marker-end:url(#arrow2)" x1="822" y1="170" x2="822" y2="115"></line>
+
+            <text class="svg-small" x="460" y="300" text-anchor="middle">Deploy remains blocked. Local verification and browser testing are mandatory before any Space push.</text>
+          </svg>
+        </div>
+
+        <h3>Architectural decisions</h3>
+        <ul>
+          <li>Keep `gradio.Server`, not `gr.Blocks`, for the custom UI badge and better UX freedom.</li>
+          <li>Keep old `CluePack` compatibility during migration so current cases still run.</li>
+          <li>Add `EvidenceCase` and `Artifact` models rather than breaking every existing file at once.</li>
+          <li>Make ingest scripts dev-only. Runtime should load local JSON/assets and optionally local llama.cpp.</li>
+          <li>Do not deploy to Hugging Face until user explicitly says to deploy.</li>
+        </ul>
+      </section>
+
+      <section id="schema">
+        <h2>5. Data Model Plan</h2>
+        <p>
+          Current model is one `CluePack` per beat with a single `Fragment`. The new product needs cases containing multiple artifacts.
+          Do this with additive models first, then migrate UI and engine.
+        </p>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Keep current models</h3>
+            <ul>
+              <li>`Source`</li>
+              <li>`Fragment`</li>
+              <li>`Entity`</li>
+              <li>`EvidenceCard`</li>
+              <li>`LeadOption`</li>
+              <li>`RevealNotes`</li>
+              <li>`CluePack`</li>
+              <li>`CaseDefinition`</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Add new models</h3>
+            <ul>
+              <li>`ArtifactKind` literal/string</li>
+              <li>`Artifact`</li>
+              <li>`DeductionField`</li>
+              <li>`DeductionSheet`</li>
+              <li>`EvidenceCase`</li>
+              <li>`CaseManifest` optional</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Proposed JSON shape</h3>
+        <pre>{
+  "case_id": "hart_notice_evidence_cabinet",
+  "title": "The Hart Notice",
+  "tagline": "A passphrase, a rented room, and a meeting after dark.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "notice_1912",
+  "artifacts": [
+    {
+      "artifact_id": "notice_1912",
+      "kind": "newspaper",
+      "title": "Georgetown notice",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "...",
+        "date": "1912-03-14",
+        "publication": "Evening Star"
+      },
+      "media": {
+        "image_path": "assets/georgetown_notice.png",
+        "thumb_path": "assets/georgetown_notice.png"
+      },
+      "text": {
+        "raw_ocr": "...",
+        "clean_text": "..."
+      },
+      "entities": [{"type": "person", "value": "M. Hart"}],
+      "evidence_cards": [{"id": "ev_phrase", "artifact_id": "notice_1912", "...": "..."}],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {"id": "lead_hart", "label": "Who is M. Hart?", "unlocks": ["directory_1912"]}
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion.",
+    "fields": [
+      {"id": "who", "label": "M. Hart is probably", "answer": "..." }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": ["..."],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "..."
+  }
+}</pre>
+
+        <h3>Compatibility rule</h3>
+        <p>
+          `load_case()` should support both old `CaseDefinition` and new `EvidenceCase`.
+          If `mode` is missing, treat it as the old beat-based case. If `mode == "evidence_cabinet"`, use the new path.
+        </p>
+      </section>
+
+      <section id="ui">
+        <h2>6. UI/UX Plan</h2>
+        <p>
+          The UI should move from “evidence dashboard” to “case box.” Keep the dark archive desk, but reduce generic panels and make interactions feel physical.
+        </p>
+
+        <div class="grid three">
+          <div class="card">
+            <h3>Left: Evidence Tray</h3>
+            <p>Artifact cards with thumbnails, kind labels, locked/unlocked state, and citation hint.</p>
+            <span class="tag good">High fun</span>
+          </div>
+          <div class="card">
+            <h3>Center: Artifact Viewer</h3>
+            <p>Large selected artifact. Image, OCR, metadata, hotspots, search highlights.</p>
+            <span class="tag good">Core play</span>
+          </div>
+          <div class="card">
+            <h3>Right: Deduction Sheet</h3>
+            <p>Clue pins, leads, final fill-in fields, reveal facts.</p>
+            <span class="tag good">Payoff</span>
+          </div>
+        </div>
+
+        <h3>Specific UI changes</h3>
+        <ul class="checklist">
+          <li>Change header copy from “newspaper fragments” to “real archive evidence.”</li>
+          <li>Replace single `Exhibit A` with selected artifact viewer.</li>
+          <li>Add artifact tray section to `index.html` and render via `board.js`.</li>
+          <li>Use type-specific labels: Map, Letter, Photo, Object, Trial, Notice, Clipping.</li>
+          <li>Add local text search input: search all artifact text, show matching count and highlight selected artifact.</li>
+          <li>Add deduction sheet UI. First version can be multiple-choice/select fields, not freeform NLP.</li>
+          <li>Add “Archive facts” reveal as the final state after deduction attempt.</li>
+          <li>Use real citations in a compact citation drawer per artifact.</li>
+          <li>Browser test at desktop and narrow width.</li>
+        </ul>
+
+        <h3>Design rules for the next agent</h3>
+        <ul>
+          <li>No default Gradio components visible in the main UI.</li>
+          <li>No generic dashboard metrics, no SaaS cards, no fake “AI magic” glow.</li>
+          <li>Make artifacts feel tactile: trays, labels, tabs, sleeves, stamps, magnifier affordance.</li>
+          <li>Keep copy direct: “Open artifact,” “Pin clue,” “Search evidence,” “Submit deduction.”</li>
+          <li>Use motion sparingly: artifact selection, reveal drawer, search result highlight. Respect reduced motion.</li>
+        </ul>
+      </section>
+
+      <section id="phases">
+        <h2>7. Build Phases</h2>
+        <div id="phaseChecklist" class="timeline">
+          <div class="step">
+            <h3>Phase 0: Lock current baseline</h3>
+            <p>Run local verification and confirm the current board still works.</p>
+            <pre>cd /home/bills/code/archive-detective
+uv run python scripts/verify_local.py
+uv run python main.py
+# open http://127.0.0.1:7860/ and test one case</pre>
+            <ul class="checklist">
+              <li>Do not deploy.</li>
+              <li>Do not remove old `CaseDefinition` support.</li>
+              <li>Record any current broken behavior before edits.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 1: Add evidence-cabinet models</h3>
+            <p>Add new Pydantic models in `src/archive_detective/models.py` without breaking old cases.</p>
+            <ul class="checklist">
+              <li>Add `ArtifactMedia`, `ArtifactText`, `Artifact`, `DeductionField`, `DeductionSheet`, `EvidenceCase`.</li>
+              <li>Add `case_mode` or `mode` detection.</li>
+              <li>Keep old `CluePack` and `CaseDefinition` untouched for compatibility.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 2: Add loader and API support</h3>
+            <p>Update case loading and API serialization to return either old beat state or new evidence-case state.</p>
+            <ul class="checklist">
+              <li>Update `cases.py` with `load_any_case()` or discriminated loader.</li>
+              <li>Update `api.py` with `evidence_case_to_dict()`.</li>
+              <li>Expose API endpoints: `select_artifact`, `search_case`, `pin_evidence`, `submit_deduction`.</li>
+              <li>Keep existing endpoints working for old cases.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 3: Create one hero mixed-evidence case</h3>
+            <p>Build `data/cases/hart_notice_evidence_cabinet.json` or `midnight_brief_evidence_cabinet.json` manually first.</p>
+            <ul class="checklist">
+              <li>Minimum 4 artifacts: newspaper, map/photo, letter/directory-style text, object/photo/card.</li>
+              <li>Every artifact has a citation or clear synthetic/test flag.</li>
+              <li>Minimum 6 evidence cards across artifacts.</li>
+              <li>Minimum 3 leads that unlock or focus artifacts.</li>
+              <li>One deduction sheet with 3 fields.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 4: Rework board UI into evidence cabinet</h3>
+            <p>Update static HTML/CSS/JS. Do not return to `gr.Blocks`.</p>
+            <ul class="checklist">
+              <li>Add left evidence tray.</li>
+              <li>Add center artifact viewer.</li>
+              <li>Add right deduction sheet and clue pins.</li>
+              <li>Add search console.</li>
+              <li>Add graceful fallback for old beat-based cases.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 5: Local llama.cpp integration polish</h3>
+            <p>Keep llama optional. The app must run without it. Use it to regenerate clue cards locally when available.</p>
+            <ul class="checklist">
+              <li>Confirm `scripts/run_llama.sh` works when GGUF exists.</li>
+              <li>Add `ARCHIVE_DETECTIVE_USE_LLAMA=1` docs.</li>
+              <li>Use llama for text artifacts first, not image reasoning.</li>
+              <li>Fail gracefully if llama server is not running.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 6: Verification and browser testing</h3>
+            <p>Run automated checks and manual browser flows before claiming progress.</p>
+            <ul class="checklist">
+              <li>`uv run python scripts/verify_local.py` passes.</li>
+              <li>Open browser to `http://127.0.0.1:7860/`.</li>
+              <li>Test hero case artifact selection, search, lead, deduction, reveal.</li>
+              <li>Test one old case still works.</li>
+              <li>Take screenshots or at least inspect snapshots for accessibility names.</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>Phase 7: Docs and field notes</h3>
+            <p>Update README and field notes to explain the pivot clearly.</p>
+            <ul class="checklist">
+              <li>README pitch says “mixed public-domain evidence,” not “newspaper fragments.”</li>
+              <li>Field notes include why newspapers alone were not enough.</li>
+              <li>Badge section explains Off-Brand, Off the Grid, Llama Champion, Sharing is Caring, Field Notes.</li>
+              <li>No deployment instructions above local test instructions.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="files">
+        <h2>8. File-Level Implementation Plan</h2>
+        <table>
+          <thead>
+            <tr><th>File</th><th>Action</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>`src/archive_detective/models.py`</td>
+              <td>Add new evidence-cabinet models.</td>
+              <td>Keep old models stable. Prefer additive changes.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/cases.py`</td>
+              <td>Add loader that can detect old vs new case JSON.</td>
+              <td>May expose `list_case_catalog()` with title/tagline/mode.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/api.py`</td>
+              <td>Serialize EvidenceCase state and add search/deduction helpers.</td>
+              <td>Maintain old `session_to_dict()` path.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/server_app.py`</td>
+              <td>Add APIs: `select_artifact`, `search_case`, `submit_deduction`.</td>
+              <td>Keep existing `start_case`, `choose_lead`, `reveal` for old cases.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/static/board/index.html`</td>
+              <td>Change layout to evidence tray/viewer/deduction sheet.</td>
+              <td>Keep semantic buttons and labels for browser snapshots.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/static/board/board.css`</td>
+              <td>Polish tactile case-box UI.</td>
+              <td>Respect reduced motion and contrast. Avoid generic dashboard cards.</td>
+            </tr>
+            <tr>
+              <td>`src/archive_detective/static/board/board.js`</td>
+              <td>Render new case mode and old mode fallback.</td>
+              <td>Gradio Server call results are SSE `data:` lines; keep current parsing approach.</td>
+            </tr>
+            <tr>
+              <td>`data/cases/*.json`</td>
+              <td>Add one new `*_evidence_cabinet.json` hero case.</td>
+              <td>Do not delete existing cases.</td>
+            </tr>
+            <tr>
+              <td>`assets/`</td>
+              <td>Add local images for hero artifacts.</td>
+              <td>Use public-domain assets or clearly mark temporary local mock artifacts.</td>
+            </tr>
+            <tr>
+              <td>`scripts/verify_local.py`</td>
+              <td>Verify both old cases and new EvidenceCase.</td>
+              <td>Check artifacts, media files, deduction fields, citations.</td>
+            </tr>
+            <tr>
+              <td>`README.md`</td>
+              <td>Update pitch and local workflow.</td>
+              <td>No HF deploy as primary workflow.</td>
+            </tr>
+            <tr>
+              <td>`docs/artifacts/field-notes.html`</td>
+              <td>Update report after pivot.</td>
+              <td>Explain source research and product change.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="verification">
+        <h2>9. Verification Gates</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Automated local gates</h3>
+            <pre>uv run python scripts/verify_local.py
+uv run python scripts/run_eval_local.py
+uv run python -m compileall src scripts</pre>
+            <p class="small">If a command fails, fix before browser testing. Do not hide errors.</p>
+          </div>
+          <div class="card">
+            <h3>Browser gates</h3>
+            <ul class="checklist">
+              <li>Home page loads on `127.0.0.1:7860`.</li>
+              <li>Hero mixed case loads first or is starred.</li>
+              <li>Select each artifact.</li>
+              <li>Search a term and verify highlighted result.</li>
+              <li>Follow a lead and unlock/focus an artifact.</li>
+              <li>Submit deduction and reveal archive facts.</li>
+              <li>Switch to one old case and verify fallback still works.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout danger">
+          <strong>Hard rule:</strong> No Hugging Face deploy until the user explicitly says deploy. `scripts/deploy_space.py` must remain gated behind local confirmation.
+        </div>
+      </section>
+
+      <section id="badges">
+        <h2>10. Badge Plan</h2>
+        <table>
+          <thead>
+            <tr><th>Badge</th><th>Status after this plan</th><th>What to show judges</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Off-Brand</td>
+              <td><span class="tag good">Primary target</span></td>
+              <td>Custom `gradio.Server` evidence-cabinet UI, no default Gradio chrome.</td>
+            </tr>
+            <tr>
+              <td>Off the Grid</td>
+              <td><span class="tag good">Strong</span></td>
+              <td>All demo cases/assets are local. Runtime works without cloud APIs.</td>
+            </tr>
+            <tr>
+              <td>Llama Champion</td>
+              <td><span class="tag warn">Optional live generation</span></td>
+              <td>Use `llama-server` for local clue extraction if GGUF is present.</td>
+            </tr>
+            <tr>
+              <td>Sharing is Caring</td>
+              <td><span class="tag warn">Prepared</span></td>
+              <td>Redacted agent trace script and local file. Upload only when user approves.</td>
+            </tr>
+            <tr>
+              <td>Field Notes</td>
+              <td><span class="tag good">Update after pivot</span></td>
+              <td>Report about the evidence-cabinet pivot and what was learned.</td>
+            </tr>
+            <tr>
+              <td>Well-Tuned</td>
+              <td><span class="tag stop">Skip</span></td>
+              <td>Do not force it. A weak fine-tune is less valuable than a great game.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="handoff">
+        <h2>11. Copy-Paste Agent Prompt</h2>
+        <p>
+          Give this to the next agent. It includes the product direction, constraints, and required tests.
+        </p>
+        <pre id="agentPrompt">You are building the next version of Archive Detective in /home/bills/code/archive-detective.
+
+Goal: pivot from a newspaper-only OCR demo into "Archive Detective: Evidence Cabinet", a local-first mixed-evidence public-domain mystery game. Newspapers become one artifact type among maps, letters, photos, objects, trial records, postcards, and directory-style documents.
+
+Hard constraints:
+- Do not deploy to Hugging Face unless the user explicitly says deploy.
+- Keep everything locally testable first.
+- Keep `gradio.Server` custom frontend. Do not return to default Gradio Blocks.
+- Preserve old case compatibility. Existing cases must still load.
+- Fine-tuning is skipped unless everything else is done.
+- Use browser testing at http://127.0.0.1:7860/ before claiming success.
+
+Current relevant files:
+- `src/archive_detective/models.py`: old Pydantic models (`CluePack`, `CaseDefinition`, etc.)
+- `src/archive_detective/server_app.py`: custom gradio.Server app
+- `src/archive_detective/api.py`: JSON serializers/session state
+- `src/archive_detective/static/board/index.html`
+- `src/archive_detective/static/board/board.css`
+- `src/archive_detective/static/board/board.js`
+- `scripts/verify_local.py`
+- `data/cases/`
+- `assets/`
+
+Build plan:
+1. Run baseline:
+   `uv run python scripts/verify_local.py`
+   `uv run python main.py`
+   Browser-test current app.
+2. Add additive models in `models.py`:
+   `ArtifactMedia`, `ArtifactText`, `Artifact`, `DeductionField`, `DeductionSheet`, `EvidenceCase`.
+3. Add loader support in `cases.py` for old `CaseDefinition` and new `EvidenceCase`.
+4. Update `api.py` and `server_app.py` with new EvidenceCase APIs:
+   `select_artifact`, `search_case`, `submit_deduction`, while keeping old APIs.
+5. Create one polished hero mixed-evidence case:
+   `data/cases/hart_notice_evidence_cabinet.json` or `midnight_brief_evidence_cabinet.json`.
+   Include at least 4 artifacts, 6 evidence cards, 3 leads, 1 deduction sheet, and citations/fact notes.
+6. Rework board UI into:
+   left evidence tray, center artifact viewer, right deduction sheet, bottom/search console.
+7. Update `verify_local.py` to validate new evidence cases and old cases.
+8. Update README and field notes.
+9. Run:
+   `uv run python scripts/verify_local.py`
+   `uv run python -m compileall src scripts`
+10. Browser-test:
+   load hero case, select artifacts, search, follow lead, submit deduction, reveal facts, switch to old case.
+
+Design direction:
+- Not a dashboard. Make it feel like opening an archival case box on a desk.
+- Tactile artifact tray, evidence labels, citation drawers, deduction sheet.
+- Avoid generic AI slop: no metric cards, no fake glow, no default Gradio chrome.
+- Use direct copy: Open artifact, Search evidence, Pin clue, Submit deduction, Reveal archive facts.
+
+Source strategy:
+- Prefer Library of Congress for first expansion because its API needs no key and includes maps/photos/manuscripts/newspapers.
+- NYPL, Smithsonian, Old Bailey, Dallas Police files are excellent later sources.
+- If public-domain assets cannot be fetched quickly, make one manual local hero case with clear source notes and do not pretend synthetic material is archival fact.
+
+Return a concise summary:
+- What changed
+- Commands run
+- Browser flows tested
+- Remaining blockers
+- Whether server is running on :7860</pre>
+        <div class="copy-row">
+          <button onclick="copyText('agentPrompt')">Copy Agent Prompt</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    async function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      await navigator.clipboard.writeText(text);
+      const original = event.target.textContent;
+      event.target.textContent = "Copied";
+      setTimeout(() => event.target.textContent = original, 1200);
+    }
+  </script>
+</body>
+</html>

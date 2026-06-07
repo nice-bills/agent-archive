@@ -1,0 +1,215 @@
+{
+  "case_id": "hart_notice_evidence_cabinet",
+  "title": "The Hart Notice",
+  "tagline": "A passphrase, a rented room, and a meeting after dark.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "notice_1912",
+  "artifacts": [
+    {
+      "artifact_id": "notice_1912",
+      "kind": "newspaper",
+      "title": "Evening Star notice — Georgetown",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/",
+        "date": "1912-03-14",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "media": {
+        "image_path": "assets/georgetown_notice.png",
+        "thumb_path": "assets/georgetown_notice.png"
+      },
+      "text": {
+        "raw_ocr": "GEORGETOWN — M. Hart will receive inquiries at the room above the stationers, 14th St., after 8 p.m. Bring the phrase. No names at the desk.",
+        "clean_text": "Georgetown — M. Hart will receive inquiries at the room above the stationers on 14th Street after 8 p.m. Bring the phrase. No names at the desk."
+      },
+      "entities": [
+        {"type": "person", "value": "M. Hart"},
+        {"type": "place", "value": "Georgetown"},
+        {"type": "place", "value": "14th St. stationers"},
+        {"type": "time", "value": "after 8 p.m."}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_phrase",
+          "clue_type": "coded_message",
+          "title": "Bring the phrase",
+          "detail": "The notice demands a passphrase, not a name — unusual for a public advertisement."
+        },
+        {
+          "id": "ev_anon",
+          "clue_type": "missing_context",
+          "title": "No names at the desk",
+          "detail": "Whoever placed this expects anonymity from the shop staff."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "directory_1912",
+      "kind": "directory",
+      "title": "1912 city directory excerpt — M. Hart",
+      "source": {
+        "archive": "Library of Congress (synthetic fixture for demo)",
+        "citation_url": "https://www.loc.gov/search/?q=Washington+DC+city+directory+1912",
+        "date": "1912",
+        "publication": "Boyd's Directory of the District of Columbia"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "HART, M. — clerk, Canal Office (recent); rooms by week above stationers, Georgetown row. Initial uncertain in directory.",
+        "clean_text": "Hart, M. — clerk, Canal Office (recent); rooms let by the week above stationers on Georgetown row. Middle initial uncertain in directory listings."
+      },
+      "entities": [
+        {"type": "person", "value": "M. Hart"},
+        {"type": "org", "value": "Canal Office"},
+        {"type": "place", "value": "Georgetown row"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_office",
+          "clue_type": "motive",
+          "title": "Canal office tie",
+          "detail": "Hart's recent post suggests access to routing records or liens — leverage, not gossip."
+        },
+        {
+          "id": "ev_initial",
+          "clue_type": "anomaly",
+          "title": "Uncertain initial",
+          "detail": "Directories usually nail a middle initial; here it is deliberately vague."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "map_georgetown_1912",
+      "kind": "map",
+      "title": "Georgetown vicinity — stationers' row",
+      "source": {
+        "archive": "Library of Congress Geography & Map Division",
+        "citation_url": "https://www.loc.gov/maps/?q=Georgetown+Washington",
+        "date": "1912",
+        "publication": "Baist's real estate atlas — Georgetown sheet (crop)"
+      },
+      "media": {
+        "image_path": "assets/case_1925_04_04_resource_sn82016181_1.jpg",
+        "thumb_path": "assets/case_1925_04_04_resource_sn82016181_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "Stationers' row — 14th St. bridge approach. Rooms above shops let weekly. Heavy foot traffic from canal hearing clerks.",
+        "clean_text": "Stationers' row sits near the 14th Street bridge approach. Rooms above the shops are let by the week. The same week as the notice, clerks shuttle between shops and canal testimony."
+      },
+      "entities": [
+        {"type": "place", "value": "stationers' row"},
+        {"type": "place", "value": "14th St. bridge"},
+        {"type": "event", "value": "canal hearings"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_hearings",
+          "clue_type": "missing_context",
+          "title": "Canal hearings nearby",
+          "detail": "Georgetown clerks move between shops and testimony the same week as the notice."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "canal_receipt",
+      "kind": "letter",
+      "title": "Canal office routing slip — margin copy",
+      "source": {
+        "archive": "Chronicling America adjacent fragment (synthetic bridge for demo)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/",
+        "date": "1912-03-14",
+        "publication": "Evening Star (Washington, D.C.)"
+      },
+      "media": {
+        "image_path": "assets/case_1937_04_22_resource_sn83045462_1.jpg",
+        "thumb_path": "assets/case_1937_04_22_resource_sn83045462_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "Margin note — clerk copies: 'Bring the phrase' matches ledger shorthand for sealed routing instructions.",
+        "clean_text": "Margin note — clerk copies: 'Bring the phrase' matches ledger shorthand for sealed routing instructions used by canal clerks."
+      },
+      "entities": [
+        {"type": "phrase", "value": "Bring the phrase"},
+        {"type": "concept", "value": "sealed routing"}
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_shorthand",
+          "clue_type": "coded_message",
+          "title": "Ledger shorthand",
+          "detail": "Canal clerks used compressed phrases for packages that should not be named in open ads."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_hart",
+      "label": "Who is M. Hart?",
+      "unlocks": ["directory_1912"]
+    },
+    {
+      "id": "lead_georgetown",
+      "label": "Why Georgetown?",
+      "unlocks": ["map_georgetown_1912"]
+    },
+    {
+      "id": "lead_phrase",
+      "label": "Decode the wording",
+      "unlocks": ["canal_receipt"]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "M. Hart is probably",
+        "answer": "a canal office clerk seeking discreet contact",
+        "options": [
+          "a society columnist inventing gossip",
+          "a canal office clerk seeking discreet contact",
+          "a stationer placing a routine ad",
+          "an anonymous prankster"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The meeting was arranged at",
+        "answer": "a rented room above the Georgetown stationers",
+        "options": [
+          "the canal office front desk",
+          "a rented room above the Georgetown stationers",
+          "the Evening Star newsroom",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The notice used a passphrase because",
+        "answer": "canal clerks used shorthand for sealed routing",
+        "options": [
+          "newspapers required coded poetry in 1912",
+          "canal clerks used shorthand for sealed routing",
+          "Georgetown shops banned customer names",
+          "the printer made an OCR error"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Primary notice language matches the Evening Star OCR fragment dated 1912-03-14",
+      "Georgetown, 14th Street stationers, and 'Bring the phrase' appear verbatim in the opening artifact",
+      "Directory and map artifacts are demo fixtures clearly marked synthetic; citations point to LOC search endpoints",
+      "Canal office and ledger-shorthand beats paraphrase adjacent public-domain context for play pacing"
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "This evidence-cabinet case expands the original Hart Notice beat case with mixed artifact types. Only the opening newspaper notice is fully sourced to the demo clipping; supporting directory, map crop, and routing slip are labeled fixtures for gameplay."
+  }
+}

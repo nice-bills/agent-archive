@@ -136,6 +136,28 @@ def _download_image(client: httpx.Client, iiif_url: str, dest: Path) -> bool:
         return False
 
 
+def resolve_snippet_image(row: dict[str, Any], raw_dir: Path) -> Path | None:
+    """Return a local image path for a snippet, downloading from image_url if needed."""
+    rel = row.get("image_path")
+    if rel:
+        for base in (raw_dir, raw_dir.parent.parent):
+            candidate = base / rel
+            if candidate.is_file():
+                return candidate
+    url = row.get("image_url")
+    sid = row.get("snippet_id") or "snippet"
+    if not url:
+        return None
+    dest = raw_dir / "images" / f"{sid}.jpg"
+    if dest.is_file() and dest.stat().st_size > 1000:
+        return dest
+    headers = {"User-Agent": USER_AGENT, "Referer": LOC_REFERER}
+    with httpx.Client(headers=headers, timeout=httpx.Timeout(90.0, connect=20.0)) as client:
+        if _download_image(client, url, dest):
+            return dest
+    return None
+
+
 def _search_page(
     client: httpx.Client,
     query: str,

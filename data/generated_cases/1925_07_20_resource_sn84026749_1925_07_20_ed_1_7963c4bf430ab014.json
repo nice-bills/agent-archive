@@ -1,0 +1,252 @@
+{
+  "case_id": "generated_1925_07_20_resource_sn84026749_1925_07_20_ed_1",
+  "title": "The Washington times (Washington [D.C.]) · 1925-07-20 · arrested",
+  "tagline": "A clipping from The Washington times (Washington [D.C.]) (1925-07-20) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "The Washington times (Washington [D.C.]) · 1925-07-20 · arrested night",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1925-07-20/ed-1/?sp=1&q=arrested+night",
+        "date": "1925-07-20",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": {
+        "image_path": "assets/gallery/1925_07_20_resource_sn84026749_1925_07_20_ed_1.jpg",
+        "thumb_path": "assets/gallery/1925_07_20_resource_sn84026749_1925_07_20_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "GIRL ACCUSED OF DRIVING WHILE DRUNK mi mm 5 w IW W 4BMM s B j W V m ixAi WvT tftgaw If nKsSRBEIJmLLAaBMMMIB Jlii flo Bra WJrII 818 ft ISf BEMI B vW r S xV jfl roW A v gfe J RF h is s a a Ml Hf wm B s x B Bhhsfe TMMS STAFF SHOTS Miss Irene Longerbean arrested last night after colliding with her automobile charged with driving while drunk having dead tags and using a phoney permit In Police Court today she was re leased under S7OO bond Police declare that she has been arrested before on traffic charges and each time grfve a different street address She is shown leaving court with her bondsman Her trial was set for July 31 GIRL DENIES DRINKING CHARGE 1 Brunette Demands Jury Trial on Accusation of Drunken Driving Stepping along blithely with a swing that would put to shame some of the celebrated French mannikins a woman who the police says is Irene Longerbean for whom they have several ad dresses was led before Judge George H Macdonald today in the Traffic Court to face charges of driving while intoxicated ob taining a permit by",
+        "clean_text": "GIRL ACCUSED OF DRIVING WHILE DRUNK mi mm 5 w IW W 4BMM s B j W V m ixAi WvT tftgaw If nKsSRBEIJmLLAaBMMMIB Jlii flo Bra WJrII 818 ft ISf BEMI B vW r S xV jfl roW A v gfe J RF h is s a a Ml Hf wm B s x B Bhhsfe TMMS STAFF SHOTS Miss Irene Longerbean arrested last night after colliding with her automobile charged with driving while drunk having dead tags and using a phoney permit In Police Court today she was re leased under S7OO bond Police declare that she has been arrested before on traffic charges and each time grfve a different street address She is shown leaving court with her bondsman Her trial was set for July 31 GIRL DENIES DRINKING CHARGE 1 Brunette Demands Jury Trial on Accusation of Drunken Driving Stepping along blithely with a swing that would put to shame some of the celebrated French mannikins a woman who the police says is Irene Longerbean for whom they have several ad dresses was led before Judge George H Macdonald today in the Traffic Court to face charges of driving while intoxicated ob taining a permit by"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Ml Hf"
+        },
+        {
+          "type": "person",
+          "value": "Miss Irene Longerbean"
+        },
+        {
+          "type": "person",
+          "value": "In Police Court"
+        },
+        {
+          "type": "person",
+          "value": "Brunette Demands Jury Trial"
+        },
+        {
+          "type": "person",
+          "value": "Drunken Driving Stepping"
+        },
+        {
+          "type": "person",
+          "value": "Irene Longerbean"
+        },
+        {
+          "type": "person",
+          "value": "Judge George"
+        },
+        {
+          "type": "person",
+          "value": "Traffic Court"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1925-07-20/ed-1/?sp=1&q=arrested+night",
+        "date": "1925-07-20",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Ml Hf; Miss Irene Longerbean; In Police Court; Brunette Demands Jury Trial; Drunken Driving Stepping; Irene Longerbean",
+        "clean_text": "Indexed from the clipping: Ml Hf; Miss Irene Longerbean; In Police Court; Brunette Demands Jury Trial; Drunken Driving Stepping; Irene Longerbean"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Ml Hf"
+        },
+        {
+          "type": "person",
+          "value": "Miss Irene Longerbean"
+        },
+        {
+          "type": "person",
+          "value": "In Police Court"
+        },
+        {
+          "type": "person",
+          "value": "Brunette Demands Jury Trial"
+        },
+        {
+          "type": "person",
+          "value": "Drunken Driving Stepping"
+        },
+        {
+          "type": "person",
+          "value": "Irene Longerbean"
+        },
+        {
+          "type": "person",
+          "value": "Judge George"
+        },
+        {
+          "type": "person",
+          "value": "Traffic Court"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1925-07-20/ed-1/?sp=1&q=arrested+night",
+        "date": "1925-07-20",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1925-07-20. Publication: The Washington times (Washington [D.C.]).",
+        "clean_text": "The clipping is dated 1925-07-20. Whatever happened here sits in the same news cycle as other items from The Washington times (Washington [D.C.])."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1925-07-20 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1925-07-20/ed-1/?sp=1&q=arrested+night",
+        "date": "1925-07-20",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from The Washington times (Washington [D.C.]) (1925-07-20) — ink faded, story not.",
+        "clean_text": "A clipping from The Washington times (Washington [D.C.]) (1925-07-20) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from The Washington times (Washington [D.C.]) (1925-07-20) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: The Washington times (Washington [D.C.]), 1925-07-20",
+      "Citation: https://www.loc.gov/resource/sn84026749/1925-07-20/ed-1/?sp=1&q=arrested+night",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "case_id": "generated_1805_10_29_resource_gdc_sn88063570_16096",
+  "title": "Volume 11, Number 563, Tuesday · 1805-10-29 · secret meeting",
+  "tagline": "A clipping from Volume 11, Number 563, Tuesday (1805-10-29) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Volume 11, Number 563, Tuesday · 1805-10-29 · secret meeting",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16096/?sp=2&q=secret+meeting",
+        "date": "1805-10-29",
+        "publication": "Volume 11, Number 563, Tuesday"
+      },
+      "media": {
+        "image_path": "assets/gallery/1805_10_29_resource_gdc_sn88063570_16096.jpg",
+        "thumb_path": "assets/gallery/1805_10_29_resource_gdc_sn88063570_16096.jpg"
+      },
+      "text": {
+        "raw_ocr": "ae ane PAR RAS AO THE HURKARU TUESDAY OCTOBER 29 1805 CALCUTTA GAZETTE EXTRAORDINARY SATURDAY OCTOBER 26 1805 Proceedings of 4 General Meeting of the Bri tith Inhabitants ot Calcutta held onSaturday the 26th Odétober 1805 in purfuance of a Notice from the Sheriff dated the 21ft inftant For the purpofe of confidering the moft pro permeans of eaprefliagthe deep concern felt 4 by this Settlement on the lamented death of 4 Marquis Cornwa tis and of teitifying f by a laiting memorial thegeneral fenfe en tertained of the exalted virtues of that rever ed Nobleman The Sheriff Mr Laprimaudaye having ftat ed the objeét for which this Meeting was con vened Mr Speke was requefted to take the Chair sain tak The following letter was prefented to the Chairman auder the Signatures of feveral Native Inhabitanis of the town of Calcuttas To the Chairman of she General Meeting of the Britifh Inhabitants of Calcutta convened bya notification from the Sheriff under date the 2ft OGober i805 0 S sf SER Having obferved a public notice from the Sheriff of a Meeting to be held on Saturday the 26th Oétober for the purpofe of exprefs ing the deep concern felt",
+        "clean_text": "Ae ane PAR RAS AO THE HURKARU TUESDAY OCTOBER 29 1805 CALCUTTA GAZETTE EXTRAORDINARY SATURDAY OCTOBER 26 1805 Proceedings of 4 General Meeting of the Bri tith Inhabitants ot Calcutta held onSaturday the 26th Odétober 1805 in purfuance of a Notice from the Sheriff dated the 21ft inftant For the purpofe of confidering the moft pro permeans of eaprefliagthe deep concern felt 4 by this Settlement on the lamented death of 4 Marquis Cornwa tis and of teitifying f by a laiting memorial thegeneral fenfe en tertained of the exalted virtues of that rever ed Nobleman The Sheriff Mr Laprimaudaye having ftat ed the objeét for which this Meeting was con vened Mr Speke was requefted to take the Chair sain tak The following letter was prefented to the Chairman auder the Signatures of feveral Native Inhabitanis of the town of Calcuttas To the Chairman of she General Meeting of the Britifh Inhabitants of Calcutta convened bya notification from the Sheriff under date the 2ft OGober i805 0 S sf SER Having obferved a public notice from the Sheriff of a Meeting to be held on Saturday the 26th Oétober for the purpofe of exprefs ing the deep concern felt"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "General Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Marquis Cornwa"
+        },
+        {
+          "type": "person",
+          "value": "Nobleman The Sheriff Mr Laprimaudaye"
+        },
+        {
+          "type": "person",
+          "value": "Mr Speke"
+        },
+        {
+          "type": "person",
+          "value": "Native Inhabitanis"
+        },
+        {
+          "type": "person",
+          "value": "Calcuttas To"
+        },
+        {
+          "type": "person",
+          "value": "Britifh Inhabitants"
+        },
+        {
+          "type": "time",
+          "value": "Saturday"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16096/?sp=2&q=secret+meeting",
+        "date": "1805-10-29",
+        "publication": "Volume 11, Number 563, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "General Meeting; Marquis Cornwa; Nobleman The Sheriff Mr Laprimaudaye; Mr Speke; Native Inhabitanis; Calcuttas To",
+        "clean_text": "Indexed from the clipping: General Meeting; Marquis Cornwa; Nobleman The Sheriff Mr Laprimaudaye; Mr Speke; Native Inhabitanis; Calcuttas To"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "General Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Marquis Cornwa"
+        },
+        {
+          "type": "person",
+          "value": "Nobleman The Sheriff Mr Laprimaudaye"
+        },
+        {
+          "type": "person",
+          "value": "Mr Speke"
+        },
+        {
+          "type": "person",
+          "value": "Native Inhabitanis"
+        },
+        {
+          "type": "person",
+          "value": "Calcuttas To"
+        },
+        {
+          "type": "person",
+          "value": "Britifh Inhabitants"
+        },
+        {
+          "type": "time",
+          "value": "Saturday"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16096/?sp=2&q=secret+meeting",
+        "date": "1805-10-29",
+        "publication": "Volume 11, Number 563, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1805-10-29. Publication: Volume 11, Number 563, Tuesday.",
+        "clean_text": "The clipping is dated 1805-10-29. Whatever happened here sits in the same news cycle as other items from Volume 11, Number 563, Tuesday."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1805-10-29 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16096/?sp=2&q=secret+meeting",
+        "date": "1805-10-29",
+        "publication": "Volume 11, Number 563, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from Volume 11, Number 563, Tuesday (1805-10-29) — ink faded, story not.",
+        "clean_text": "A clipping from Volume 11, Number 563, Tuesday (1805-10-29) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from Volume 11, Number 563, Tuesday (1805-10-29) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: Volume 11, Number 563, Tuesday, 1805-10-29",
+      "Citation: https://www.loc.gov/resource/gdc.sn88063570_16096/?sp=2&q=secret+meeting",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}

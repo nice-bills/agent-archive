@@ -1,4 +1,4 @@
-"""Vision / OCR pipeline — MiniCPM-V-4_6 with heuristic fallback."""
+"""Vision / OCR pipeline — MiniCPM-V-4.6 with heuristic fallback."""
 
 from __future__ import annotations
 
@@ -13,7 +13,14 @@ from archive_detective.prompts import build_extraction_prompt
 
 load_project_env()
 
-MODEL_ID = os.environ.get("ARCHIVE_DETECTIVE_MODEL", "openbmb/MiniCPM-V-4_6")
+MODEL_ID = os.environ.get("ARCHIVE_DETECTIVE_MODEL", "openbmb/MiniCPM-V-4.6")
+
+_model = None
+_processor = None
+
+
+def model_enabled() -> bool:
+    return os.environ.get("ARCHIVE_DETECTIVE_USE_MODEL", "").lower() in {"1", "true", "yes"}
 
 
 def _hf_token() -> str | None:
@@ -21,54 +28,55 @@ def _hf_token() -> str | None:
 
 
 def _load_model():
+    global _model, _processor
+    if _model is not None and _processor is not None:
+        return _model, _processor
+
     import torch
-    from transformers import AutoModel, AutoTokenizer
+    from transformers import AutoModelForImageTextToText, AutoProcessor
 
     token = _hf_token()
-    tokenizer = AutoTokenizer.from_pretrained(
-        MODEL_ID, trust_remote_code=True, token=token
-    )
-    model = AutoModel.from_pretrained(
+    _processor = AutoProcessor.from_pretrained(MODEL_ID, trust_remote_code=True, token=token)
+    _model = AutoModelForImageTextToText.from_pretrained(
         MODEL_ID,
         trust_remote_code=True,
-        attn_implementation="sdpa",
         torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+        attn_implementation="sdpa",
         token=token,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = model.eval().to(device)
-    return model, tokenizer, device
+    _model = _model.eval().to(device)
+    return _model, _processor
 
 
-def model_enabled() -> bool:
-    return os.environ.get("ARCHIVE_DETECTIVE_USE_MODEL", "").lower() in {"1", "true", "yes"}
-
-
-def _run_minicpm_chat(
-    model: Any,
-    tokenizer: Any,
-    device: str,
-    image_path: str,
-    system: str,
-    user: str,
-) -> str:
+def _run_minicpm(image_path: str, system: str, user: str) -> str:
     from PIL import Image
 
+    model, processor = _load_model()
     image = Image.open(image_path).convert("RGB")
-    msgs = [
+    messages = [
         {"role": "system", "content": system},
-        {"role": "user", "content": [image, user]},
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": image},
+                {"type": "text", "text": user},
+            ],
+        },
     ]
-    response = model.chat(
-        image=None,
-        msgs=msgs,
-        tokenizer=tokenizer,
-        sampling=False,
-        max_new_tokens=1024,
+    inputs = processor.apply_chat_template(
+        messages,
+        add_generation_prompt=True,
+        tokenize=True,
+        return_dict=True,
+        return_tensors="pt",
+    ).to(model.device)
+    out_ids = model.generate(**inputs, max_new_tokens=1024)
+    answer = processor.decode(
+        out_ids[0][inputs["input_ids"].shape[-1] :],
+        skip_special_tokens=True,
     )
-    if isinstance(response, tuple):
-        response = response[0]
-    return str(response)
+    return str(answer)
 
 
 def extract_clues_from_image(
@@ -78,16 +86,6 @@ def extract_clues_from_image(
     date: str = "unknown",
     raw_ocr: str = "",
 ) -> dict[str, Any]:
-    """
-    Structured clue extraction from a clipping image.
-    Set ARCHIVE_DETECTIVE_USE_MODEL=1 for live MiniCPM-V (GPU recommended).
-    """
-    system, user = build_extraction_prompt(
-        publication=publication,
-        date=date,
-        raw_ocr=raw_ocr or "(no OCR provided)",
-    )
-
     if not model_enabled():
         raise RuntimeError(
             "Live model disabled. Set ARCHIVE_DETECTIVE_USE_MODEL=1 or use prebuilt clue packs."
@@ -97,8 +95,12 @@ def extract_clues_from_image(
     if not path.is_file():
         raise FileNotFoundError(image_path)
 
-    model, tokenizer, device = _load_model()
-    text = _run_minicpm_chat(model, tokenizer, device, str(path), system, user)
+    system, user = build_extraction_prompt(
+        publication=publication,
+        date=date,
+        raw_ocr=raw_ocr or "(no OCR provided)",
+    )
+    text = _run_minicpm(str(path), system, user)
     return parse_vision_json(text)
 
 
@@ -110,7 +112,6 @@ def extract_clues_cached(
     raw_ocr: str,
     cache_dir: Path | None = None,
 ) -> dict[str, Any]:
-    """Try cache, then model, else raise."""
     base = cache_dir or Path(__file__).resolve().parents[2] / "data" / "clue_cache"
     base.mkdir(parents=True, exist_ok=True)
     key = Path(image_path).stem

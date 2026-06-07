@@ -1,0 +1,220 @@
+{
+  "case_id": "generated_1935_11_29_resource_sn84026749_1935_11_29_ed_1",
+  "title": "The Washington times (Washington [D.C.]) · 1935-11-29 · mysterio",
+  "tagline": "A clipping from The Washington times (Washington [D.C.]) (1935-11-29) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "The Washington times (Washington [D.C.]) · 1935-11-29 · mysterious death",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1935-11-29/ed-1/?sp=19&q=mysterious+death",
+        "date": "1935-11-29",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": {
+        "image_path": "assets/gallery/1935_11_29_resource_sn84026749_1935_11_29_ed_1.jpg",
+        "thumb_path": "assets/gallery/1935_11_29_resource_sn84026749_1935_11_29_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "MAXWELL GIRL SENTENCE IS DEFENDED WISE Va Nov 29 1N5 111feeling against what they de scribed as outsiders attempting to Interfere with their Jurisprudence was spreading among the elder hill folk today Hostility against the protests made by persons In other States against the 25year imprisonment imposed upon Edith Maxwell 21 for killing her father Trigg Max well was so pronounced that Edith was not allowed to see her mother yesterday Jim Dotson the jailer is Ediths uncle He said he refused the mother permission to visit Edith because I dont want to take any chances of increasing the bad feel ing among some of the folks here Because of this resentment among a certain class of her own people Edith had to eat her Thanksgiving dinner alone Her mother sent her a roast chicken vegetables and an angel food cake The mother faces trial next spring on a charge of being an accessory in the murder Meanwhile womens clubs in Virginia and in Tennessee ap pointed committees to come here and investigate Ediths case and seek to have the Jurys manda tory sentence of 25 years set aside either by a new trial or a Governors pardon Arguments for",
+        "clean_text": "MAXWELL GIRL SENTENCE IS DEFENDED WISE Va Nov 29 1N5 111feeling against what they de scribed as outsiders attempting to Interfere with their Jurisprudence was spreading among the elder hill folk today Hostility against the protests made by persons In other States against the 25year imprisonment imposed upon Edith Maxwell 21 for killing her father Trigg Max well was so pronounced that Edith was not allowed to see her mother yesterday Jim Dotson the jailer is Ediths uncle He said he refused the mother permission to visit Edith because I dont want to take any chances of increasing the bad feel ing among some of the folks here Because of this resentment among a certain class of her own people Edith had to eat her Thanksgiving dinner alone Her mother sent her a roast chicken vegetables and an angel food cake The mother faces trial next spring on a charge of being an accessory in the murder Meanwhile womens clubs in Virginia and in Tennessee ap pointed committees to come here and investigate Ediths case and seek to have the Jurys manda tory sentence of 25 years set aside either by a new trial or a Governors pardon Arguments for"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Va Nov"
+        },
+        {
+          "type": "person",
+          "value": "Edith Maxwell"
+        },
+        {
+          "type": "person",
+          "value": "Trigg Max"
+        },
+        {
+          "type": "person",
+          "value": "Jim Dotson"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1935-11-29/ed-1/?sp=19&q=mysterious+death",
+        "date": "1935-11-29",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Va Nov; Edith Maxwell; Trigg Max; Jim Dotson",
+        "clean_text": "Indexed from the clipping: Va Nov; Edith Maxwell; Trigg Max; Jim Dotson"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Va Nov"
+        },
+        {
+          "type": "person",
+          "value": "Edith Maxwell"
+        },
+        {
+          "type": "person",
+          "value": "Trigg Max"
+        },
+        {
+          "type": "person",
+          "value": "Jim Dotson"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1935-11-29/ed-1/?sp=19&q=mysterious+death",
+        "date": "1935-11-29",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1935-11-29. Publication: The Washington times (Washington [D.C.]).",
+        "clean_text": "The clipping is dated 1935-11-29. Whatever happened here sits in the same news cycle as other items from The Washington times (Washington [D.C.])."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1935-11-29 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1935-11-29/ed-1/?sp=19&q=mysterious+death",
+        "date": "1935-11-29",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from The Washington times (Washington [D.C.]) (1935-11-29) — ink faded, story not.",
+        "clean_text": "A clipping from The Washington times (Washington [D.C.]) (1935-11-29) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from The Washington times (Washington [D.C.]) (1935-11-29) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: The Washington times (Washington [D.C.]), 1935-11-29",
+      "Citation: https://www.loc.gov/resource/sn84026749/1935-11-29/ed-1/?sp=19&q=mysterious+death",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}

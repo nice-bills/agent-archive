@@ -5,8 +5,9 @@
   "publication": "The Washington times (Washington [D.C.])",
   "title": "Image 21 of The Washington times (Washington [D.C.]), January 5, 1919, (NATIONAL EDITION, The American Weekly)",
   "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
-  "image_path": null,
+  "image_path": "images/1919_01_05_resource_sn84026749_1919_01_05_ed_1.jpg",
   "image_url": "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_akita_ver02:data:sn84026749:00280764541:1919010501:0041/full/pct:12.5/0/default.jpg",
   "alto_url": "https://tile.loc.gov/text-services/word-coordinates-service?segment=/service/ndnp/dlc/batch_dlc_akita_ver02/data/sn84026749/00280764541/1919010501/0041.xml&format=alto_xml",
-  "query": "mysterious death"
+  "query": "mysterious death",
+  "mystery_score": 0.6
 }

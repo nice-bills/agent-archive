@@ -1,0 +1,252 @@
+{
+  "case_id": "generated_1919_01_05_resource_sn84026749_1919_01_05_ed_1",
+  "title": "The Washington times (Washington [D.C.]) · 1919-01-05 · mysterio",
+  "tagline": "A clipping from The Washington times (Washington [D.C.]) (1919-01-05) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "The Washington times (Washington [D.C.]) · 1919-01-05 · mysterious death",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": {
+        "image_path": "assets/gallery/1919_01_05_resource_sn84026749_1919_01_05_ed_1.jpg",
+        "thumb_path": "assets/gallery/1919_01_05_resource_sn84026749_1919_01_05_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and",
+        "clean_text": "An Odd Photograph of Billie Carleton the Popular Young Actress Who Was Found Mys teriously Poisoned in Bed the Morning After the Gr eat Victory Ball at Albert Hall London ym mm I M m IP w WI zBgfc ALL fashionable London 1b deeply con cerned about the mysterious death of Miss Billie Carleton the beauti ful young actress who had become one of the favorites of the metropolis Miss Carleton as the dispatches have announced was found dead in bed a few hours after returning from the Victory Ball the greatest celebration held in Eng land in honor of the final victory over the Hun The evidence indicates that Miss Carle ton was poisoned But there are many mysterious unexplained circumstances connected with the tragedy The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women ot the stage participated It was held in the Albert Hall the largest build ing of its kind in London Over five thou sand persons were present and the pro ceeds of the sale of tickets went to the Nations Fund for Nurses Every woman present wore all her Jewels and"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "An Odd Photograph; Billie Carleton; Popular Young Actress Who Was Found Mys; Morning After; Victory Ball; Albert Hall London",
+        "clean_text": "Indexed from the clipping: An Odd Photograph; Billie Carleton; Popular Young Actress Who Was Found Mys; Morning After; Victory Ball; Albert Hall London"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "An Odd Photograph"
+        },
+        {
+          "type": "person",
+          "value": "Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Popular Young Actress Who Was Found Mys"
+        },
+        {
+          "type": "person",
+          "value": "Morning After"
+        },
+        {
+          "type": "person",
+          "value": "Victory Ball"
+        },
+        {
+          "type": "person",
+          "value": "Albert Hall London"
+        },
+        {
+          "type": "person",
+          "value": "Miss Billie Carleton"
+        },
+        {
+          "type": "person",
+          "value": "Miss Carleton"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1919-01-05. Publication: The Washington times (Washington [D.C.]).",
+        "clean_text": "The clipping is dated 1919-01-05. Whatever happened here sits in the same news cycle as other items from The Washington times (Washington [D.C.])."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1919-01-05 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington times (Washington [D.C.])"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from The Washington times (Washington [D.C.]) (1919-01-05) — ink faded, story not.",
+        "clean_text": "A clipping from The Washington times (Washington [D.C.]) (1919-01-05) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from The Washington times (Washington [D.C.]) (1919-01-05) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: The Washington times (Washington [D.C.]), 1919-01-05",
+      "Citation: https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}

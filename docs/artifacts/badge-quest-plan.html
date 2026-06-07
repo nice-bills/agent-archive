@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Detective — Bonus Quest Plan</title>
+  <style>
+    :root {
+      --bg: #0a0c0f;
+      --panel: #12171e;
+      --border: #2a3442;
+      --gold: #d7a449;
+      --text: #e8edf4;
+      --muted: #8b9aab;
+      --yes: #6b9b7a;
+      --maybe: #e6a85c;
+      --hard: #c45c5c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-family: Georgia, serif; font-weight: 400; font-size: 2rem; margin: 0 0 .25rem; }
+    .sub { color: var(--muted); margin-bottom: 2rem; }
+    h2 { font-size: 1.15rem; color: var(--gold); margin: 2rem 0 .75rem; border-bottom: 1px solid var(--border); padding-bottom: .35rem; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 700px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+    }
+    .badge-title { font-weight: 600; font-size: 1.05rem; margin-bottom: .35rem; }
+    .tag {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .2rem .5rem;
+      border-radius: 3px;
+      margin-right: .35rem;
+    }
+    .yes { background: rgba(107,155,122,.2); color: var(--yes); }
+    .maybe { background: rgba(230,168,92,.15); color: var(--maybe); }
+    .hard { background: rgba(196,92,92,.15); color: var(--hard); }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 500; }
+    code, pre { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .85rem; }
+    pre {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .85rem 1rem;
+      overflow-x: auto;
+    }
+    .callout {
+      border-left: 3px solid var(--gold);
+      padding: .75rem 1rem;
+      background: rgba(215,164,73,.08);
+      margin: 1rem 0;
+    }
+    ol.steps { padding-left: 1.2rem; }
+    ol.steps li { margin: .45rem 0; }
+    svg text { fill: var(--text); font-family: system-ui, sans-serif; font-size: 12px; }
+    .tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tab {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .45rem .85rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tab.active { border-color: var(--gold); color: var(--gold); }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    button.copy {
+      margin-top: .75rem;
+      background: linear-gradient(180deg, #c4923f, #9a6f2a);
+      color: #1a1408;
+      border: none;
+      padding: .5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Bonus Quest Plan</h1>
+    <p class="sub">Archive Detective · Thousand Token Wood · six merit badges · local-first, no deploy until verified</p>
+
+    <div class="callout">
+      <strong>Verdict:</strong> All six badges are achievable, but not with the current Modal + MiniCPM + default Gradio stack alone.
+      The winning stack is one local pipeline: <em>fine-tuned text model → GGUF → llama.cpp → gr.Server custom UI</em>, plus a Hub dataset for traces and a field report.
+    </div>
+
+    <h2>Feasibility at a glance</h2>
+    <table>
+      <thead>
+        <tr><th>Badge</th><th>Today</th><th>Path</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🔌 Off the Grid</td>
+          <td><span class="tag hard">No</span> Modal + HF hub download for MiniCPM</td>
+          <td>Local <code>llama-server</code> only; prebuilt cases offline; optional ingest disabled in demo</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>🎯 Well-Tuned</td>
+          <td><span class="tag hard">No</span> base MiniCPM only</td>
+          <td>SFT on OCR→clue-pack pairs from <code>data/raw</code> + cases; publish adapter on HF</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>🎨 Off-Brand</td>
+          <td><span class="tag maybe">Partial</span> themed Gradio Blocks</td>
+          <td><code>gradio.Server</code> + custom HTML detective board (not Blocks layout)</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>🦙 Llama Champion</td>
+          <td><span class="tag hard">No</span> transformers MiniCPM</td>
+          <td>GGUF + <code>llama-server</code> / <code>llama-cpp-python</code> for live reads</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>📡 Sharing is Caring</td>
+          <td><span class="tag maybe">Ready</span> Cursor JSONL exists</td>
+          <td>Redact secrets → HF dataset tagged <code>traces</code></td>
+          <td>Low</td>
+        </tr>
+        <tr>
+          <td>📓 Field Notes</td>
+          <td><span class="tag maybe">Partial</span> MODAL.md, eval summary</td>
+          <td>Public build report: what we tried, what broke, lessons</td>
+          <td>Low</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Unified architecture (hits 4 technical badges)</h2>
+    <svg viewBox="0 0 720 280" width="100%" style="max-width:720px;background:var(--panel);border:1px solid var(--border);border-radius:6px">
+      <rect x="20" y="30" width="140" height="50" rx="4" fill="#171e28" stroke="#2a3442"/>
+      <text x="90" y="60" text-anchor="middle">Custom HTML UI</text>
+      <text x="90" y="78" text-anchor="middle" fill="#8b9aab" font-size="10">Off-Brand</text>
+      <rect x="200" y="30" width="120" height="50" rx="4" fill="#171e28" stroke="#d7a449"/>
+      <text x="260" y="60" text-anchor="middle">gr.Server</text>
+      <rect x="360" y="30" width="120" height="50" rx="4" fill="#171e28" stroke="#2a3442"/>
+      <text x="420" y="55" text-anchor="middle">Case engine</text>
+      <text x="420" y="72" text-anchor="middle" fill="#8b9aab" font-size="10">JSON beats</text>
+      <rect x="520" y="30" width="180" height="50" rx="4" fill="#171e28" stroke="#6b9b7a"/>
+      <text x="610" y="55" text-anchor="middle">llama-server</text>
+      <text x="610" y="72" text-anchor="middle" fill="#8b9aab" font-size="10">Off Grid + Llama</text>
+      <rect x="520" y="110" width="180" height="44" rx="4" fill="#171e28" stroke="#e6a85c"/>
+      <text x="610" y="137" text-anchor="middle">nice-bill/…-clue-lora</text>
+      <text x="610" y="152" text-anchor="middle" fill="#8b9aab" font-size="10">Well-Tuned on HF</text>
+      <line x1="160" y1="55" x2="200" y2="55" stroke="#8b9aab"/>
+      <line x1="320" y1="55" x2="360" y2="55" stroke="#8b9aab"/>
+      <line x1="480" y1="55" x2="520" y2="55" stroke="#8b9aab"/>
+      <line x1="610" y1="80" x2="610" y2="110" stroke="#8b9aab"/>
+      <rect x="20" y="180" width="680" height="70" rx="4" fill="#0d1117" stroke="#2a3442"/>
+      <text x="360" y="205" text-anchor="middle">Offline demo path: cached cases + assets — no network required</text>
+      <text x="360" y="225" text-anchor="middle" fill="#8b9aab" font-size="11">Live read path: OCR text → local GGUF → clue JSON → merge into beat</text>
+      <text x="360" y="242" text-anchor="middle" fill="#8b9aab" font-size="11">Modal / LOC ingest = dev-only, not in submission demo</text>
+    </svg>
+
+    <h2>Build order (local test after each step)</h2>
+    <ol class="steps">
+      <li><strong>Field Notes</strong> — write the report as we go (documents failures: HF deploy, Modal, etc.)</li>
+      <li><strong>Off-Brand</strong> — <code>server.py</code> + static board UI; wire existing engine APIs; <code>verify_local.py</code> still passes</li>
+      <li><strong>Llama Champion + Off the Grid</strong> — <code>scripts/run_llama.sh</code>, base instruct GGUF, OCR→JSON prompt; no cloud inference</li>
+      <li><strong>Well-Tuned</strong> — export ~40–80 (OCR, clue_pack) pairs → SFT → publish model → convert GGUF → swap into llama path</li>
+      <li><strong>Sharing is Caring</strong> — redact tokens from Cursor transcript → public dataset</li>
+      <li><strong>Only then</strong> — HF Space deploy with <code>--confirm-local</code></li>
+    </ol>
+
+    <h2>Per-badge checklist</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="badge-title">🔌 Off the Grid</div>
+        <span class="tag yes">Achievable</span>
+        <ul>
+          <li>Demo runs with <code>ARCHIVE_DETECTIVE_BACKEND=llama</code> + local server</li>
+          <li>No OpenAI / HF Inference API / Modal in user-facing flow</li>
+          <li>LOC fetch stays a dev script, not the Gradio app</li>
+          <li>Ship a GGUF in repo or document one-time <code>hf download</code> then air-gap</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge-title">🎯 Well-Tuned</div>
+        <span class="tag maybe">Achievable, needs GPU time</span>
+        <ul>
+          <li>Train on existing clue packs (heuristic + MiniCPM outputs)</li>
+          <li>Base: Qwen2.5-1.5B-Instruct or Llama-3.2-3B-Instruct (&lt;32B)</li>
+          <li>Publish: <code>nice-bill/archive-detective-clue-sft</code></li>
+          <li>Submission README links the fine-tuned repo explicitly</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge-title">🎨 Off-Brand</div>
+        <span class="tag yes">Achievable</span>
+        <ul>
+          <li>Replace <code>gr.Blocks</code> demo with <code>gradio.Server</code></li>
+          <li>Custom evidence-board HTML + JS client</li>
+          <li>Must look nothing like default Gradio tabs/dropdown chrome</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge-title">🦙 Llama Champion</div>
+        <span class="tag yes">Achievable</span>
+        <ul>
+          <li>You already have <code>llama-server</code> on PATH</li>
+          <li>Wire <code>vision.py</code> → llama.cpp HTTP or python binding</li>
+          <li>Text-from-OCR is enough; image optional for badge</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge-title">📡 Sharing is Caring</div>
+        <span class="tag yes">Easy</span>
+        <ul>
+          <li>Source: Cursor agent transcript JSONL for this project</li>
+          <li>Redact HF_TOKEN, paths, .env before upload</li>
+          <li>Dataset: <code>nice-bill/archive-detective-agent-traces</code></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge-title">📓 Field Notes</div>
+        <span class="tag yes">Easy</span>
+        <ul>
+          <li>HF blog post or <code>docs/artifacts/field-notes.html</code></li>
+          <li>Cover: LOC ingest, clue packs, local vs cloud mistakes, badge stack</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>What we stop doing</h2>
+    <ul>
+      <li>HF Space deploy before local UI works in browser</li>
+      <li>MiniCPM-via-Modal as the <em>submission</em> story (keep as dev optional)</li>
+      <li>Uploading the whole git repo to Spaces</li>
+    </ul>
+
+    <h2>Submission README badges block (copy)</h2>
+    <pre id="readme-badges">## Bonus quests claimed
+
+- [ ] **Off the Grid** — Local llama-server only; demo works offline with cached cases.
+- [ ] **Well-Tuned** — Fine-tuned model: https://huggingface.co/nice-bill/archive-detective-clue-sft
+- [ ] **Off-Brand** — Custom UI via gradio.Server (see static/board.html)
+- [ ] **Llama Champion** — Inference through llama.cpp (scripts/run_llama.sh)
+- [ ] **Sharing is Caring** — Agent traces: https://huggingface.co/datasets/nice-bill/archive-detective-agent-traces
+- [ ] **Field Notes** — Build report: docs/artifacts/field-notes.html</pre>
+    <button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('readme-badges').innerText)">Copy markdown</button>
+  </div>
+</body>
+</html>

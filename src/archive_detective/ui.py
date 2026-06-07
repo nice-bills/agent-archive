@@ -244,8 +244,14 @@ def build_app() -> gr.Blocks:
 
 def launch(**kwargs) -> None:
     app = build_app()
-    app.launch(
-        theme=app.theme,
-        css=app.css,
-        **kwargs,
-    )
+    defaults = {
+        "server_name": "127.0.0.1",
+        "server_port": 7860,
+        "show_error": True,
+        "theme": app.theme,
+        "css": app.css,
+    }
+    defaults.update(kwargs)
+    url = f"http://{defaults['server_name']}:{defaults['server_port']}/"
+    print(f"\nArchive Detective running at {url}\n")
+    app.launch(**defaults)

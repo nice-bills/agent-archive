@@ -1,0 +1,43 @@
+{
+  "artifact_id": "ca_1937_04_22_resource_sn83045462_1937_04_22_ed_1",
+  "source": {
+    "archive": "Chronicling America (Library of Congress)",
+    "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
+    "date": "1937-04-22",
+    "publication": "Evening star (Washington, D.C.)"
+  },
+  "fragment": {
+    "image_path": "images/1937_04_22_resource_sn83045462_1937_04_22_ed_1.jpg",
+    "raw_ocr": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimees Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple",
+    "clean_text": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimees Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple"
+  },
+  "entities": [],
+  "evidence_cards": [
+    {
+      "id": "ev_1",
+      "clue_type": "summary",
+      "title": "Plot Summary",
+      "detail": "Evangelist's daughter in slander suit alleges secret meeting and signals for theft."
+    }
+  ],
+  "clue_types": [
+    "anomaly"
+  ],
+  "mystery_score": 0.8,
+  "lead_options": [
+    {
+      "id": "lead_1",
+      "label": "What is the consequence of the complaint?"
+    }
+  ],
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: Evening star (Washington, D.C.), 1937-04-22",
+      "Citation: https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
+      "MiniCPM-V structured extraction + LOC OCR"
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Lead branches may use editorial glue; quoted lines match the fragment."
+  },
+  "beat_intro": "A dark and secretive plot is being uncovered in a religious context."
+}

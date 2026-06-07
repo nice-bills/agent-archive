@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Detective — Evidence Cabinet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/board.css?v=2" />
+</head>
+<body>
+  <div class="desk-scene">
+    <div class="lamp-pool" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <div class="masthead-brand">
+        <h1>Archive Detective</h1>
+        <p class="deck">Evidence Cabinet — open a case box, inspect archive artifacts, reconstruct what happened.</p>
+      </div>
+      <div class="case-picker">
+        <label for="case-select">Case file</label>
+        <select id="case-select" aria-label="Choose case"></select>
+        <button type="button" id="btn-reset" class="btn ghost">New investigation</button>
+      </div>
+    </header>
+
+    <section class="generate-panel zone" id="generate-panel" aria-labelledby="generate-title">
+      <header class="zone-head">
+        <div>
+          <h2 id="generate-title" class="zone-title">Generate from clipping</h2>
+          <p class="generate-deck">Pick a bundled public-domain clipping — the archivist model builds a new Evidence Cabinet.</p>
+        </div>
+        <span id="generation-badge" class="generation-badge" hidden></span>
+      </header>
+      <div id="gallery-grid" class="gallery-grid" role="list" aria-label="Sample clippings"></div>
+      <details class="fold upload-fold">
+        <summary>Upload your own clipping</summary>
+        <form id="upload-form" class="upload-form">
+          <label class="upload-field">
+            <span>Image file</span>
+            <input type="file" id="upload-image" accept="image/jpeg,image/png,image/webp" required />
+          </label>
+          <label class="upload-field">
+            <span>Title (optional)</span>
+            <input type="text" id="upload-title" placeholder="My clipping" />
+          </label>
+          <label class="upload-field">
+            <span>OCR text (optional)</span>
+            <textarea id="upload-ocr" rows="3" placeholder="Paste noisy OCR if you have it…"></textarea>
+          </label>
+          <div class="action-row">
+            <button type="submit" class="btn primary" id="btn-upload-generate">Generate cabinet</button>
+            <label class="checkbox-field">
+              <input type="checkbox" id="upload-regenerate" />
+              Force live model (skip cache)
+            </label>
+          </div>
+        </form>
+      </details>
+    </section>
+
+    <main class="board" id="board" hidden>
+      <section class="case-dossier" aria-labelledby="case-title">
+        <div class="dossier-tab">Open file</div>
+        <div class="dossier-sheet">
+          <div class="dossier-head">
+            <div>
+              <h2 id="case-title"></h2>
+              <p id="case-tagline" class="tagline"></p>
+            </div>
+            <div id="status-badge" class="status-stamp" aria-live="polite"></div>
+          </div>
+          <p id="case-intro" class="case-intro"></p>
+        </div>
+      </section>
+
+      <div id="cabinet-layout" class="cabinet-layout" hidden>
+        <aside class="zone tray-zone" aria-label="Evidence tray">
+          <header class="zone-head">
+            <h3 class="zone-title">Evidence tray</h3>
+            <span id="tray-count" class="zone-meta"></span>
+          </header>
+          <div id="artifact-tray" class="artifact-tray" role="list"></div>
+        </aside>
+
+        <article class="zone viewer-zone" aria-label="Artifact viewer">
+          <header class="zone-head">
+            <h3 id="viewer-label" class="zone-title">Artifact</h3>
+            <span id="viewer-kind" class="kind-stamp"></span>
+          </header>
+
+          <div class="magnifier-stage">
+            <figure class="artifact-frame" id="artifact-frame">
+              <div class="magnifier-ring" aria-hidden="true"></div>
+              <img id="artifact-img" alt="" hidden />
+              <figcaption id="artifact-caption" class="visually-hidden"></figcaption>
+            </figure>
+          </div>
+
+          <div id="citation-strip" class="citation-strip" hidden>
+            <span id="citation-line" class="citation-line"></span>
+            <a id="citation-link" class="citation-link" href="#" target="_blank" rel="noopener" hidden>View source</a>
+          </div>
+
+          <div id="artifact-text" class="artifact-excerpt"></div>
+
+          <details class="fold ocr-fold" id="ocr-fold">
+            <summary>OCR layers</summary>
+            <div class="ocr-grid">
+              <div>
+                <h4>Raw scan</h4>
+                <pre id="raw-ocr"></pre>
+              </div>
+              <div>
+                <h4>Clean read</h4>
+                <pre id="clean-text"></pre>
+              </div>
+            </div>
+          </details>
+
+          <details class="fold citation-fold" id="citation-fold">
+            <summary>Full citation</summary>
+            <div id="citation-body" class="citation-body"></div>
+          </details>
+        </article>
+
+        <aside class="zone sheet-zone" aria-label="Deduction sheet">
+          <header class="zone-head">
+            <h3 class="zone-title">Deduction sheet</h3>
+          </header>
+          <div class="sheet-paper">
+            <div id="pinned-cards" class="pinned-cards"></div>
+
+            <section class="leads-block">
+              <h4 class="sheet-label">Leads</h4>
+              <div id="lead-buttons" class="lead-buttons" role="group" aria-label="Choose a lead"></div>
+            </section>
+
+            <section class="deduction-block">
+              <h4 class="sheet-label">Conclusion</h4>
+              <p id="deduction-prompt" class="deduction-prompt"></p>
+              <form id="deduction-form" class="deduction-form"></form>
+              <div class="action-row">
+                <button type="submit" form="deduction-form" id="btn-deduction" class="btn primary">Submit deduction</button>
+                <button type="button" id="btn-reveal" class="btn ghost">Reveal archive facts</button>
+              </div>
+              <div id="deduction-result" class="deduction-result" hidden></div>
+              <div id="reveal-panel" class="reveal-panel" hidden></div>
+            </section>
+          </div>
+        </aside>
+      </div>
+
+      <div id="beat-layout" class="beat-layout" hidden>
+        <div class="beat-grid">
+          <article class="zone exhibit-zone">
+            <header class="zone-head">
+              <h3 class="zone-title">Exhibit A</h3>
+              <span id="source-line" class="zone-meta"></span>
+            </header>
+            <figure class="clipping-frame" id="clipping-frame">
+              <img id="clipping-img" alt="Newspaper clipping" />
+            </figure>
+            <details class="fold ocr-fold">
+              <summary>OCR layers</summary>
+              <div class="ocr-grid">
+                <div>
+                  <h4>Raw scan</h4>
+                  <pre id="beat-raw-ocr"></pre>
+                </div>
+                <div>
+                  <h4>Clean read</h4>
+                  <pre id="beat-clean-text"></pre>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="zone cards-zone">
+            <header class="zone-head">
+              <h3 class="zone-title">Evidence cards</h3>
+              <span id="clue-types" class="zone-meta"></span>
+            </header>
+            <div id="evidence-stack" class="evidence-stack"></div>
+            <div id="entity-rail" class="entity-rail"></div>
+          </article>
+        </div>
+
+        <section class="zone leads-zone">
+          <header class="zone-head">
+            <h3 class="zone-title">Leads on the board</h3>
+            <span id="trail" class="zone-meta"></span>
+          </header>
+          <div id="beat-lead-buttons" class="lead-buttons" role="group" aria-label="Choose a lead"></div>
+          <div class="action-row">
+            <button type="button" id="btn-beat-reveal" class="btn primary">Reveal archive facts</button>
+          </div>
+          <div id="beat-reveal-panel" class="reveal-panel" hidden></div>
+        </section>
+      </div>
+
+      <section class="search-console zone" id="search-console" hidden>
+        <header class="zone-head">
+          <h3 class="zone-title">Search evidence</h3>
+          <span id="search-status" class="zone-meta search-status"></span>
+        </header>
+        <form id="search-form" class="search-form">
+          <div class="search-prompt" aria-hidden="true">&gt;</div>
+          <input type="search" id="search-input" placeholder="Type a phrase from unlocked artifacts…" aria-label="Search evidence" autocomplete="off" />
+          <button type="submit" class="btn search-btn">Search</button>
+        </form>
+      </section>
+
+      <section class="zone debug-zone">
+        <header class="zone-head">
+          <h3 class="zone-title">Session readout</h3>
+          <span class="zone-meta">Debug JSON</span>
+        </header>
+        <pre id="model-reading" class="json-readout"></pre>
+      </section>
+    </main>
+
+    <div id="loading" class="loading" role="status" aria-live="polite">
+      <span class="loading-dot" aria-hidden="true"></span>
+      Opening case file…
+    </div>
+    <div id="error" class="error" role="alert" hidden></div>
+  </div>
+  <script type="module" src="/board.js?v=2"></script>
+</body>
+</html>

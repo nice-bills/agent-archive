@@ -1,0 +1,244 @@
+{
+  "case_id": "generated_1819_06_01_resource_gdc_sn88063570_16133",
+  "title": "Volume 29, Number 1292, Tuesday · 1819-06-01 · arrested night",
+  "tagline": "A clipping from Volume 29, Number 1292, Tuesday (1819-06-01) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Volume 29, Number 1292, Tuesday · 1819-06-01 · arrested night",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16133/?sp=2&q=arrested+night",
+        "date": "1819-06-01",
+        "publication": "Volume 29, Number 1292, Tuesday"
+      },
+      "media": {
+        "image_path": "assets/gallery/1819_06_01_resource_gdc_sn88063570_16133.jpg",
+        "thumb_path": "assets/gallery/1819_06_01_resource_gdc_sn88063570_16133.jpg"
+      },
+      "text": {
+        "raw_ocr": "THE BENGAL HURKARU der one head uuless some friend steps forward with a few lacks of rupees to support the pretensions of Sujaat Ul mulk when the business would soon be settled BENGAL HURKARU _ DeratThe old King has for some time been in sad grief and tribulation on acéount of one of his subjcts hav ing withdrawn his neck from the yoke of obedience and assumed Royal titles coining Rupees without acknow ledging the Great Moguls supremacy an act of rebellion never perpetrated since the day of Akbar except by Tippoo CALCUTTA TUESDAY JUNE 1 1819 No arrivals from sea were reported yesterday and we regret to find that our sources of domestic intelligence are entirely unproductiveThe Cey fon Gazette of the 1st ultimo which reached uf yesterday affords nothing to compensate for the dearth of news in our more immediate Vicinity ee ee On Sunday forenoon after divine service a collection was made at the Old Church for the benefit of the Church Missionary Society which amounted as we understand to 2000 rupees or upwards Avery excellent and appropriate dis course was delivered on the occasion by the Rev Mr Thomason from Zechariah chap 6 verse 10 Who",
+        "clean_text": "THE BENGAL HURKARU der one head uuless some friend steps forward with a few lacks of rupees to support the pretensions of Sujaat Ul mulk when the business would soon be settled BENGAL HURKARU _ DeratThe old King has for some time been in sad grief and tribulation on acéount of one of his subjcts hav ing withdrawn his neck from the yoke of obedience and assumed Royal titles coining Rupees without acknow ledging the Great Moguls supremacy an act of rebellion never perpetrated since the day of Akbar except by Tippoo CALCUTTA TUESDAY JUNE 1 1819 No arrivals from sea were reported yesterday and we regret to find that our sources of domestic intelligence are entirely unproductiveThe Cey fon Gazette of the 1st ultimo which reached uf yesterday affords nothing to compensate for the dearth of news in our more immediate Vicinity ee ee On Sunday forenoon after divine service a collection was made at the Old Church for the benefit of the Church Missionary Society which amounted as we understand to 2000 rupees or upwards Avery excellent and appropriate dis course was delivered on the occasion by the Rev Mr Thomason from Zechariah chap 6 verse 10 Who"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Sujaat Ul"
+        },
+        {
+          "type": "person",
+          "value": "Great Moguls"
+        },
+        {
+          "type": "person",
+          "value": "On Sunday"
+        },
+        {
+          "type": "person",
+          "value": "Old Church"
+        },
+        {
+          "type": "person",
+          "value": "Church Missionary Society"
+        },
+        {
+          "type": "person",
+          "value": "Rev Mr Thomason"
+        },
+        {
+          "type": "time",
+          "value": "Sunday"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_fragment",
+          "clue_type": "anomaly",
+          "title": "Strange fragment",
+          "detail": "This clipping stood out in the archive crawl — worth pinning to the board."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16133/?sp=2&q=arrested+night",
+        "date": "1819-06-01",
+        "publication": "Volume 29, Number 1292, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Sujaat Ul; Great Moguls; On Sunday; Old Church; Church Missionary Society; Rev Mr Thomason",
+        "clean_text": "Indexed from the clipping: Sujaat Ul; Great Moguls; On Sunday; Old Church; Church Missionary Society; Rev Mr Thomason"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Sujaat Ul"
+        },
+        {
+          "type": "person",
+          "value": "Great Moguls"
+        },
+        {
+          "type": "person",
+          "value": "On Sunday"
+        },
+        {
+          "type": "person",
+          "value": "Old Church"
+        },
+        {
+          "type": "person",
+          "value": "Church Missionary Society"
+        },
+        {
+          "type": "person",
+          "value": "Rev Mr Thomason"
+        },
+        {
+          "type": "time",
+          "value": "Sunday"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16133/?sp=2&q=arrested+night",
+        "date": "1819-06-01",
+        "publication": "Volume 29, Number 1292, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1819-06-01. Publication: Volume 29, Number 1292, Tuesday.",
+        "clean_text": "The clipping is dated 1819-06-01. Whatever happened here sits in the same news cycle as other items from Volume 29, Number 1292, Tuesday."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1819-06-01 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/gdc.sn88063570_16133/?sp=2&q=arrested+night",
+        "date": "1819-06-01",
+        "publication": "Volume 29, Number 1292, Tuesday"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from Volume 29, Number 1292, Tuesday (1819-06-01) — ink faded, story not.",
+        "clean_text": "A clipping from Volume 29, Number 1292, Tuesday (1819-06-01) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from Volume 29, Number 1292, Tuesday (1819-06-01) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: Volume 29, Number 1292, Tuesday, 1819-06-01",
+      "Citation: https://www.loc.gov/resource/gdc.sn88063570_16133/?sp=2&q=arrested+night",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}

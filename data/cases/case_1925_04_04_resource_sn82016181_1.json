@@ -1,0 +1,386 @@
+{
+  "case_id": "case_1925_04_04_resource_sn82016181_1",
+  "title": "County Line Report",
+  "tagline": "A small headline with too many proper nouns.",
+  "start_beat": "opening",
+  "beats": {
+    "opening": {
+      "artifact_id": "ca_1925_04_04_resource_sn82016181_1925_04_04_ed_1",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+        "date": "1925-04-04",
+        "publication": "The Washington daily news (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": "assets/case_1925_04_04_resource_sn82016181_1.jpg",
+        "raw_ocr": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which",
+        "clean_text": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Frat Dispute Conference"
+        },
+        {
+          "type": "person",
+          "value": "Students Meet With"
+        },
+        {
+          "type": "person",
+          "value": "Peyser Criticizes Policy"
+        },
+        {
+          "type": "person",
+          "value": "Unofficial Discussions The"
+        },
+        {
+          "type": "person",
+          "value": "School Board"
+        },
+        {
+          "type": "person",
+          "value": "Would Avoid Court"
+        },
+        {
+          "type": "person",
+          "value": "Attitude Unchanged"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington daily news (Washington, D.C.), 1925-04-04",
+          "Citation: https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "A clipping from The Washington daily news (Washington, D.C.) (1925-04-04) — ink faded, story not."
+    },
+    "names": {
+      "artifact_id": "ca_1925_04_04_resource_sn82016181_1925_04_04_ed_1_names",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+        "date": "1925-04-04",
+        "publication": "The Washington daily news (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which",
+        "clean_text": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Frat Dispute Conference"
+        },
+        {
+          "type": "person",
+          "value": "Students Meet With"
+        },
+        {
+          "type": "person",
+          "value": "Peyser Criticizes Policy"
+        },
+        {
+          "type": "person",
+          "value": "Unofficial Discussions The"
+        },
+        {
+          "type": "person",
+          "value": "School Board"
+        },
+        {
+          "type": "person",
+          "value": "Would Avoid Court"
+        },
+        {
+          "type": "person",
+          "value": "Attitude Unchanged"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington daily news (Washington, D.C.), 1925-04-04",
+          "Citation: https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Who is named here?** — another angle on the same ink-stained fragment."
+    },
+    "place": {
+      "artifact_id": "ca_1925_04_04_resource_sn82016181_1925_04_04_ed_1_place",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+        "date": "1925-04-04",
+        "publication": "The Washington daily news (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which",
+        "clean_text": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Frat Dispute Conference"
+        },
+        {
+          "type": "person",
+          "value": "Students Meet With"
+        },
+        {
+          "type": "person",
+          "value": "Peyser Criticizes Policy"
+        },
+        {
+          "type": "person",
+          "value": "Unofficial Discussions The"
+        },
+        {
+          "type": "person",
+          "value": "School Board"
+        },
+        {
+          "type": "person",
+          "value": "Would Avoid Court"
+        },
+        {
+          "type": "person",
+          "value": "Attitude Unchanged"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "close",
+          "label": "Table this fragment"
+        },
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington daily news (Washington, D.C.), 1925-04-04",
+          "Citation: https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Trace the place** — another angle on the same ink-stained fragment."
+    },
+    "close": {
+      "artifact_id": "ca_1925_04_04_resource_sn82016181_1925_04_04_ed_1_close",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+        "date": "1925-04-04",
+        "publication": "The Washington daily news (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which",
+        "clean_text": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Frat Dispute Conference"
+        },
+        {
+          "type": "person",
+          "value": "Students Meet With"
+        },
+        {
+          "type": "person",
+          "value": "Peyser Criticizes Policy"
+        },
+        {
+          "type": "person",
+          "value": "Unofficial Discussions The"
+        },
+        {
+          "type": "person",
+          "value": "School Board"
+        },
+        {
+          "type": "person",
+          "value": "Would Avoid Court"
+        },
+        {
+          "type": "person",
+          "value": "Attitude Unchanged"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "clue_types": [
+        "coded_message"
+      ],
+      "mystery_score": 0.6,
+      "lead_options": [
+        {
+          "id": "names",
+          "label": "Who is named here?"
+        },
+        {
+          "id": "place",
+          "label": "Trace the place"
+        },
+        {
+          "id": "close",
+          "label": "Close the case — for now"
+        }
+      ],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington daily news (Washington, D.C.), 1925-04-04",
+          "Citation: https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You chase the lead: **Table this fragment** — another angle on the same ink-stained fragment."
+    },
+    "closed": {
+      "artifact_id": "ca_1925_04_04_resource_sn82016181_1925_04_04_ed_1_closed",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+        "date": "1925-04-04",
+        "publication": "The Washington daily news (Washington, D.C.)"
+      },
+      "fragment": {
+        "image_path": null,
+        "raw_ocr": "Frat Dispute Conference on Today i Students Meet With E C Gra i ham Peyser Criticizes Policy of Unofficial Discussions The high school fraternity squab ble may be settled out of court I This was indicated today when E l C Graham of the School Board an nounced a conference this afternoon with representatives of high school I fraternities On the heels of yesterdays con ference in Grahams office to dis cuss the legal aspects of the fra ternity case todays meetingfurther I indicates the lengths to which school officials are going to settle the dis pute Mondays secret meeting of the I board was called to make plans to investigate the fraternities Meanwhile the essential issues of I the fight may be settled in confer ence Would Avoid Court 1 I Fraternity leaders are anxious to avoid a court test of the boards right to regulate their organizations I A program of lobbying privately for a hearing which we have been unable to secure publicly was be gun by fraternity leaders yesterday Board members were interviewed by a committee selected by outlaw or ganizations Attitude Unchanged A poll of board members today showed no change in the attitude which",
+        "clean_text": "Case tabled. Fragment logged on the board."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_close",
+          "clue_type": "summary",
+          "title": "Board pinned",
+          "detail": "Enough for tonight — the archive keeps the rest."
+        }
+      ],
+      "clue_types": [
+        "summary"
+      ],
+      "mystery_score": 1.0,
+      "lead_options": [],
+      "reveal_notes": {
+        "direct_archive_facts": [
+          "Publication: The Washington daily news (Washington, D.C.), 1925-04-04",
+          "Citation: https://www.loc.gov/resource/sn82016181/1925-04-04/ed-1/?sp=5&q=secret+meeting",
+          "OCR text sourced from LOC Chronicling America ingest"
+        ],
+        "synthetic_bridge_allowed": true,
+        "bridge_notes": "Lead branches may use editorial glue; quoted lines should match the fragment."
+      },
+      "beat_intro": "You pin the board shut. The clipping stays real; the rest waits."
+    }
+  },
+  "transitions": {
+    "opening": {
+      "names": "names",
+      "place": "place",
+      "close": "close"
+    },
+    "names": {
+      "close": "closed",
+      "place": "place"
+    },
+    "place": {
+      "close": "closed",
+      "names": "names"
+    },
+    "close": {
+      "close": "closed",
+      "names": "names",
+      "place": "place"
+    }
+  }
+}

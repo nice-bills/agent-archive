@@ -1,0 +1,252 @@
+{
+  "case_id": "generated_1953_05_10_resource_sn83045462_1953_05_10_ed_1",
+  "title": "Evening star (Washington, D.C.) · 1953-05-10 · secret meeting",
+  "tagline": "A clipping from Evening star (Washington, D.C.) (1953-05-10) — ink faded, story not.",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Evening star (Washington, D.C.) · 1953-05-10 · secret meeting",
+      "source": {
+        "archive": "Chronicling America (Library of Congress)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": {
+        "image_path": "assets/gallery/1953_05_10_resource_sn83045462_1953_05_10_ed_1.jpg",
+        "thumb_path": "assets/gallery/1953_05_10_resource_sn83045462_1953_05_10_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn",
+        "clean_text": "Secret Meeting Wins Acorn Stakes at Belmont at 18Vfe to 1 Second Brady Filly Takes Fourth Race Pays 226 Mutuel ly the Associated Pros NEW YORK May 9Owner James Cox Brady Trainer Bobby Dotter and Jockey Jim Nichols plus two Allies named Secret Meeting and Plumedgave the longshot players a Aeld day at Belmont Park this warm after noon After Plumed won the fourth race by a neck for a 22680 pay oA most of the crowd of 38080 didnt believe Bradys Secret Meeting could duplicate the feat and win the 25700 Acron Stakes Dotter trains both the Brady horses and Nichols rode both So Secret Meeting a three yearold chestnut daughter of AlibhaiBurgoo Maid scampered home in the onemile headliner at 18 to 1 It Just about com pletely upset the afternoon for the form players for Secret Meeting paid 3910 1610 and 950 across the board Only Third Start Secret Meeting in fact was making only the third start of her young career and it was the Arst time the granddaughter of Burgoo King the 1932 Kentucky Derby winner had raced in a stake Mrs Ben P Whitakers Gre cian Queen was the 45 favorite in the Acorn"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_secret",
+          "clue_type": "coded_message",
+          "title": "Secretive wording",
+          "detail": "Language suggests concealed intent rather than open announcement."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Secret Meeting Wins Acorn Stakes; Second Brady Filly Takes Fourth Race Pays; Associated Pros; James Cox Brady Trainer Bobby Dotter; Jockey Jim Nichols; Secret Meeting",
+        "clean_text": "Indexed from the clipping: Secret Meeting Wins Acorn Stakes; Second Brady Filly Takes Fourth Race Pays; Associated Pros; James Cox Brady Trainer Bobby Dotter; Jockey Jim Nichols; Secret Meeting"
+      },
+      "entities": [
+        {
+          "type": "person",
+          "value": "Secret Meeting Wins Acorn Stakes"
+        },
+        {
+          "type": "person",
+          "value": "Second Brady Filly Takes Fourth Race Pays"
+        },
+        {
+          "type": "person",
+          "value": "Associated Pros"
+        },
+        {
+          "type": "person",
+          "value": "James Cox Brady Trainer Bobby Dotter"
+        },
+        {
+          "type": "person",
+          "value": "Jockey Jim Nichols"
+        },
+        {
+          "type": "person",
+          "value": "Secret Meeting"
+        },
+        {
+          "type": "person",
+          "value": "Belmont Park"
+        },
+        {
+          "type": "person",
+          "value": "After Plumed"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "missing_context",
+          "title": "Missing context",
+          "detail": "The clipping assumes the reader already knows more than it states."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1953-05-10. Publication: Evening star (Washington, D.C.).",
+        "clean_text": "The clipping is dated 1953-05-10. Whatever happened here sits in the same news cycle as other items from Evening star (Washington, D.C.)."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1953-05-10 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model/heuristic reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+        "date": "1953-05-10",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A clipping from Evening star (Washington, D.C.) (1953-05-10) — ink faded, story not.",
+        "clean_text": "A clipping from Evening star (Washington, D.C.) (1953-05-10) — ink faded, story not."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A clipping from Evening star (Washington, D.C.) (1953-05-10) — ink faded, story not."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Who is named here?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "Trace the place",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "Table this fragment",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "Publication: Evening star (Washington, D.C.), 1953-05-10",
+      "Citation: https://www.loc.gov/resource/sn83045462/1953-05-10/ed-1/?sp=70&q=secret+meeting",
+      "Quoted lines in the primary clipping match bundled LOC OCR."
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+  }
+}
