@@ -83,7 +83,7 @@ def maybe_upload(dest: Path, repo: str) -> None:
     from huggingface_hub import HfApi
 
     api = HfApi(token=token)
-    api.create_repo(repo, repo_type="dataset", exist_ok=True, private=True)
+    api.create_repo(repo, repo_type="dataset", exist_ok=True, private=False)
     api.upload_file(
         path_or_fileobj=str(dest),
         path_in_repo="agent_trace_redacted.jsonl",
@@ -91,7 +91,8 @@ def maybe_upload(dest: Path, repo: str) -> None:
         repo_type="dataset",
         commit_message="Add redacted Archive Detective agent trace",
     )
-    print(f"Uploaded (private): https://huggingface.co/datasets/{repo}")
+    api.update_repo_settings(repo, private=False, repo_type="dataset")
+    print(f"Uploaded (public): https://huggingface.co/datasets/{repo}")
 
 
 def main() -> None:
