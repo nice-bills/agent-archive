@@ -37,9 +37,9 @@ Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clip
 
 **Live path (OpenBMB):** one Modal GPU job per regenerate — MiniCPM-V-4.6 OCR → MiniCPM5-1B cabinet JSON.
 
-**Demo video:** _(add YouTube/Loom URL before judging)_
+**Demo video:** [YouTube](https://youtu.be/ADowU5BB5Wc)
 
-**Social post:** _(add X/LinkedIn link before judging)_
+**Social post:** [X](https://x.com/willIsbillls/status/2066558882026082335?s=20)
 
 **Hackathon:** Adventure in Thousand Token Wood · **Models:** [MiniCPM-V-4.6](https://huggingface.co/openbmb/MiniCPM-V-4.6) (OCR) + [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) (cabinet JSON) · **Infra:** [Modal](MODAL.md) (`generate_case_play`, one A10G job per pick)
 

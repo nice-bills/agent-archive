@@ -112,9 +112,9 @@ Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clip
 
 **Agent trace:** [nice-bill/archive-detective-agent-trace]({AGENT_TRACE_URL})
 
-**Demo video:** _(add YouTube/Loom URL before judging)_
+**Demo video:** [YouTube](https://youtu.be/ADowU5BB5Wc)
 
-**Social post:** _(add X/LinkedIn link before judging)_
+**Social post:** [X](https://x.com/willIsbillls/status/2066558882026082335?s=20)
 
 **Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
 
