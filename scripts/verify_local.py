@@ -219,7 +219,7 @@ def verify_gallery_generation() -> None:
             f"(model={meta.get('model_id')})"
         )
     ocr_source = meta.get("ocr_source")
-    if ocr_source not in {"live_refine", "live_vision", "live_vision_modal"}:
+    if ocr_source not in {"live_refine", "live_vision", "live_vision_modal", "user_paste"}:
         fail(f"expected live OCR, got ocr_source={ocr_source!r}")
     session = start_evidence_session(case)
     if case.hero_artifact_id not in session.unlocked:

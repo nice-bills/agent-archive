@@ -57,6 +57,38 @@ function showError(msg) {
   el.textContent = msg;
 }
 
+function onHfSpace() {
+  return /\.hf\.space$/.test(window.location.hostname);
+}
+
+function formatGenerationError(err, context = "gallery") {
+  const message = err?.message || String(err);
+  const code = err?.code;
+  if (code === "paste_ocr_required" || /paste ocr/i.test(message)) {
+    return (
+      "Paste OCR text from Chronicling America before building. " +
+      "Image-only uploads need several minutes on Modal GPU and usually time out on this Space."
+    );
+  }
+  if (code === "modal_timeout" || /timeout|timed out/i.test(message)) {
+    return context === "upload"
+      ? "Modal GPU timed out. Paste OCR text to skip the vision read, or pick a gallery polaroid for instant play."
+      : "Modal GPU timed out — try again or pick a polaroid with a pre-built cabinet.";
+  }
+  if (code === "backend_unavailable") {
+    return "Live generation is unavailable — check Space secrets (MODAL_TOKEN_ID/SECRET) or try a gallery polaroid.";
+  }
+  if (/returned no data|lost connection/i.test(message)) {
+    if (onHfSpace()) {
+      return (
+        "Generation lost connection — the Space may still be building or restarting. " +
+        "Wait until the header shows Running, reload, paste OCR for uploads, or use a gallery polaroid."
+      );
+    }
+  }
+  return message;
+}
+
 function clearError() {
   $("error").hidden = true;
 }
@@ -360,7 +392,14 @@ async function loadModelInfo() {
         "Modal or HF_TOKEN missing — set MODAL_TOKEN_ID/SECRET (OpenBMB) or HF_TOKEN for gallery generation.";
     }
   } catch {
-    /* non-fatal */
+    if (onHfSpace()) {
+      const uploadWarn = $("upload-space-hint");
+      if (uploadWarn) {
+        uploadWarn.hidden = false;
+        uploadWarn.textContent =
+          "Paste OCR text before building — image-only uploads time out on this Space.";
+      }
+    }
   }
 }
 
@@ -489,11 +528,9 @@ async function onGenerateGallery(clippingId, regenerate) {
     renderState(sess);
   } catch (err) {
     setBusy(false);
-    showError(err.message || String(err));
+    showError(formatGenerationError(err, "gallery"));
   }
 }
-
-async function onRegenerateCabinet() {
   const clippingId = state.currentState?.generation?.clipping_id || state.activeClippingId;
   if (!clippingId || state.busy) return;
   await onGenerateGallery(clippingId, true);
@@ -517,7 +554,16 @@ async function onUploadGenerate(event) {
   const rawOcr = $("upload-ocr").value.trim();
   const info = state.modelInfo;
   const modal = info?.stack === "openbmb";
-  if (info?.upload_requires_ocr && !rawOcr) {
+  const onSpace = onHfSpace() || Boolean(info?.on_space);
+  if (onSpace && !info) {
+    const uploadFold = document.querySelector(".upload-fold");
+    if (uploadFold) uploadFold.open = true;
+    showError(
+      "Space is still starting — wait until the header shows Running, reload the page, then try again.",
+    );
+    return;
+  }
+  if ((info?.upload_requires_ocr ?? onSpace) && !rawOcr) {
     const uploadFold = document.querySelector(".upload-fold");
     if (uploadFold) uploadFold.open = true;
     const ocrField = $("upload-ocr");
@@ -564,11 +610,9 @@ async function onUploadGenerate(event) {
     renderState(sess);
   } catch (err) {
     setBusy(false);
-    showError(err.message || String(err));
+    showError(formatGenerationError(err, "upload"));
   }
 }
-
-async function startCase(caseId) {
   if (state.busy) return;
   setBusy(true, "Opening case file…", "case");
   for (const id of ["reveal-panel", "beat-reveal-panel"]) {

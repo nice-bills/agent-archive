@@ -29,6 +29,24 @@ ASSETS = ROOT / "assets"
 store = SessionStore()
 
 
+def _generation_api_error(exc: BaseException) -> dict:
+    """Structured failure the board can show instead of an empty Gradio response."""
+    msg = str(exc).strip() or type(exc).__name__
+    code = "generation_failed"
+    lower = msg.lower()
+    if isinstance(exc, ValueError) and "paste ocr" in lower:
+        code = "paste_ocr_required"
+    elif isinstance(exc, TimeoutError) or "timeout" in lower or "timed out" in lower:
+        code = "modal_timeout"
+    elif isinstance(exc, RuntimeError) and (
+        "modal" in lower or "hf_token" in lower or "model generation" in lower
+    ):
+        code = "backend_unavailable"
+    elif isinstance(exc, FileNotFoundError):
+        code = "missing_asset"
+    return {"ok": False, "error": msg, "error_code": code}
+
+
 def build_server() -> Server:
     app = Server(title="Archive Detective")
 
@@ -102,9 +120,16 @@ def build_server() -> Server:
 
     @app.api(name="generate_from_gallery", concurrency_limit=1)
     def generate_from_gallery_api(clipping_id: str, regenerate: bool = False) -> dict:
-        case, meta = generate_from_gallery(clipping_id, regenerate=regenerate)
-        sid, session = store.create_from_evidence_case(case, generation=meta)
-        return {"session_id": sid, **any_session_to_dict(session, show_reveal=False)}
+        try:
+            case, meta = generate_from_gallery(clipping_id, regenerate=regenerate)
+            sid, session = store.create_from_evidence_case(case, generation=meta)
+            return {
+                "ok": True,
+                "session_id": sid,
+                **any_session_to_dict(session, show_reveal=False),
+            }
+        except Exception as exc:
+            return _generation_api_error(exc)
 
     @app.api(name="generate_from_upload", concurrency_limit=1)
     def generate_from_upload_api(
@@ -113,14 +138,21 @@ def build_server() -> Server:
         raw_ocr: str = "",
         regenerate: bool = False,
     ) -> dict:
-        case, meta = generate_from_upload(
-            image_b64,
-            title=title,
-            raw_ocr=raw_ocr,
-            regenerate=regenerate,
-        )
-        sid, session = store.create_from_evidence_case(case, generation=meta)
-        return {"session_id": sid, **any_session_to_dict(session, show_reveal=False)}
+        try:
+            case, meta = generate_from_upload(
+                image_b64,
+                title=title,
+                raw_ocr=raw_ocr,
+                regenerate=regenerate,
+            )
+            sid, session = store.create_from_evidence_case(case, generation=meta)
+            return {
+                "ok": True,
+                "session_id": sid,
+                **any_session_to_dict(session, show_reveal=False),
+            }
+        except Exception as exc:
+            return _generation_api_error(exc)
 
     @app.api(name="start_case")
     def start_case(case_id: str) -> dict:

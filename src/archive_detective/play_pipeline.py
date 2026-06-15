@@ -61,7 +61,7 @@ def resolve_cabinet_model_id() -> str:
 
 def _modal_meta(play: dict[str, Any], skeleton_filled: list[str] | None = None) -> dict[str, Any]:
     meta: dict[str, Any] = {
-        "ocr_source": "live_vision_modal",
+        "ocr_source": play.get("ocr_source", "live_vision_modal"),
         "ocr_model": play["ocr_model"],
         "source": "live_modal",
         "model_id": play["cabinet_model"],

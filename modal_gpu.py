@@ -144,7 +144,8 @@ def _generate_case_on_gpu(
     return {
         "raw_ocr": raw,
         "clean_text": str(ocr_payload.get("clean_text") or raw),
-        "ocr_model": vision_id,
+        "ocr_model": vision_id if ocr_payload.get("ocr_source") != "user_paste" else "user_paste",
+        "ocr_source": ocr_payload.get("ocr_source", "live_vision_modal"),
         "cabinet_model": text_model_id(),
         "cabinet_payload": cabinet_payload,
         "skeleton_filled": skeleton_filled,
