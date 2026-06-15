@@ -9,6 +9,7 @@ from typing import Any
 
 from archive_detective.clue_builder import parse_vision_json
 from archive_detective.env import load_project_env
+from archive_detective.ocr_prompts import build_ocr_vision_prompt
 from archive_detective.prompts import build_extraction_prompt
 
 load_project_env()
@@ -25,6 +26,19 @@ def model_enabled() -> bool:
 
 def _hf_token() -> str | None:
     return os.environ.get("HF_TOKEN") or None
+
+
+def warmup_model() -> str:
+    """Load weights into GPU/CPU memory (Modal warm start)."""
+    _load_model()
+    return MODEL_ID
+
+
+def unload_model() -> None:
+    """Release vision weights (before loading text model on same GPU)."""
+    global _model, _processor
+    _model = None
+    _processor = None
 
 
 def _load_model():
@@ -49,7 +63,7 @@ def _load_model():
     return _model, _processor
 
 
-def _run_minicpm(image_path: str, system: str, user: str) -> str:
+def _run_minicpm(image_path: str, system: str, user: str, *, max_new_tokens: int = 1024) -> str:
     from PIL import Image
 
     model, processor = _load_model()
@@ -71,12 +85,63 @@ def _run_minicpm(image_path: str, system: str, user: str) -> str:
         return_dict=True,
         return_tensors="pt",
     ).to(model.device)
-    out_ids = model.generate(**inputs, max_new_tokens=1024)
+    out_ids = model.generate(**inputs, max_new_tokens=max_new_tokens)
     answer = processor.decode(
         out_ids[0][inputs["input_ids"].shape[-1] :],
         skip_special_tokens=True,
     )
     return str(answer)
+
+
+def transcribe_image(
+    image_path: str,
+    *,
+    publication: str = "Unknown",
+    date: str = "unknown",
+    hint_ocr: str = "",
+) -> dict[str, Any]:
+    """MiniCPM-V image → raw OCR JSON (play-time / Modal OCR)."""
+    if not model_enabled():
+        raise RuntimeError(
+            "Live model disabled. Set ARCHIVE_DETECTIVE_USE_MODEL=1 or use Modal OCR."
+        )
+
+    path = Path(image_path)
+    if not path.is_file():
+        raise FileNotFoundError(image_path)
+
+    system, user = build_ocr_vision_prompt(
+        publication=publication,
+        date=date,
+        hint_ocr=hint_ocr or "(none)",
+    )
+    raw = ""
+    clean = ""
+    payload: dict[str, Any] = {}
+    last_exc: Exception | None = None
+    for attempt in range(2):
+        try:
+            text = _run_minicpm(
+                str(path),
+                system,
+                user,
+                max_new_tokens=2048,
+            )
+            payload = parse_vision_json(text)
+            raw = str(payload.get("raw_ocr") or payload.get("clean_text") or "").strip()
+            clean = str(payload.get("clean_text") or raw).strip()
+            if len(raw) >= 20:
+                break
+        except Exception as exc:
+            last_exc = exc
+    if len(raw) < 20 and hint_ocr.strip():
+        raw = hint_ocr.strip()
+        clean = hint_ocr.strip()
+    if len(raw) < 20:
+        raise RuntimeError(
+            f"Vision model returned too little transcription text: {last_exc}"
+        ) from last_exc
+    return {"raw_ocr": raw, "clean_text": clean, "vision_payload": payload}
 
 
 def extract_clues_from_image(

@@ -168,9 +168,9 @@
         <div class="stat"><strong>5</strong><span>Playable cases</span></div>
         <div class="stat"><strong>12</strong><span>LOC snippets ingested</span></div>
         <div class="stat"><strong>~5.4k</strong><span>Lines (src + scripts + cases)</span></div>
-        <div class="stat"><strong>0</strong><span>Cloud APIs at runtime</span></div>
+        <div class="stat"><strong>Modal</strong><span>GPU for live gallery</span></div>
       </div>
-      <p>The shipping UI is a custom <strong>gradio.Server</strong> board (HTML/CSS/JS) — not default Gradio Blocks. Prebuilt case JSON means the demo runs fully offline.</p>
+      <p>The shipping UI is a custom <strong>gradio.Server</strong> board (HTML/CSS/JS) — not default Gradio Blocks. <strong>Curated cases</strong> and <strong>cached generated_cases JSON</strong> play without Modal; picking a new gallery clipping calls <strong>Modal GPU</strong> (<code>generate_case_play</code>: MiniCPM-V OCR → MiniCPM5 cabinet). If Modal fails, the Space falls back to cached packs when available.</p>
     </section>
 
     <section id="badges">
@@ -179,9 +179,9 @@
         <thead><tr><th>Badge</th><th>Status</th><th>Evidence</th></tr></thead>
         <tbody>
           <tr><td>Off-Brand</td><td class="badge-ok">Ready</td><td>Custom cork-desk UI via gr.Server; warm monochrome / gallery editorial direction</td></tr>
-          <tr><td>Off the Grid</td><td class="badge-ok">Ready</td><td>Prebuilt cases; no HF/OpenAI at play time; <code>scripts/verify_local.py</code></td></tr>
+          <tr><td>Off the Grid</td><td class="badge-partial">Partial</td><td>Curated + cached cases offline; live gallery needs Modal (not OpenAI). <code>scripts/verify_local.py</code></td></tr>
           <tr><td>Llama Champion</td><td class="badge-partial">Wired</td><td><code>scripts/run_llama.sh</code> + <code>llama.py</code> OCR extraction; needs GGUF download</td></tr>
-          <tr><td>Sharing is Caring</td><td class="badge-partial">Prepared</td><td><code>scripts/prepare_agent_trace.py</code> → redacted JSONL (340 turns); upload gated on HF_TOKEN</td></tr>
+          <tr><td>Sharing is Caring</td><td class="badge-ok">Uploaded</td><td><a href="https://huggingface.co/datasets/nice-bill/archive-detective-agent-trace" style="color:var(--brass)">nice-bill/archive-detective-agent-trace</a> — redacted Cursor trace via <code>scripts/prepare_agent_trace.py</code></td></tr>
           <tr><td>Field Notes</td><td class="badge-ok">This doc</td><td><code>docs/artifacts/field-notes.html</code></td></tr>
           <tr><td>Well-Tuned</td><td class="badge-future">Skipped</td><td>MiniCPM fine-tune deferred; heuristic + prebuilt packs sufficient</td></tr>
         </tbody>
@@ -218,7 +218,7 @@
         <li>Deployed to HF Space before local browser QA — user blocked further deploy until <code>--confirm-local</code></li>
         <li>Static files lived under <code>src/archive_detective/static/board/</code> but early docs referenced <code>static/board/</code> at repo root</li>
         <li>Gradio SSE poll format is easy to get wrong; must parse <code>data: [...]</code> not raw JSON</li>
-        <li>Premature Modal/MiniCPM path added complexity; prebuilt cases were the right MVP</li>
+        <li>Modal is required for live gallery generation — ship cached <code>generated_cases/</code> as fallback for demos</li>
       </ul>
     </section>
 
@@ -255,15 +255,15 @@ uv run python scripts/build_cases_from_ingest.py --top 2</pre>
 
 ## Summary
 - 5 playable cases from LOC Chronicling America ingest
-- Custom gr.Server UI (offline-ready)
+- Custom gr.Server UI; curated/cached cases offline; Modal GPU for live gallery
 - llama.cpp path for OCR → clue extraction
 
 ## Badges
 | Badge | Status |
 | Off-Brand | Ready |
-| Off the Grid | Ready |
+| Off the Grid | Partial (cached offline; gallery = Modal) |
 | Llama Champion | Wired (needs GGUF) |
-| Sharing is Caring | Redacted trace prepared |
+| Sharing is Caring | https://huggingface.co/datasets/nice-bill/archive-detective-agent-trace |
 | Field Notes | This document |
 
 ## Run locally

@@ -238,7 +238,15 @@ def parse_vision_json(text: str) -> dict[str, Any]:
         text = re.sub(r"^```(?:json)?\s*", "", text)
         text = re.sub(r"\s*```$", "", text)
     start = text.find("{")
+    if start < 0:
+        raise json.JSONDecodeError("no JSON object", text, 0)
+    try:
+        payload, _end = json.JSONDecoder().raw_decode(text[start:])
+        if isinstance(payload, dict):
+            return payload
+    except json.JSONDecodeError:
+        pass
     end = text.rfind("}")
-    if start >= 0 and end > start:
-        text = text[start : end + 1]
-    return json.loads(text)
+    if end > start:
+        return json.loads(text[start : end + 1])
+    raise json.JSONDecodeError("no JSON object", text, start)

@@ -2,18 +2,21 @@
 
 from __future__ import annotations
 
+import base64
 import os
+from pathlib import Path
 from typing import Any, Literal
 
 from archive_detective.cabinet_prompts import build_cabinet_prompt
+from archive_detective.cabinet_skeleton import (
+    DEFAULT_LEADS,
+    heuristic_deduction_fields,
+    merge_model_into_skeleton,
+    normalize_cabinet_payload,
+)
 from archive_detective.clue_builder import build_clue_pack_from_snippet
 from archive_detective.gallery import GalleryClipping
-from archive_detective.hf_inference import (
-    DEFAULT_MODEL,
-    chat_completion_json,
-    chat_completion_json_with_image,
-    hf_enabled,
-)
+from archive_detective.hf_inference import DEFAULT_MODEL, hf_enabled, hosted_chat_json
 from archive_detective.models import (
     Artifact,
     ArtifactMedia,
@@ -28,7 +31,73 @@ from archive_detective.models import (
     Source,
 )
 
-GenerationSource = Literal["cache", "live", "fallback", "heuristic"]
+GenerationSource = Literal["cache", "live", "live_modal", "fallback", "heuristic"]
+
+
+def finalize_cabinet_payload(
+    raw_payload: dict[str, Any],
+    *,
+    publication: str,
+    date: str,
+    citation_url: str,
+    raw_ocr: str,
+) -> tuple[dict[str, Any], list[str]]:
+    """Validate model JSON; merge skeleton only when validation fails."""
+    normalized = normalize_cabinet_payload(raw_payload)
+    try:
+        validate_cabinet_payload(normalized)
+        return normalized, []
+    except ValueError:
+        merged, filled = merge_model_into_skeleton(
+            normalized,
+            publication=publication,
+            date=date,
+            citation_url=citation_url,
+            raw_ocr=raw_ocr,
+        )
+        validate_cabinet_payload(merged)
+        return merged, filled
+
+
+def _generate_cabinet_payload(
+    *,
+    system: str,
+    user: str,
+    model: str,
+) -> tuple[dict[str, Any], str, GenerationSource]:
+    """HF Qwen fallback only — play path uses modal_play.generate_play_modal."""
+    if not hf_enabled():
+        raise RuntimeError("HF_TOKEN required for cabinet fallback")
+    last_exc: Exception | None = None
+    for attempt in range(3):
+        try:
+            payload = hosted_chat_json(
+                system=system,
+                user=user,
+                model=model,
+                temperature=0.15 if attempt else 0.2,
+            )
+            return payload, model, "live"
+        except Exception as exc:
+            last_exc = exc
+    raise RuntimeError(f"Cabinet JSON generation failed: {last_exc}") from last_exc
+
+
+def validate_cabinet_payload(payload: dict[str, Any]) -> None:
+    """Lightweight schema check before building EvidenceCase."""
+    arts = payload.get("artifacts") or []
+    if len(arts) < 4:
+        raise ValueError("Need at least 4 artifacts")
+    leads = payload.get("leads") or []
+    if len(leads) < 3:
+        raise ValueError("Need at least 3 leads")
+    sheet = payload.get("deduction_sheet") or {}
+    fields = sheet.get("fields") or []
+    if len(fields) < 3:
+        raise ValueError("Need at least 3 deduction fields")
+    card_count = sum(len(a.get("evidence_cards") or []) for a in arts)
+    if card_count < 4:
+        raise ValueError("Need at least 4 evidence cards total")
 
 
 def _validate_case(case: EvidenceCase) -> EvidenceCase:
@@ -73,6 +142,19 @@ def _apply_clipping_media(case: EvidenceCase, clipping: GalleryClipping) -> Evid
 
 def _case_id_for_clipping(clipping_id: str) -> str:
     return f"generated_{clipping_id}"
+
+
+def build_case_from_payload(
+    payload: dict[str, Any],
+    *,
+    clipping: GalleryClipping,
+    case_id: str | None = None,
+) -> EvidenceCase:
+    return _payload_to_case(
+        payload,
+        case_id=case_id or _case_id_for_clipping(clipping.id),
+        clipping=clipping,
+    )
 
 
 def _payload_to_case(
@@ -209,35 +291,16 @@ def build_heuristic_cabinet(clipping: GalleryClipping) -> EvidenceCase:
     ]
 
     leads = [
-        EvidenceLead(id="lead_entities", label="Who and what is named?", unlocks=["context_index"]),
-        EvidenceLead(id="lead_timeline", label="What happened that week?", unlocks=["timeline_note"]),
-        EvidenceLead(id="lead_reading", label="How should we read this?", unlocks=["archivist_bridge"]),
+        EvidenceLead(id=ld["id"], label=ld["label"], unlocks=ld["unlocks"])
+        for ld in DEFAULT_LEADS
     ]
-
     lead_labels = [l.label for l in pack.lead_options[:3]]
     if lead_labels:
         for i, label in enumerate(lead_labels):
             if i < len(leads):
                 leads[i] = leads[i].model_copy(update={"label": label})
 
-    who_opts = [
-        "a minor figure swept into a larger scandal",
-        "a journalist compressing a messy dispatch",
-        "a clerk quoting second-hand testimony",
-        "an anonymous tip dressed as news copy",
-    ]
-    where_opts = [
-        "a courthouse corridor",
-        "a newspaper city desk",
-        "a private meeting room",
-        "a public street corner",
-    ]
-    why_opts = [
-        "the printer dropped lines from the metal type",
-        "the source demanded anonymity",
-        "the editor needed coded language for libel risk",
-        "the OCR garbled an ordinary phrase",
-    ]
+    ded_fields = heuristic_deduction_fields(pack.fragment.raw_ocr)
 
     case = EvidenceCase(
         case_id=_case_id_for_clipping(clipping.id),
@@ -248,21 +311,7 @@ def build_heuristic_cabinet(clipping: GalleryClipping) -> EvidenceCase:
         leads=leads,
         deduction_sheet=DeductionSheet(
             prompt="Complete the archivist's conclusion before opening the sealed envelope.",
-            fields=[
-                DeductionField(id="who", label="The central figure is probably", answer=who_opts[0], options=who_opts),
-                DeductionField(
-                    id="where",
-                    label="The key scene most likely occurred at",
-                    answer=where_opts[1],
-                    options=where_opts,
-                ),
-                DeductionField(
-                    id="why",
-                    label="The odd wording exists because",
-                    answer=why_opts[1],
-                    options=why_opts,
-                ),
-            ],
+            fields=[DeductionField(**f) for f in ded_fields],
         ),
         reveal_notes=RevealNotes(
             direct_archive_facts=[
@@ -290,7 +339,7 @@ def generate_cabinet_from_clipping(
     model = model_id or os.environ.get("ARCHIVE_DETECTIVE_HF_MODEL", DEFAULT_MODEL)
     case_id = _case_id_for_clipping(clipping.id)
 
-    if hf_enabled() and (force_live or os.environ.get("ARCHIVE_DETECTIVE_PREFER_LIVE", "").lower() in {"1", "true", "yes"}):
+    if force_live and hf_enabled():
         system, user = build_cabinet_prompt(
             publication=clipping.publication,
             date=clipping.date,
@@ -298,20 +347,26 @@ def generate_cabinet_from_clipping(
             raw_ocr=clipping.raw_ocr,
             mystery_score=clipping.mystery_score,
         )
-        try:
-            if clipping.image_url:
-                payload = chat_completion_json_with_image(
+        last_exc: Exception | None = None
+        for attempt in range(3):
+            try:
+                raw_payload, used_model, source = _generate_cabinet_payload(
                     system=system,
                     user=user,
-                    image_url=clipping.image_url,
                     model=model,
                 )
-            else:
-                payload = chat_completion_json(system=system, user=user, model=model)
-            case = _payload_to_case(payload, case_id=case_id, clipping=clipping)
-            return case, "live", model
-        except Exception:
-            pass
+                payload, _filled = finalize_cabinet_payload(
+                    raw_payload,
+                    publication=clipping.publication,
+                    date=clipping.date,
+                    citation_url=clipping.citation_url,
+                    raw_ocr=clipping.raw_ocr,
+                )
+                case = _payload_to_case(payload, case_id=case_id, clipping=clipping)
+                return case, source, used_model
+            except (ValueError, Exception) as exc:
+                last_exc = exc
+        raise RuntimeError(f"Cabinet JSON failed validation after retries: {last_exc}") from last_exc
 
     case = build_heuristic_cabinet(clipping)
     return case, "heuristic", "heuristic"
@@ -322,12 +377,24 @@ def generate_cabinet_from_upload(
     title: str,
     raw_ocr: str,
     image_path: str,
+    image_b64: str = "",
     citation_url: str = "",
     publication: str = "Uploaded clipping",
     date: str = "unknown",
     force_live: bool = False,
     model_id: str | None = None,
 ) -> tuple[EvidenceCase, GenerationSource, str]:
+    vision_url = ""
+    if image_b64.strip():
+        vision_url = image_b64.strip()
+        if not vision_url.startswith("data:"):
+            vision_url = f"data:image/jpeg;base64,{vision_url.split(',')[-1]}"
+    elif image_path:
+        local = Path(__file__).resolve().parents[2] / image_path
+        if local.is_file():
+            b64 = base64.b64encode(local.read_bytes()).decode("ascii")
+            vision_url = f"data:image/jpeg;base64,{b64}"
+
     clipping = GalleryClipping(
         id=f"upload_{title[:24]}",
         headline=title,
@@ -337,7 +404,7 @@ def generate_cabinet_from_upload(
         citation_url=citation_url or "https://www.loc.gov/",
         raw_ocr=raw_ocr,
         image_path=image_path,
-        image_url="",
+        image_url=vision_url,
         mystery_score=0.5,
     )
     case, source, model = generate_cabinet_from_clipping(

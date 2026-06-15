@@ -1,0 +1,189 @@
+{
+  "case_id": "generated_1937_04_22_resource_sn83045462_1937_04_22_ed_1",
+  "title": "The Organist's Secret Meeting",
+  "tagline": "The organist's secret meeting: a slander suit's testimony",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Short label",
+      "source": {
+        "archive": "...",
+        "citation_url": "...",
+        "date": "...",
+        "publication": "..."
+      },
+      "media": {
+        "image_path": "assets/gallery/1937_04_22_resource_sn83045462_1937_04_22_ed_1.jpg",
+        "thumb_path": "assets/gallery/1937_04_22_resource_sn83045462_1937_04_22_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "...",
+        "clean_text": "..."
+      },
+      "entities": [
+        {
+          "type": "person|place|org|time|phrase|object",
+          "value": "..."
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_1",
+          "clue_type": "coded_message|missing_context|time_gap|motive|anomaly|place|summary",
+          "title": "...",
+          "detail": "..."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "directory",
+      "title": "Entity index — archivist extract",
+      "source": {
+        "archive": "Archivist synthesis from clipping OCR",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
+        "date": "1937-04-22",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "NICSE IS SIGNAL IN 'NAME' PLOT. Evangelist's Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPherson's daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimee's Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist playe",
+        "clean_text": "Indexed names and places from the clipping (Evening star (Washington, D.C.), 1937-04-22)."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_ctx",
+          "clue_type": "missing_context",
+          "title": "Named figures",
+          "detail": "Who appears in print — and who is conspicuously absent?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "letter",
+      "title": "Timeline note — same week",
+      "source": {
+        "archive": "Archivist synthesis (synthetic bridge)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
+        "date": "1937-04-22",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Date anchor: 1937-04-22. Publication: Evening star (Washington, D.C.).",
+        "clean_text": "The clipping is dated 1937-04-22. Whatever happened here sits in the same news cycle as other items from Evening star (Washington, D.C.)."
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_time",
+          "clue_type": "time_gap",
+          "title": "Date anchor",
+          "detail": "The fragment is pinned to 1937-04-22 — what happened just before or after?"
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "clipping",
+      "title": "Archivist margin — reading notes",
+      "source": {
+        "archive": "Model reading notes (synthetic)",
+        "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
+        "date": "1937-04-22",
+        "publication": "Evening star (Washington, D.C.)"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "The organist's secret meeting: a slander suit's testimony",
+        "clean_text": "The organist's secret meeting: a slander suit's testimony"
+      },
+      "entities": [],
+      "evidence_cards": [
+        {
+          "id": "ev_bridge",
+          "clue_type": "summary",
+          "title": "Archivist summary",
+          "detail": "A playable reading of the fragment, not a second archive source."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Short question?",
+      "unlocks": [
+        "context_index"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "What happened that week?",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "How should we read this?",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist conclusion.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a minor figure swept into a larger scandal",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "fact grounded in OCR"
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "What is model interpretation vs archive fact"
+  }
+}

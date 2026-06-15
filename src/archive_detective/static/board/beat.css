@@ -1,0 +1,72 @@
+/* ——— Shared components ——— */
+
+.fold {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.fold summary {
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--desk-dim);
+  list-style: none;
+}
+
+.fold summary::-webkit-details-marker {
+  display: none;
+}
+
+.fold summary::before {
+  content: "+ ";
+  color: var(--brass);
+}
+
+.fold[open] summary::before {
+  content: "− ";
+}
+
+.citation-body {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--desk-muted);
+}
+
+.citation-body a {
+  color: var(--lamp);
+}
+
+.ocr-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .ocr-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ocr-grid h4 {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--desk-dim);
+  margin: 0 0 0.3rem;
+}
+
+.ocr-grid pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  max-height: 150px;
+  overflow: auto;
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--desk-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: 2px;
+}
+

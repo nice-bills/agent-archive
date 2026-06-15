@@ -45,6 +45,32 @@ def load_cached_case(path: Path) -> EvidenceCase | None:
         return None
 
 
+def find_cached_case_for_clipping(
+    clipping_id: str,
+    model_id: str,
+) -> tuple[EvidenceCase, Path] | None:
+    """Exact model match first, then any pre-generated JSON for this clipping."""
+    exact = cache_path_for_clipping(clipping_id, model_id)
+    case = load_cached_case(exact)
+    if case is not None:
+        return case, exact
+
+    matches = sorted(
+        CACHE_DIR.glob(f"{clipping_id}_*.json"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    for path in matches:
+        case = load_cached_case(path)
+        if case is not None:
+            return case, path
+    return None
+
+
+def gallery_has_cached_case(clipping_id: str, model_id: str) -> bool:
+    return find_cached_case_for_clipping(clipping_id, model_id) is not None
+
+
 def save_cached_case(path: Path, case: EvidenceCase) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(case.model_dump_json(indent=2) + "\n", encoding="utf-8")

@@ -8,12 +8,19 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from gradio import Server
 
+from archive_detective.static_files import NoCacheStaticFiles
+
 from archive_detective.api import SessionStore, any_session_to_dict, list_case_catalog
 from archive_detective.generation import (
+    UPLOAD_NO_OCR_SPACE_MSG,
     gallery_catalog,
     generate_from_gallery,
     generate_from_upload,
 )
+from archive_detective.hf_inference import DEFAULT_MODEL, hf_enabled
+from archive_detective.modal_play import cabinet_model_label, vision_model_label
+from archive_detective.play_pipeline import play_backend_name
+from archive_detective.ocr_inference import vision_enabled
 
 ROOT = Path(__file__).resolve().parents[2]
 STATIC = Path(__file__).resolve().parent / "static" / "board"
@@ -27,26 +34,63 @@ def build_server() -> Server:
 
     @app.get("/")
     async def home():
-        return FileResponse(STATIC / "index.html")
-
-    @app.get("/board.css")
-    async def board_css():
         return FileResponse(
-            STATIC / "board.css",
-            media_type="text/css",
-            headers={"Cache-Control": "no-cache"},
+            STATIC / "index.html",
+            headers={"Cache-Control": "no-cache, must-revalidate"},
         )
 
-    @app.get("/board.js")
-    async def board_js():
-        return FileResponse(
-            STATIC / "board.js",
-            media_type="application/javascript",
-            headers={"Cache-Control": "no-cache"},
-        )
+    app.mount(
+        "/board",
+        NoCacheStaticFiles(directory=str(STATIC)),
+        name="board_static",
+    )
 
     if ASSETS.is_dir():
         app.mount("/assets", StaticFiles(directory=str(ASSETS)), name="assets")
+
+    @app.api(name="model_info")
+    def model_info() -> dict:
+        import os
+
+        on_space = bool(os.environ.get("SPACE_ID"))
+        if play_backend_name() == "modal_openbmb":
+            ocr_model = vision_model_label()
+            cabinet_model = cabinet_model_label()
+            return {
+                "text_model": cabinet_model,
+                "cabinet_model": cabinet_model,
+                "cabinet_mode": "modal",
+                "ocr_model": ocr_model,
+                "ocr_mode": "modal",
+                "stack": "openbmb",
+                "hf_enabled": hf_enabled(),
+                "modal_enabled": True,
+                "live_required": True,
+                "on_space": on_space,
+                "upload_requires_ocr": on_space,
+                "upload_hint": UPLOAD_NO_OCR_SPACE_MSG,
+            }
+        ocr_mode = "vision" if vision_enabled() else "hosted_refine"
+        ocr_model = (
+            vision_model_label()
+            if vision_enabled()
+            else os.environ.get("ARCHIVE_DETECTIVE_HF_OCR_MODEL", DEFAULT_MODEL)
+        )
+        cabinet_model = os.environ.get("ARCHIVE_DETECTIVE_HF_MODEL", DEFAULT_MODEL)
+        return {
+            "text_model": cabinet_model,
+            "cabinet_model": cabinet_model,
+            "cabinet_mode": "hosted",
+            "ocr_model": ocr_model,
+            "ocr_mode": ocr_mode,
+            "stack": "mixed",
+            "hf_enabled": hf_enabled(),
+            "modal_enabled": False,
+            "live_required": True,
+            "on_space": on_space,
+            "upload_requires_ocr": False,
+            "upload_hint": None,
+        }
 
     @app.api(name="catalog")
     def catalog() -> list[dict]:
@@ -56,13 +100,13 @@ def build_server() -> Server:
     def gallery_catalog_api() -> list[dict]:
         return gallery_catalog()
 
-    @app.api(name="generate_from_gallery")
+    @app.api(name="generate_from_gallery", concurrency_limit=1)
     def generate_from_gallery_api(clipping_id: str, regenerate: bool = False) -> dict:
         case, meta = generate_from_gallery(clipping_id, regenerate=regenerate)
         sid, session = store.create_from_evidence_case(case, generation=meta)
         return {"session_id": sid, **any_session_to_dict(session, show_reveal=False)}
 
-    @app.api(name="generate_from_upload")
+    @app.api(name="generate_from_upload", concurrency_limit=1)
     def generate_from_upload_api(
         image_b64: str,
         title: str = "Uploaded clipping",
@@ -145,6 +189,10 @@ def launch(**kwargs) -> None:
         "server_port": 7860,
         "show_error": True,
         "footer_links": None,
+        "css": (
+            "footer { display: none !important; } "
+            ".gradio-container { padding: 0 !important; max-width: none !important; width: 100% !important; }"
+        ),
     }
     defaults.update(kwargs)
     url = f"http://{defaults['server_name']}:{defaults['server_port']}/"

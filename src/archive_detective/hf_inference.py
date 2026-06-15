@@ -11,13 +11,14 @@ from archive_detective.env import load_project_env
 
 load_project_env()
 
+# Hosted inference default — Qwen2.5-7B on HF router (smol vs 70B+; override via env).
 DEFAULT_MODEL = os.environ.get(
     "ARCHIVE_DETECTIVE_HF_MODEL",
     "Qwen/Qwen2.5-7B-Instruct",
 )
 DEFAULT_VISION_MODEL = os.environ.get(
     "ARCHIVE_DETECTIVE_HF_VISION_MODEL",
-    "openbmb/MiniCPM-V-4_6",
+    "Qwen/Qwen2.5-7B-Instruct",
 )
 
 
@@ -50,7 +51,7 @@ def _client():
     return InferenceClient(token=token)
 
 
-def chat_completion_json(
+def hosted_chat_json(
     *,
     system: str,
     user: str,
@@ -121,7 +122,7 @@ def chat_completion_json_with_image(
                 return parse_json_blob(str(content))
     except Exception:
         pass
-    return chat_completion_json(
+    return hosted_chat_json(
         system=system,
         user=user,
         model=DEFAULT_MODEL,

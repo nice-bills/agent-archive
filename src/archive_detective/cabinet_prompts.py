@@ -24,7 +24,7 @@ Read the OCR text (and image context if provided). Output ONLY valid JSON matchi
       "hotspots": []
     }
   ],
-  "leads": [{"id": "lead_1", "label": "Short question?", "unlocks": ["artifact_id_to_unlock"]}],
+  "leads": [{"id": "lead_entities", "label": "Short question?", "unlocks": ["context_index"]}],
   "deduction_sheet": {
     "prompt": "Complete the archivist conclusion.",
     "fields": [{"id": "who", "label": "...", "answer": "exact option text", "options": ["...", "..."]}]
@@ -36,8 +36,8 @@ Read the OCR text (and image context if provided). Output ONLY valid JSON matchi
   }
 }
 
-Rules:
-- Exactly 4 artifacts: clipping_primary (unlocked first), plus 3 locked artifacts unlocked by leads.
+Rules (required — invalid if missing):
+- artifacts array length MUST be exactly 4: clipping_primary (unlocked first), context_index, timeline_note, archivist_bridge.
 - clipping_primary must quote only OCR-visible text in raw_ocr/clean_text.
 - Supporting artifacts may be labeled synthetic in source.archive (e.g. "Archivist synthesis from clipping").
 - 3-5 evidence cards total across artifacts; 3 leads each unlocking one locked artifact.
@@ -53,7 +53,9 @@ Mystery score (heuristic): {mystery_score}
 Archive OCR (noisy):
 {raw_ocr}
 
-Build a complete evidence-cabinet mystery JSON. Use artifact_id values: clipping_primary, context_index, timeline_note, archivist_bridge."""
+Build a complete evidence-cabinet mystery JSON.
+Required artifact_id values (all four required): clipping_primary, context_index, timeline_note, archivist_bridge.
+Return only the JSON object — no commentary."""
 
 
 def build_cabinet_prompt(

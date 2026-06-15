@@ -1,0 +1,33 @@
+/* ——— Reveal drawer ——— */
+
+.reveal-panel {
+  margin-top: 0.75rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s var(--ease-out), opacity 0.3s var(--ease-out);
+}
+
+.reveal-panel.visible {
+  max-height: 800px;
+  opacity: 1;
+}
+
+.reveal-inner {
+  padding: 0.9rem 1rem;
+  background: rgba(143, 46, 42, 0.08);
+  font-size: 0.92rem;
+  color: var(--paper-ink);
+  line-height: 1.6;
+  border-radius: 2px;
+  animation: reveal-in 0.35s var(--ease-out) both;
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

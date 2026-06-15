@@ -1,0 +1,226 @@
+{
+  "case_id": "generated_1919_01_05_resource_sn84026749_1919_01_05_ed_1",
+  "title": "The Washington Times Mystery",
+  "tagline": "The Aftermath: Billie Carleton's Poisoned Ball",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Short label",
+      "source": {
+        "archive": "The Washington Times",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington Times"
+      },
+      "media": {
+        "image_path": "assets/gallery/1919_01_05_resource_sn84026749_1919_01_05_ed_1.jpg",
+        "thumb_path": "assets/gallery/1919_01_05_resource_sn84026749_1919_01_05_ed_1.jpg"
+      },
+      "text": {
+        "raw_ocr": "Poisoned After the Ball",
+        "clean_text": "Poisoned After the Ball"
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "Poisoned After the Ball"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_1",
+          "clue_type": "coded_message",
+          "title": "The Aftermath",
+          "detail": "The newspaper headline indicating the poisoning event."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "newspaper",
+      "title": "Context",
+      "source": {
+        "archive": "The Washington Times",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington Times"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "A L. L. London based in the City of London and the greatest celebration held in England in honor of the final victory over the Hun.",
+        "clean_text": "A L. L. London based in the City of London and the greatest celebration held in England in honor of the final victory over the Hun."
+      },
+      "entities": [
+        {
+          "type": "location",
+          "value": "Albert Hall"
+        },
+        {
+          "type": "location",
+          "value": "London"
+        },
+        {
+          "type": "location",
+          "value": "City of London"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "time_gap",
+          "title": "The Ball",
+          "detail": "The time gap between the victory and the ball."
+        },
+        {
+          "id": "ev_3",
+          "clue_type": "motive",
+          "title": "The Ball",
+          "detail": "The motive of the ball."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "newspaper",
+      "title": "Timeline",
+      "source": {
+        "archive": "The Washington Times",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington Times"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women of the stage participated.",
+        "clean_text": ""
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "The great fancy dress ball"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_4",
+          "clue_type": "anomaly",
+          "title": "The Ball",
+          "detail": "The anomaly of the fancy dress ball."
+        },
+        {
+          "id": "ev_5",
+          "clue_type": "summary",
+          "title": "The Ball",
+          "detail": "The summary of the ball."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "newspaper",
+      "title": "Archivist",
+      "source": {
+        "archive": "The Washington Times",
+        "citation_url": "https://www.loc.gov/resource/sn84026749/1919-01-05/ed-1/?sp=21&q=mysterious+death",
+        "date": "1919-01-05",
+        "publication": "The Washington Times"
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "The great fancy dress ball which she attended was one in which the most noted women of society and the most beautiful women of the stage participated.",
+        "clean_text": ""
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "The great fancy dress ball"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_6",
+          "clue_type": "summary",
+          "title": "The Ball",
+          "detail": "The summary of the ball."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Short question?",
+      "unlocks": [
+        "context_index",
+        "timeline_note",
+        "archivist_bridge"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "What happened that week?",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "How should we read this?",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist conclusion.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a journalist compressing a messy dispatch",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "The Washington Times published the article about Billie Carleton's poisoning"
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "What is model interpretation vs archive fact"
+  }
+}

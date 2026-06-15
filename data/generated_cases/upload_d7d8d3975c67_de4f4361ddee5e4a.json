@@ -1,0 +1,206 @@
+{
+  "case_id": "generated_upload_verify_local_upload_smoke_41f63d3e47",
+  "title": "Short case title",
+  "tagline": "One-line hook",
+  "mode": "evidence_cabinet",
+  "hero_artifact_id": "clipping_primary",
+  "artifacts": [
+    {
+      "artifact_id": "clipping_primary",
+      "kind": "newspaper",
+      "title": "Short label",
+      "source": {
+        "archive": "...",
+        "citation_url": "...",
+        "date": "...",
+        "publication": "..."
+      },
+      "media": {
+        "image_path": "assets/uploads/verify_local_upload_smoke_41f63d3e47.jpg",
+        "thumb_path": "assets/uploads/verify_local_upload_smoke_41f63d3e47.jpg"
+      },
+      "text": {
+        "raw_ocr": "Poisoned After the Ball",
+        "clean_text": "Poisoned After the Ball"
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "Poisoned After the Ball"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_1",
+          "clue_type": "coded_message|missing_context|time_gap|motive|anomaly|place|summary",
+          "title": "Missing context",
+          "detail": "The date is unknown."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "context_index",
+      "kind": "newspaper",
+      "title": "Context",
+      "source": {
+        "archive": "...",
+        "citation_url": "...",
+        "date": "...",
+        "publication": "..."
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Billi, Carleton Spoke Before",
+        "clean_text": "Billi, Carleton Spoke Before"
+      },
+      "entities": [
+        {
+          "type": "person|place|org|time|phrase|object",
+          "value": "Billi, Carleton Spoke Before"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_2",
+          "clue_type": "coded_message|missing_context|motive|anomaly|place|summary",
+          "title": "Missing motive",
+          "detail": "Billi, Carleton Spoke Before."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "timeline_note",
+      "kind": "newspaper",
+      "title": "Timeline",
+      "source": {
+        "archive": "...",
+        "citation_url": "...",
+        "date": "...",
+        "publication": "..."
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Mysterious Circumstances",
+        "clean_text": "Mysterious Circumstances"
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "Mysterious Circumstances"
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_3",
+          "clue_type": "coded_message|missing_context|motive|anomaly|place|summary",
+          "title": "Missing motive",
+          "detail": "The date is unknown."
+        }
+      ],
+      "hotspots": []
+    },
+    {
+      "artifact_id": "archivist_bridge",
+      "kind": "newspaper",
+      "title": "Archivist Bridge",
+      "source": {
+        "archive": "...",
+        "citation_url": "...",
+        "date": "...",
+        "publication": "..."
+      },
+      "media": null,
+      "text": {
+        "raw_ocr": "Build a complete evidence-cabinet mystery JSON.",
+        "clean_text": "Build a complete evidence-cabinet mystery JSON."
+      },
+      "entities": [
+        {
+          "type": "phrase",
+          "value": "Build a complete evidence-cabinet mystery JSON."
+        }
+      ],
+      "evidence_cards": [
+        {
+          "id": "ev_4",
+          "clue_type": "coded_message|missing_context|motive|anomaly|place|summary",
+          "title": "Complete conclusion",
+          "detail": "The mystery is solved."
+        }
+      ],
+      "hotspots": []
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_entities",
+      "label": "Short question?",
+      "unlocks": [
+        "context_index",
+        "timeline_note",
+        "archivist_bridge"
+      ]
+    },
+    {
+      "id": "lead_timeline",
+      "label": "What happened that week?",
+      "unlocks": [
+        "timeline_note"
+      ]
+    },
+    {
+      "id": "lead_reading",
+      "label": "How should we read this?",
+      "unlocks": [
+        "archivist_bridge"
+      ]
+    }
+  ],
+  "deduction_sheet": {
+    "prompt": "Complete the archivist conclusion.",
+    "fields": [
+      {
+        "id": "who",
+        "label": "The central figure is probably",
+        "answer": "a journalist compressing a messy dispatch",
+        "options": [
+          "a minor figure swept into a larger scandal",
+          "a journalist compressing a messy dispatch",
+          "a clerk quoting second-hand testimony",
+          "an anonymous tip dressed as news copy"
+        ]
+      },
+      {
+        "id": "where",
+        "label": "The key scene most likely occurred at",
+        "answer": "a newspaper city desk",
+        "options": [
+          "a courthouse corridor",
+          "a newspaper city desk",
+          "a private meeting room",
+          "a public street corner"
+        ]
+      },
+      {
+        "id": "why",
+        "label": "The odd wording exists because",
+        "answer": "the source demanded anonymity",
+        "options": [
+          "the printer dropped lines from the metal type",
+          "the source demanded anonymity",
+          "the editor needed coded language for libel risk",
+          "the OCR garbled an ordinary phrase"
+        ]
+      }
+    ]
+  },
+  "reveal_notes": {
+    "direct_archive_facts": [
+      "fact grounded in OCR"
+    ],
+    "synthetic_bridge_allowed": true,
+    "bridge_notes": "What is model interpretation vs archive fact"
+  }
+}

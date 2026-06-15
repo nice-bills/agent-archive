@@ -4,79 +4,154 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Archive Detective — Evidence Cabinet</title>
+  <meta name="theme-color" content="#090b10" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/board.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/board/board.css?v=14" />
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #090b10; }
+  </style>
 </head>
-<body>
+<body class="mode-landing">
   <div class="desk-scene">
     <div class="lamp-pool" aria-hidden="true"></div>
+    <div class="desk-spotlight" id="desk-spotlight" aria-hidden="true"></div>
+    <div class="desk-grain" aria-hidden="true"></div>
+    <div class="vignette-frame" aria-hidden="true"></div>
 
     <header class="masthead">
       <div class="masthead-brand">
+        <p class="masthead-eyebrow">Library of Congress · Chronicling America</p>
         <h1>Archive Detective</h1>
-        <p class="deck">Evidence Cabinet — open a case box, inspect archive artifacts, reconstruct what happened.</p>
+        <p class="deck">Real clippings. Hidden stories. Your deduction closes the case.</p>
       </div>
-      <div class="case-picker">
-        <label for="case-select">Case file</label>
-        <select id="case-select" aria-label="Choose case"></select>
-        <button type="button" id="btn-reset" class="btn ghost">New investigation</button>
+      <div class="masthead-actions">
+        <button type="button" id="btn-back-desk" class="btn ghost back-desk" hidden>← Back to desk</button>
+        <div class="case-picker" id="case-picker-bar" hidden>
+          <label for="case-select">Case file</label>
+          <div class="select-shell">
+            <select id="case-select" aria-label="Choose case"></select>
+          </div>
+          <button type="button" id="btn-open-case" class="btn primary">Open file</button>
+        </div>
       </div>
     </header>
 
-    <section class="generate-panel zone" id="generate-panel" aria-labelledby="generate-title">
-      <header class="zone-head">
-        <div>
-          <h2 id="generate-title" class="zone-title">Generate from clipping</h2>
-          <p class="generate-deck">Pick a bundled public-domain clipping — the archivist model builds a new Evidence Cabinet.</p>
+    <div class="landing-hero" id="landing-hero">
+      <p class="landing-kicker">Case desk open</p>
+      <p class="landing-hook">Pin a real newspaper fragment. The model builds your Evidence Cabinet. Chase the leads. Break the seal.</p>
+      <div class="landing-pulse" aria-hidden="true"></div>
+    </div>
+
+    <div class="wire-ticker" aria-hidden="true">
+      <div class="wire-ticker-track" id="ticker-track"></div>
+    </div>
+
+    <ul class="desk-stats" id="desk-stats" aria-label="Archive at a glance">
+      <li><span class="stat-num" id="stat-clips">10</span><span class="stat-lbl">clippings pinned</span></li>
+      <li><span class="stat-num" id="stat-years">1805–1963</span><span class="stat-lbl">years in the tray</span></li>
+      <li><span class="stat-num" id="stat-cases">6</span><span class="stat-lbl">curated cases</span></li>
+    </ul>
+
+    <section class="landing-hub" id="landing-hub" aria-label="Investigation desk">
+      <nav class="path-picker" role="tablist" aria-label="Start investigation">
+        <button type="button" role="tab" id="tab-gallery" class="path-card is-active" aria-selected="true" aria-controls="panel-gallery">
+          <span class="path-stamp">Fresh lead</span>
+          <span class="path-title">Murder board</span>
+          <span class="path-desc">Pick a LOC clipping — OpenBMB on Modal GPU builds a full cabinet.</span>
+        </button>
+        <button type="button" role="tab" id="tab-featured" class="path-card" aria-selected="false" aria-controls="panel-featured">
+          <span class="path-stamp path-stamp-warm">Instant play</span>
+          <span class="path-title">Case files</span>
+          <span class="path-desc">Hand-built mysteries that load in a blink. No model wait.</span>
+        </button>
+      </nav>
+
+      <div id="panel-gallery" class="landing-panel is-active" role="tabpanel" aria-labelledby="tab-gallery" aria-hidden="false">
+        <div class="cork-board">
+          <svg class="string-web" viewBox="0 0 900 500" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M120 40 L280 180 L420 90 L580 200 L760 60" />
+            <path d="M80 220 L240 320 L400 240 L620 360 L820 280" />
+            <path d="M200 380 L360 280 L520 400 L700 300" />
+          </svg>
+          <header class="cork-head">
+            <div>
+              <h2 class="cork-title">Murder board · clippings</h2>
+              <p class="cork-deck">Ten real LOC fragments. Each pick runs MiniCPM-V OCR → MiniCPM5 cabinet JSON on one Modal GPU job.</p>
+              <p class="model-banner" id="model-banner" hidden></p>
+            </div>
+            <div class="cork-actions">
+              <button type="button" id="btn-random-clip" class="btn ghost shuffle-btn">Shuffle · pick for me</button>
+              <span id="generation-badge" class="generation-badge" hidden></span>
+            </div>
+          </header>
+          <div id="gallery-grid" class="gallery-grid scatter-board" role="list" aria-label="Sample clippings"></div>
         </div>
-        <span id="generation-badge" class="generation-badge" hidden></span>
-      </header>
-      <div id="gallery-grid" class="gallery-grid" role="list" aria-label="Sample clippings"></div>
-      <details class="fold upload-fold">
-        <summary>Upload your own clipping</summary>
-        <form id="upload-form" class="upload-form">
-          <label class="upload-field">
-            <span>Image file</span>
-            <input type="file" id="upload-image" accept="image/jpeg,image/png,image/webp" required />
-          </label>
-          <label class="upload-field">
-            <span>Title (optional)</span>
-            <input type="text" id="upload-title" placeholder="My clipping" />
-          </label>
-          <label class="upload-field">
-            <span>OCR text (optional)</span>
-            <textarea id="upload-ocr" rows="3" placeholder="Paste noisy OCR if you have it…"></textarea>
-          </label>
-          <div class="action-row">
-            <button type="submit" class="btn primary" id="btn-upload-generate">Generate cabinet</button>
-            <label class="checkbox-field">
-              <input type="checkbox" id="upload-regenerate" />
-              Force live model (skip cache)
+
+        <details class="fold upload-fold">
+          <summary>Drop your own clipping</summary>
+          <p id="upload-space-hint" class="upload-space-hint" hidden>
+            On Hugging Face Space: paste OCR text below — image-only uploads usually time out before GPU vision finishes.
+          </p>
+          <form id="upload-form" class="upload-form">
+            <div id="drop-zone" class="drop-zone" tabindex="0">
+              <p class="drop-zone-lead">Drag a scan here, or browse</p>
+              <p class="drop-zone-hint">JPEG, PNG, WebP · public domain only</p>
+              <input type="file" id="upload-image" accept="image/jpeg,image/png,image/webp" required hidden />
+              <button type="button" id="btn-browse" class="btn ghost">Choose file</button>
+              <p id="drop-filename" class="drop-filename" hidden></p>
+            </div>
+            <label class="upload-field">
+              <span>Case title</span>
+              <input type="text" id="upload-title" placeholder="Evening Star fragment, 1912" />
             </label>
-          </div>
-        </form>
-      </details>
+            <label class="upload-field upload-field-ocr">
+              <span>OCR text <strong class="ocr-required">required on Space</strong></span>
+              <textarea id="upload-ocr" rows="4" placeholder="Paste noisy OCR from Chronicling America… (required on HF Space — skips the long GPU read)"></textarea>
+              <span class="field-hint">Paste OCR when you can. On HF Space it skips MiniCPM-V vision and usually finishes in 1–3 minutes instead of timing out.</span>
+            </label>
+            <div class="action-row">
+              <button type="submit" class="btn primary" id="btn-upload-generate">Build Evidence Cabinet</button>
+            </div>
+          </form>
+        </details>
+      </div>
+
+      <div id="panel-featured" class="landing-panel" role="tabpanel" aria-labelledby="tab-featured" hidden aria-hidden="true">
+        <p class="featured-intro">Pre-built case files for judges and demos. Open one and start investigating immediately.</p>
+        <div id="hero-case-grid" class="hero-case-grid" role="list" aria-label="Featured case files"></div>
+      </div>
     </section>
 
     <main class="board" id="board" hidden>
       <section class="case-dossier" aria-labelledby="case-title">
-        <div class="dossier-tab">Open file</div>
-        <div class="dossier-sheet">
+        <div class="dossier-tab">Case file</div>
+        <div class="dossier-sheet" id="dossier-sheet">
+          <span class="case-open-stamp" id="case-open-stamp" aria-hidden="true">CASE OPEN</span>
           <div class="dossier-head">
             <div>
               <h2 id="case-title"></h2>
               <p id="case-tagline" class="tagline"></p>
             </div>
-            <div id="status-badge" class="status-stamp" aria-live="polite"></div>
+            <div class="dossier-actions">
+              <span id="board-generation-badge" class="generation-badge" hidden></span>
+              <button type="button" id="btn-regenerate" class="btn ghost" hidden>
+                Regenerate cabinet
+              </button>
+              <div id="status-badge" class="status-stamp" aria-live="polite"></div>
+            </div>
           </div>
           <p id="case-intro" class="case-intro"></p>
         </div>
       </section>
 
-      <div id="cabinet-layout" class="cabinet-layout" hidden>
-        <aside class="zone tray-zone" aria-label="Evidence tray">
+      <div id="cabinet-layout" class="cabinet-layout murder-board" hidden>
+        <svg class="board-strings" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M180 120 Q420 80 640 200 T1100 140" />
+          <path d="M160 380 Q480 320 720 420 T1120 360" />
+        </svg>
+        <aside class="zone tray-zone cork-tray" aria-label="Evidence tray">
           <header class="zone-head">
             <h3 class="zone-title">Evidence tray</h3>
             <span id="tray-count" class="zone-meta"></span>
@@ -129,7 +204,7 @@
           <header class="zone-head">
             <h3 class="zone-title">Deduction sheet</h3>
           </header>
-          <div class="sheet-paper">
+          <div class="sheet-paper ruled-paper">
             <div id="pinned-cards" class="pinned-cards"></div>
 
             <section class="leads-block">
@@ -200,7 +275,7 @@
         </section>
       </div>
 
-      <section class="search-console zone" id="search-console" hidden>
+      <section class="search-console zone phosphor-console" id="search-console" hidden>
         <header class="zone-head">
           <h3 class="zone-title">Search evidence</h3>
           <span id="search-status" class="zone-meta search-status"></span>
@@ -212,21 +287,22 @@
         </form>
       </section>
 
-      <section class="zone debug-zone">
-        <header class="zone-head">
-          <h3 class="zone-title">Session readout</h3>
-          <span class="zone-meta">Debug JSON</span>
-        </header>
+      <details class="fold archivist-console">
+        <summary>Archivist console</summary>
         <pre id="model-reading" class="json-readout"></pre>
-      </section>
+      </details>
     </main>
 
-    <div id="loading" class="loading" role="status" aria-live="polite">
-      <span class="loading-dot" aria-hidden="true"></span>
-      Opening case file…
+    <div id="archivist-overlay" class="archivist-overlay" hidden aria-live="polite" aria-busy="true">
+      <div class="archivist-card">
+        <div class="archivist-stamp" aria-hidden="true">AD</div>
+        <p id="archivist-line" class="archivist-line">Opening case file…</p>
+        <p id="archivist-elapsed" class="archivist-elapsed" hidden></p>
+        <div class="archivist-bar"><span id="archivist-bar-fill"></span></div>
+      </div>
     </div>
     <div id="error" class="error" role="alert" hidden></div>
   </div>
-  <script type="module" src="/board.js?v=2"></script>
+  <script type="module" src="/board/board.js"></script>
 </body>
 </html>

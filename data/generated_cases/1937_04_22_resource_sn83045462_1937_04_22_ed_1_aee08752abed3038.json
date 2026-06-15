@@ -1,179 +1,142 @@
 {
   "case_id": "generated_1937_04_22_resource_sn83045462_1937_04_22_ed_1",
-  "title": "Evening star (Washington, D.C.) · 1937-04-22 · secret meeting",
-  "tagline": "A clipping from Evening star (Washington, D.C.) (1937-04-22) — ink faded, story not.",
+  "title": "The Secret Meeting Plot",
+  "tagline": "A scandal unfolds at the Angelus Temple",
   "mode": "evidence_cabinet",
   "hero_artifact_id": "clipping_primary",
   "artifacts": [
     {
       "artifact_id": "clipping_primary",
       "kind": "newspaper",
-      "title": "Evening star (Washington, D.C.) · 1937-04-22 · secret meeting",
+      "title": "Slander Suit Testimony",
       "source": {
-        "archive": "Chronicling America (Library of Congress)",
+        "archive": "Evening Star (Washington, D.C.)",
         "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
         "date": "1937-04-22",
-        "publication": "Evening star (Washington, D.C.)"
+        "publication": "Evening Star"
       },
       "media": {
         "image_path": "assets/gallery/1937_04_22_resource_sn83045462_1937_04_22_ed_1.jpg",
         "thumb_path": "assets/gallery/1937_04_22_resource_sn83045462_1937_04_22_ed_1.jpg"
       },
       "text": {
-        "raw_ocr": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimees Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple",
-        "clean_text": "IN AIMEE PLOr Evangelists Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimees Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple"
+        "raw_ocr": "MISC SEIGNAL IN 'NAIME' PLOT.\n\nEVANGELISTs Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimee's Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple",
+        "clean_text": "EVANGELISTs Daughter in Slander Suit Says Organ Called Secret Meeting By the Associated Press LOS ANGELES April 22A story of a strange plot with the soothing notes of an organ as the purported signal to plotters topped the testimony records of the 150000 slander suit brought by Aimee Semple McPhersons daughter Roberta now estranged from her evangelist mother sued Willedd An drews attorney for Aimee's Angelus Temple She said he accused her of i blackmailing Almee and at a re sult was expelled from the temple On the witness stand the comely 37 yearold Roberta testified her mother told her last year Andrews had dis covered a plot to take the temple away from her Secret Meeting Signals Mother said that Andrews told her every time Miss Fricke the organist played a certain piece it was a signal for a secret meeting at the home of Dean Harriet Jordan to lay plans for stealing the temple Roberta told Judge Clarence Kincaid She said Andrews told her that Rheba Crawford then associate pas tor at the Temple had formed a secret society among the girls to help drive her mother out and that the password of this Temple"
       },
       "entities": [
         {
           "type": "person",
-          "value": "Evangelists Daughter"
+          "value": "Aimee Semple McPherson"
         },
         {
           "type": "person",
-          "value": "Slander Suit Says Organ Called Secret Meeting By"
+          "value": "Roberta"
         },
         {
           "type": "person",
-          "value": "Associated Press"
-        },
-        {
-          "type": "person",
-          "value": "Aimee Semple"
-        },
-        {
-          "type": "person",
-          "value": "Willedd An"
-        },
-        {
-          "type": "person",
-          "value": "Aimees Angelus Temple She"
-        },
-        {
-          "type": "person",
-          "value": "Secret Meeting Signals Mother"
+          "value": "Willedd Andrews"
         },
         {
           "type": "person",
           "value": "Miss Fricke"
+        },
+        {
+          "type": "person",
+          "value": "Dean Harriet Jordan"
+        },
+        {
+          "type": "person",
+          "value": "Rheba Crawford"
+        },
+        {
+          "type": "person",
+          "value": "Judge Clarence Kincaid"
         }
       ],
       "evidence_cards": [
         {
-          "id": "ev_secret",
-          "clue_type": "coded_message",
-          "title": "Secretive wording",
-          "detail": "Language suggests concealed intent rather than open announcement."
+          "id": "ev_1",
+          "clue_type": "missing_context",
+          "title": "What was the 'certain piece'?",
+          "detail": "The organist played a specific piece that signaled secret meetings. What was this piece?"
         }
       ],
       "hotspots": []
     },
     {
       "artifact_id": "context_index",
-      "kind": "directory",
-      "title": "Entity index — archivist extract",
+      "kind": "newspaper",
+      "title": "Timeline of Events",
       "source": {
-        "archive": "Archivist synthesis from clipping OCR",
+        "archive": "Synthetic from clipping",
         "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
         "date": "1937-04-22",
-        "publication": "Evening star (Washington, D.C.)"
+        "publication": "Evening Star"
       },
       "media": null,
       "text": {
-        "raw_ocr": "Evangelists Daughter; Slander Suit Says Organ Called Secret Meeting By; Associated Press; Aimee Semple; Willedd An; Aimees Angelus Temple She",
-        "clean_text": "Indexed from the clipping: Evangelists Daughter; Slander Suit Says Organ Called Secret Meeting By; Associated Press; Aimee Semple; Willedd An; Aimees Angelus Temple She"
+        "raw_ocr": "",
+        "clean_text": ""
       },
-      "entities": [
-        {
-          "type": "person",
-          "value": "Evangelists Daughter"
-        },
-        {
-          "type": "person",
-          "value": "Slander Suit Says Organ Called Secret Meeting By"
-        },
-        {
-          "type": "person",
-          "value": "Associated Press"
-        },
-        {
-          "type": "person",
-          "value": "Aimee Semple"
-        },
-        {
-          "type": "person",
-          "value": "Willedd An"
-        },
-        {
-          "type": "person",
-          "value": "Aimees Angelus Temple She"
-        },
-        {
-          "type": "person",
-          "value": "Secret Meeting Signals Mother"
-        },
-        {
-          "type": "person",
-          "value": "Miss Fricke"
-        }
-      ],
+      "entities": [],
       "evidence_cards": [
         {
           "id": "ev_2",
-          "clue_type": "missing_context",
-          "title": "Missing context",
-          "detail": "The clipping assumes the reader already knows more than it states."
+          "clue_type": "time_gap",
+          "title": "When did the plot begin?",
+          "detail": "The testimony mentions a plot discovered last year. When did this occur?"
         }
       ],
       "hotspots": []
     },
     {
       "artifact_id": "timeline_note",
-      "kind": "letter",
-      "title": "Timeline note — same week",
+      "kind": "newspaper",
+      "title": "Timeline of Events",
       "source": {
-        "archive": "Archivist synthesis (synthetic bridge)",
+        "archive": "Synthetic from clipping",
         "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
         "date": "1937-04-22",
-        "publication": "Evening star (Washington, D.C.)"
+        "publication": "Evening Star"
       },
       "media": null,
       "text": {
-        "raw_ocr": "Date anchor: 1937-04-22. Publication: Evening star (Washington, D.C.).",
-        "clean_text": "The clipping is dated 1937-04-22. Whatever happened here sits in the same news cycle as other items from Evening star (Washington, D.C.)."
+        "raw_ocr": "",
+        "clean_text": ""
       },
       "entities": [],
       "evidence_cards": [
         {
-          "id": "ev_time",
+          "id": "ev_3",
           "clue_type": "time_gap",
-          "title": "Date anchor",
-          "detail": "The fragment is pinned to 1937-04-22 — what happened just before or after?"
+          "title": "When was Willedd Andrews expelled?",
+          "detail": "The testimony mentions Andrews was expelled from the temple. When did this occur?"
         }
       ],
       "hotspots": []
     },
     {
       "artifact_id": "archivist_bridge",
-      "kind": "clipping",
-      "title": "Archivist margin — reading notes",
+      "kind": "newspaper",
+      "title": "Bridge to the Mystery",
       "source": {
-        "archive": "Model/heuristic reading notes (synthetic)",
+        "archive": "Synthetic from clipping",
         "citation_url": "https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
         "date": "1937-04-22",
-        "publication": "Evening star (Washington, D.C.)"
+        "publication": "Evening Star"
       },
       "media": null,
       "text": {
-        "raw_ocr": "A clipping from Evening star (Washington, D.C.) (1937-04-22) — ink faded, story not.",
-        "clean_text": "A clipping from Evening star (Washington, D.C.) (1937-04-22) — ink faded, story not."
+        "raw_ocr": "",
+        "clean_text": ""
       },
       "entities": [],
       "evidence_cards": [
         {
-          "id": "ev_bridge",
-          "clue_type": "summary",
-          "title": "Archivist summary",
-          "detail": "A clipping from Evening star (Washington, D.C.) (1937-04-22) — ink faded, story not."
+          "id": "ev_4",
+          "clue_type": "anomaly",
+          "title": "What was the password of the secret society?",
+          "detail": "The testimony mentions a password for the secret society. What was it?"
         }
       ],
       "hotspots": []
@@ -181,72 +144,73 @@
   ],
   "leads": [
     {
-      "id": "lead_entities",
-      "label": "Who is named here?",
+      "id": "lead_1",
+      "label": "What was the 'certain piece'?",
       "unlocks": [
         "context_index"
       ]
     },
     {
-      "id": "lead_timeline",
-      "label": "Trace the place",
+      "id": "lead_2",
+      "label": "When did the plot begin?",
       "unlocks": [
         "timeline_note"
       ]
     },
     {
-      "id": "lead_reading",
-      "label": "Table this fragment",
+      "id": "lead_3",
+      "label": "When was Willedd Andrews expelled?",
       "unlocks": [
         "archivist_bridge"
       ]
     }
   ],
   "deduction_sheet": {
-    "prompt": "Complete the archivist's conclusion before opening the sealed envelope.",
+    "prompt": "Complete the archivist conclusion.",
     "fields": [
       {
         "id": "who",
-        "label": "The central figure is probably",
-        "answer": "a minor figure swept into a larger scandal",
+        "label": "Who was the organist?",
+        "answer": "Miss Fricke",
         "options": [
-          "a minor figure swept into a larger scandal",
-          "a journalist compressing a messy dispatch",
-          "a clerk quoting second-hand testimony",
-          "an anonymous tip dressed as news copy"
+          "Miss Fricke",
+          "Rheba Crawford",
+          "Dean Harriet Jordan",
+          "Roberta"
         ]
       },
       {
-        "id": "where",
-        "label": "The key scene most likely occurred at",
-        "answer": "a newspaper city desk",
+        "id": "when",
+        "label": "When was the password revealed?",
+        "answer": "Last year",
         "options": [
-          "a courthouse corridor",
-          "a newspaper city desk",
-          "a private meeting room",
-          "a public street corner"
+          "Last year",
+          "This year",
+          "Two years ago",
+          "Three years ago"
         ]
       },
       {
-        "id": "why",
-        "label": "The odd wording exists because",
-        "answer": "the source demanded anonymity",
+        "id": "what",
+        "label": "What was the password of the secret society?",
+        "answer": "Not given",
         "options": [
-          "the printer dropped lines from the metal type",
-          "the source demanded anonymity",
-          "the editor needed coded language for libel risk",
-          "the OCR garbled an ordinary phrase"
+          "Not given",
+          "Aimee",
+          "Angelus",
+          "Temple",
+          "Jordan"
         ]
       }
     ]
   },
   "reveal_notes": {
     "direct_archive_facts": [
-      "Publication: Evening star (Washington, D.C.), 1937-04-22",
-      "Citation: https://www.loc.gov/resource/sn83045462/1937-04-22/ed-1/?sp=28&q=secret+meeting",
-      "Quoted lines in the primary clipping match bundled LOC OCR."
+      "The testimony mentions a plot discovered last year",
+      "Andrews was expelled from the temple",
+      "Miss Fricke played a certain piece as a signal for secret meetings"
     ],
     "synthetic_bridge_allowed": true,
-    "bridge_notes": "Supporting artifacts are archivist synthesis for gameplay. Only the primary clipping image and OCR are direct archive material."
+    "bridge_notes": "Model interpretation vs archive fact - The bridge artifacts are synthetic interpretations based on the provided OCR text."
   }
 }

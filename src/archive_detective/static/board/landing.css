@@ -1,0 +1,123 @@
+/* ——— Archivist overlay & errors ——— */
+
+.archivist-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 7, 6, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.archivist-card {
+  width: min(420px, 92vw);
+  padding: 1.5rem 1.35rem 1.25rem;
+  background: var(--paper);
+  color: var(--paper-ink);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.15), 0 24px 48px rgba(0, 0, 0, 0.5);
+  transform: rotate(-0.5deg);
+  animation: archivist-in 0.35s var(--ease-out) both;
+}
+
+@keyframes archivist-in {
+  from { opacity: 0; transform: translateY(8px) rotate(-0.5deg); }
+  to { opacity: 1; transform: translateY(0) rotate(-0.5deg); }
+}
+
+.archivist-stamp {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.85rem;
+  border: 2px solid var(--wax);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--wax);
+  transform: rotate(-12deg);
+}
+
+.archivist-line {
+  margin: 0;
+  font-family: var(--serif-body);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  min-height: 3em;
+}
+
+.archivist-elapsed {
+  margin: 0.55rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--paper-muted);
+  letter-spacing: 0.02em;
+}
+
+.archivist-bar {
+  margin-top: 1rem;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.archivist-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--wax);
+  transition: width 0.6s var(--ease-out);
+}
+
+.deduction-result.stamp-accepted {
+  animation: stamp-pop 0.45s var(--ease-out) both;
+  border: 2px solid var(--wax);
+  padding: 0.65rem 0.75rem;
+  border-radius: 3px;
+}
+
+.deduction-result.shake-wrong {
+  animation: wrong-shake 0.4s var(--ease-out);
+  border: 2px dashed var(--wax);
+}
+
+@keyframes wrong-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes stamp-pop {
+  0% { transform: scale(0.96); opacity: 0.5; }
+  60% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.error {
+  color: #e8a090;
+  border: 1px solid rgba(184, 69, 58, 0.4);
+  background: rgba(143, 46, 42, 0.12);
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--paper-muted);
+  font-style: italic;
+}
+
+.sheet-paper .empty-state {
+  color: var(--paper-muted);
+}
+
+.tray-zone .empty-state,
+.viewer-zone .empty-state {
+  color: var(--desk-muted);
+}
+

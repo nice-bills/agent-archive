@@ -24,6 +24,7 @@ SPACE_FILES = [
     "src/archive_detective/__init__.py",
     "src/archive_detective/api.py",
     "src/archive_detective/cabinet_generator.py",
+    "src/archive_detective/cabinet_skeleton.py",
     "src/archive_detective/cabinet_prompts.py",
     "src/archive_detective/cases.py",
     "src/archive_detective/clue_builder.py",
@@ -33,16 +34,40 @@ SPACE_FILES = [
     "src/archive_detective/gallery.py",
     "src/archive_detective/generated_cache.py",
     "src/archive_detective/generation.py",
+    "src/archive_detective/play_pipeline.py",
     "src/archive_detective/hf_inference.py",
+    "src/archive_detective/modal_play.py",
+    "src/archive_detective/text_inference.py",
+    "src/archive_detective/vision.py",
+    "src/archive_detective/ocr_inference.py",
+    "src/archive_detective/ocr_prompts.py",
     "src/archive_detective/models.py",
     "src/archive_detective/prompts.py",
     "src/archive_detective/server_app.py",
+    "src/archive_detective/static_files.py",
     "src/archive_detective/static/board/index.html",
     "src/archive_detective/static/board/board.css",
     "src/archive_detective/static/board/board.js",
+    "src/archive_detective/static/board/api.js",
+    "src/archive_detective/static/board/util.js",
+    "src/archive_detective/static/board/state.js",
+    "src/archive_detective/static/board/render.js",
+    "src/archive_detective/static/board/scene.css",
+    "src/archive_detective/static/board/tokens.css",
+    "src/archive_detective/static/board/desk.css",
+    "src/archive_detective/static/board/cabinet.css",
+    "src/archive_detective/static/board/beat.css",
+    "src/archive_detective/static/board/shared.css",
+    "src/archive_detective/static/board/landing.css",
+    "src/archive_detective/static/board/overlay.css",
+    "src/archive_detective/static/board/motion.css",
     "src/archive_detective/ingest/__init__.py",
+    "src/archive_detective/ingest/chronicling_america.py",
     "src/archive_detective/ingest/ranking.py",
 ]
+
+# Hackathon submission Space (Build Small org). Override with --repo or personal default.
+DEFAULT_SPACE_REPO = "build-small-hackathon/archive-detective-nice-bill"
 
 SPACE_README = """---
 title: Archive Detective
@@ -55,6 +80,11 @@ app_file: app.py
 pinned: false
 license: mit
 short_description: Micro-mysteries from public-domain news clippings
+tags:
+  - thousand-token-wood
+  - off-brand
+  - field-notes
+  - sharing-is-caring
 ---
 
 # Archive Detective
@@ -63,7 +93,18 @@ Play short mystery cases built from **public-domain newspaper fragments** (Chron
 
 Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clippings.
 
-Set `HF_TOKEN` as a Space secret for live hosted inference; cached cabinets work offline.
+**Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
+
+**Live path (OpenBMB):** one Modal GPU job per regenerate — MiniCPM-V-4.6 OCR → MiniCPM5-1B cabinet JSON.
+
+**Field notes:** build report in repo `docs/artifacts/field-notes.html` (publish as HF blog post for judges if preferred).
+
+Space secrets:
+- `MODAL_TOKEN_ID` + `MODAL_TOKEN_SECRET` — required for live generation
+- `HF_TOKEN` — Modal weight download + deploy
+- `ARCHIVE_DETECTIVE_MODAL_PLAY=auto`
+
+Deploy GPU fn first: `./scripts/deploy_modal_gpu.sh`
 """
 
 
@@ -119,12 +160,21 @@ def main() -> None:
     parser.add_argument(
         "--repo",
         default=None,
-        help="Target repo id (default: <hf-user>/archive-detective)",
+        help=(
+            "Target repo id "
+            f"(default: {DEFAULT_SPACE_REPO})"
+        ),
     )
     parser.add_argument(
         "--public",
         action="store_true",
-        help="Make the Space public (default: private)",
+        default=None,
+        help="Make the Space public",
+    )
+    parser.add_argument(
+        "--private",
+        action="store_true",
+        help="Make the Space private (overrides hackathon default)",
     )
     parser.add_argument(
         "--confirm-local",
@@ -143,8 +193,16 @@ def main() -> None:
         raise SystemExit("HF_TOKEN missing — set in .env")
 
     api = HfApi(token=token)
-    user = api.whoami()["name"]
-    repo_id = args.repo or f"{user}/archive-detective"
+    repo_id = args.repo or DEFAULT_SPACE_REPO
+
+    if args.public and args.private:
+        raise SystemExit("Cannot pass both --public and --private")
+    if args.public:
+        public = True
+    elif args.private:
+        public = False
+    else:
+        public = "build-small-hackathon/" in repo_id
 
     if not args.delete_remote and not args.confirm_local:
         raise SystemExit(
@@ -167,10 +225,9 @@ def main() -> None:
             repo_type="space",
             space_sdk="gradio",
             exist_ok=True,
-            private=not args.public,
+            private=not public,
         )
-        if not args.public:
-            api.update_repo_settings(repo_id, private=True, repo_type="space")
+        api.update_repo_settings(repo_id, private=not public, repo_type="space")
         api.upload_folder(
             folder_path=str(staging),
             repo_id=repo_id,
@@ -179,7 +236,7 @@ def main() -> None:
             commit_message="Deploy minimal Gradio Space bundle",
         )
 
-    visibility = "public" if args.public else "private"
+    visibility = "public" if public else "private"
     print(f"Deployed ({visibility}): https://huggingface.co/spaces/{repo_id}")
 
 

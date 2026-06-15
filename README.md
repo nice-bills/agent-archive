@@ -8,14 +8,31 @@ sdk_version: "6.16.0"
 app_file: app.py
 pinned: false
 license: mit
-short_description: OCR-native micro-mysteries from public-domain news
+short_description: Micro-mysteries from public-domain news clippings
+tags:
+  - thousand-token-wood
+  - off-brand
+  - field-notes
+  - sharing-is-caring
 ---
 
 # Archive Detective
 
-Playable micro-mystery machine built from **public-domain newspaper fragments** (Chronicling America / Library of Congress). MiniCPM-V reads noisy clippings; Modal ranks snippets and runs evals — not an archive chatbot.
+Play short mystery cases built from **public-domain newspaper fragments** (Chronicling America / Library of Congress).
 
-**Hackathon:** Adventure in Thousand Token Wood · **Model:** [MiniCPM-V 4.6](https://huggingface.co/openbmb/MiniCPM-V-4_6) · **Infra:** [Modal](MODAL.md)
+Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clippings.
+
+**Live Space:** [build-small-hackathon/archive-detective-nice-bill](https://huggingface.co/spaces/build-small-hackathon/archive-detective-nice-bill)
+
+**Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
+
+**Live path (OpenBMB):** one Modal GPU job per regenerate — MiniCPM-V-4.6 OCR → MiniCPM5-1B cabinet JSON.
+
+**Demo video:** _(add YouTube/Loom URL before judging)_
+
+**Social post:** _(add X/LinkedIn link before judging)_
+
+**Hackathon:** Adventure in Thousand Token Wood · **Models:** [MiniCPM-V-4.6](https://huggingface.co/openbmb/MiniCPM-V-4.6) (OCR) + [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) (cabinet JSON) · **Infra:** [Modal](MODAL.md) (`generate_case_play`, one A10G job per pick)
 
 ## Quick start (local only — test here first)
 
@@ -41,14 +58,14 @@ uv run python scripts/deploy_space.py --confirm-local   # requires HF_TOKEN
 
 | Badge | Status | How |
 |-------|--------|-----|
-| **Off-Brand** | Custom gr.Server UI | `src/archive_detective/static/board/` |
-| **Off the Grid** | Prebuilt cases, no cloud at runtime | `data/cases/`, `verify_local.py` |
-| **Llama Champion** | llama.cpp OCR extraction | `./scripts/run_llama.sh`, `ARCHIVE_DETECTIVE_USE_LLAMA=1` |
-| **Sharing is Caring** | Redacted agent trace | `scripts/prepare_agent_trace.py` |
-| **Field Notes** | Build report | `docs/artifacts/field-notes.html` |
-| Well-Tuned | Skipped | Prebuilt packs sufficient for demo |
+| **Off-Brand** | ✅ Custom `gr.Server` board | `src/archive_detective/static/board/` |
+| **OpenBMB special** | ✅ Live play path | Modal `generate_case_play` — MiniCPM-V OCR → MiniCPM5 cabinet |
+| **Sharing is Caring** | ✅ Uploaded | [nice-bill/archive-detective-agent-trace](https://huggingface.co/datasets/nice-bill/archive-detective-agent-trace) |
+| **Field Notes** | ✅ Ready | [docs/artifacts/field-notes.html](docs/artifacts/field-notes.html) (or HF blog draft) |
+| **Llama Champion** | Optional ingest | `./scripts/run_llama.sh`, `ARCHIVE_DETECTIVE_USE_LLAMA=1` |
+| Off the Grid | Partial | Curated cases offline; gallery/upload need Modal or HF |
 
-Field notes: `xdg-open docs/artifacts/field-notes.html`
+**Field notes:** [docs/artifacts/field-notes.html](docs/artifacts/field-notes.html) — `xdg-open docs/artifacts/field-notes.html` (publish as HF blog post for judges if preferred)
 
 ## Local llama.cpp (optional ingest)
 
@@ -90,11 +107,14 @@ modal run modal_app.py::run_eval
 
 | Variable | Default | Meaning |
 |----------|---------|---------|
-| `ARCHIVE_DETECTIVE_USE_MODEL` | off | `1` = run MiniCPM-V locally or on Modal GPU |
-| `ARCHIVE_DETECTIVE_MODEL` | `openbmb/MiniCPM-V-4_6` | Hugging Face model id |
-| `ARCHIVE_DETECTIVE_USE_LLAMA` | off | `1` = OCR clue extraction via llama-server |
-| `ARCHIVE_DETECTIVE_LLAMA_URL` | `http://127.0.0.1:8080` | llama-server base URL |
-| `HF_TOKEN` | — | Hub upload only (deploy, agent trace) |
+| `ARCHIVE_DETECTIVE_MODAL_PLAY` | `auto` | One Modal GPU job per gallery/upload (`1` / `0`) |
+| `ARCHIVE_DETECTIVE_MODEL` | `openbmb/MiniCPM-V-4.6` | Vision / OCR model |
+| `ARCHIVE_DETECTIVE_TEXT_MODEL` | `openbmb/MiniCPM5-1B` | Cabinet JSON model on Modal |
+| `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` | — | Call deployed `generate_case_play` |
+| `HF_TOKEN` | — | Weights on Modal + Space deploy + HF fallback |
+| `ARCHIVE_DETECTIVE_USE_MODEL` | off | `1` = local MiniCPM-V (dev) |
+| `ARCHIVE_DETECTIVE_USE_LLAMA` | off | `1` = llama.cpp ingest path |
+| `ARCHIVE_DETECTIVE_USE_CACHE` | off | Dev only — do not use for demo |
 
 ## Project layout
 

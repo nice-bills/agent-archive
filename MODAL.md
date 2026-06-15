@@ -43,7 +43,10 @@ uv run modal run modal_app.py --action rank-only
 ./scripts/run_modal.sh seed
 
 # Top-N clue packs — GPU + MiniCPM when use_model=True
-modal run modal_app.py::build_clue_packs --top 5
+modal run modal_gpu.py::build_clue_packs --top 5
+
+# Deploy play-time GPU (one job: MiniCPM-V OCR → MiniCPM5-1B cabinet)
+./scripts/deploy_modal_gpu.sh
 
 # Eval: raw OCR vs cleaned pipeline
 modal run modal_app.py::run_eval
@@ -59,8 +62,11 @@ modal run modal_app.py --action eval
 | Variable | Where | Purpose |
 |----------|--------|---------|
 | `ARCHIVE_DETECTIVE_USE_MODEL` | Modal GPU fn / local | `1` enables live MiniCPM-V |
-| `ARCHIVE_DETECTIVE_MODEL` | optional | Default `openbmb/MiniCPM-V-4_6` |
-| `HF_TOKEN` | Modal secret `huggingface` | Hub auth |
+| `ARCHIVE_DETECTIVE_MODAL_PLAY` | Space / local | `auto` (default), `1`, or `0` — one GPU job per gallery/upload pick |
+| `ARCHIVE_DETECTIVE_MODEL` | optional | Default `openbmb/MiniCPM-V-4.6` |
+| `ARCHIVE_DETECTIVE_TEXT_MODEL` | optional | Default `openbmb/MiniCPM5-1B` |
+| `MODAL_TOKEN_ID` / `MODAL_TOKEN_SECRET` | HF Space secrets | Call deployed `generate_case_play` from CPU Space |
+| `HF_TOKEN` | Modal secret `huggingface` | Hub auth + weights download |
 
 ## Local equivalents (no Modal)
 
@@ -78,4 +84,12 @@ Install Modal extras:
 uv sync --extra modal --extra model
 ```
 
-`model` extra is only needed for local MiniCPM runs; Modal image installs torch/transformers in `modal_app.py`.
+`model` extra is only needed for local MiniCPM runs; Modal image installs torch/transformers in `modal_gpu.py`.
+
+## Play-time generation (gallery / upload)
+
+1. Deploy: `./scripts/deploy_modal_gpu.sh` → `archive-detective-gpu::generate_case_play`
+2. Local or HF Space: set `MODAL_TOKEN_ID` + `MODAL_TOKEN_SECRET` (or `modal token new` locally)
+3. `ARCHIVE_DETECTIVE_MODAL_PLAY=auto` (default) — each polaroid pick runs **one A10G job**: MiniCPM-V OCR → unload → MiniCPM5-1B cabinet JSON
+
+Cold start: first pick after idle may take several minutes (model downloads + load). `max_containers=1` avoids parallel GPU burn. Container scales down after ~60s idle (`scaledown_window=60`).
