@@ -232,6 +232,27 @@ def build_clue_pack_from_snippet(
     )
 
 
+def _repair_truncated_json_object(text: str, start: int) -> dict[str, Any] | None:
+    """Best-effort close for MiniCPM outputs cut off mid-object."""
+    chunk = text[start:]
+    for end in range(len(chunk), 0, -1):
+        if chunk[end - 1] not in "}]":
+            continue
+        candidate = chunk[:end].rstrip().rstrip(",")
+        open_brackets = candidate.count("[") - candidate.count("]")
+        open_braces = candidate.count("{") - candidate.count("}")
+        if open_brackets < 0 or open_braces < 0:
+            continue
+        repaired = candidate + ("]" * open_brackets) + ("}" * open_braces)
+        try:
+            payload = json.loads(repaired)
+            if isinstance(payload, dict):
+                return payload
+        except json.JSONDecodeError:
+            continue
+    return None
+
+
 def parse_vision_json(text: str) -> dict[str, Any]:
     text = text.strip()
     if text.startswith("```"):
@@ -246,7 +267,7 @@ def parse_vision_json(text: str) -> dict[str, Any]:
             return payload
     except json.JSONDecodeError:
         pass
-    end = text.rfind("}")
-    if end > start:
-        return json.loads(text[start : end + 1])
+    repaired = _repair_truncated_json_object(text, start)
+    if repaired is not None:
+        return repaired
     raise json.JSONDecodeError("no JSON object", text, start)

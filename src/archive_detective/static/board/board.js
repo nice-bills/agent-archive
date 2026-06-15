@@ -78,6 +78,11 @@ function formatGenerationError(err, context = "gallery") {
   if (code === "backend_unavailable") {
     return "Live generation is unavailable — check Space secrets (MODAL_TOKEN_ID/SECRET) or try a gallery polaroid.";
   }
+  if (code === "model_output_invalid") {
+    return context === "upload"
+      ? "Cabinet model returned invalid JSON — retry, paste more OCR text, or pick a gallery polaroid."
+      : "Cabinet model returned invalid JSON — try again or pick a pre-built polaroid.";
+  }
   if (/returned no data|lost connection/i.test(message)) {
     if (onHfSpace()) {
       return (

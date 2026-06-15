@@ -3,8 +3,11 @@
 
 from __future__ import annotations
 
+import argparse
 import configparser
 import json
+import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -20,6 +23,7 @@ from archive_detective.env import load_project_env
 SPACE = "build-small-hackathon/archive-detective-nice-bill"
 SPACE_URL = "https://build-small-hackathon-archive-detective-nice-bill.hf.space"
 MODAL_TOML = Path.home() / ".modal.toml"
+HF_TOKEN_CACHE = Path.home() / ".cache" / "huggingface" / "token"
 SECRET_KEYS = ("HF_TOKEN", "MODAL_TOKEN_ID", "MODAL_TOKEN_SECRET")
 
 
@@ -30,9 +34,62 @@ def strip_quotes(value: str) -> str:
     return value
 
 
-def load_modal_tokens(path: Path) -> dict[str, str]:
+def load_dotenv_file(path: Path) -> dict[str, str]:
     if not path.is_file():
         return {}
+    out: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if key:
+            out[key] = strip_quotes(value)
+    return out
+
+
+def load_hf_token(*env_files: Path) -> str:
+    for key in ("HF_TOKEN", "HUGGINGFACE_HUB_TOKEN"):
+        value = strip_quotes(os.environ.get(key, ""))
+        if value:
+            return value
+    for path in env_files:
+        for key in ("HF_TOKEN", "HUGGINGFACE_HUB_TOKEN"):
+            value = load_dotenv_file(path).get(key, "")
+            if value:
+                return value
+    if HF_TOKEN_CACHE.is_file():
+        value = strip_quotes(HF_TOKEN_CACHE.read_text(encoding="utf-8"))
+        if value:
+            return value
+    try:
+        proc = subprocess.run(
+            ["hf", "auth", "token"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if proc.returncode == 0:
+            value = strip_quotes(proc.stdout.strip())
+            if value:
+                return value
+    except OSError:
+        pass
+    return ""
+
+
+def load_modal_tokens(path: Path, *env_files: Path) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for env_path in env_files:
+        dot = load_dotenv_file(env_path)
+        for key in ("MODAL_TOKEN_ID", "MODAL_TOKEN_SECRET"):
+            if dot.get(key):
+                out[key] = dot[key]
+    if out.get("MODAL_TOKEN_ID") and out.get("MODAL_TOKEN_SECRET"):
+        return out
+    if not path.is_file():
+        return out
     cfg = configparser.ConfigParser()
     cfg.read(path)
     profile = cfg.get("default", "profile", fallback="")
@@ -42,9 +99,8 @@ def load_modal_tokens(path: Path) -> dict[str, str]:
                 profile = section
                 break
     if not profile or profile not in cfg:
-        return {}
+        return out
     sec = cfg[profile]
-    out: dict[str, str] = {}
     if sec.get("token_id"):
         out["MODAL_TOKEN_ID"] = strip_quotes(sec["token_id"])
     if sec.get("token_secret"):
@@ -68,18 +124,63 @@ def poll_model_info() -> dict:
     return {}
 
 
-def main() -> None:
-    load_project_env()
-    import os
+def poll_upload_smoke(hf_token: str) -> dict:
+    """Quick upload smoke — pasted OCR, short timeout."""
+    sample = ROOT / "assets/uploads/verify_local_upload_smoke_41f63d3e47.jpg"
+    if not sample.is_file():
+        return {"skipped": "no sample image"}
+    import base64
 
+    data_url = "data:image/jpeg;base64," + base64.b64encode(sample.read_bytes()).decode()
+    ocr = "mysterious death actress found poisoned after victory ball newspaper clipping"
+    with httpx.Client(timeout=30.0) as client:
+        event_id = client.post(
+            f"{SPACE_URL}/gradio_api/call/generate_from_upload",
+            json={"data": [data_url, "restore smoke", ocr, False]},
+        ).json()["event_id"]
+        for _ in range(45):
+            time.sleep(4)
+            body = client.get(
+                f"{SPACE_URL}/gradio_api/call/generate_from_upload/{event_id}"
+            ).text
+            if "event: complete" not in body:
+                continue
+            for line in body.splitlines():
+                if line.startswith("data: "):
+                    payload = json.loads(line[6:])
+                    if payload and isinstance(payload, list):
+                        return payload[0] if payload else {}
+                    return payload if isinstance(payload, dict) else {}
+    return {"error": "upload smoke timed out"}
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--env-file",
+        type=Path,
+        default=ROOT / ".env",
+        help="Path to .env (default: repo root .env)",
+    )
+    parser.add_argument(
+        "--smoke-upload",
+        action="store_true",
+        help="After restart, call generate_from_upload with pasted OCR",
+    )
+    args = parser.parse_args()
+
+    load_project_env()
+    env_files = (args.env_file, ROOT / ".env")
     secrets = {
-        "HF_TOKEN": strip_quotes(os.environ.get("HF_TOKEN", "")),
-        **load_modal_tokens(MODAL_TOML),
+        "HF_TOKEN": load_hf_token(*env_files),
+        **load_modal_tokens(MODAL_TOML, *env_files),
     }
     status = {k: ("set" if secrets.get(k) else "missing") for k in SECRET_KEYS}
     print("LOCAL_STATUS", json.dumps(status))
     if not secrets.get("HF_TOKEN"):
-        raise SystemExit("HF_TOKEN missing — set in .env or run hf auth login")
+        raise SystemExit(
+            "HF_TOKEN missing — set in .env, ~/.cache/huggingface/token, or run hf auth login"
+        )
 
     api = HfApi(token=secrets["HF_TOKEN"])
     print("AUTH_OK", api.whoami().get("name"))
@@ -113,6 +214,8 @@ def main() -> None:
             {k: info.get(k) for k in ("modal_enabled", "hf_enabled", "stack")},
         ),
     )
+    if args.smoke_upload:
+        print("UPLOAD_SMOKE", json.dumps(poll_upload_smoke(secrets["HF_TOKEN"])))
 
 
 if __name__ == "__main__":

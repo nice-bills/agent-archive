@@ -19,7 +19,7 @@ from archive_detective.generation import (
 )
 from archive_detective.hf_inference import DEFAULT_MODEL, hf_enabled
 from archive_detective.modal_play import cabinet_model_label, vision_model_label
-from archive_detective.play_pipeline import play_backend_name
+from archive_detective.play_pipeline import MODEL_REQUIRED_MSG, play_backend_name
 from archive_detective.ocr_inference import vision_enabled
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -39,7 +39,16 @@ def _generation_api_error(exc: BaseException) -> dict:
     elif isinstance(exc, TimeoutError) or "timeout" in lower or "timed out" in lower:
         code = "modal_timeout"
     elif isinstance(exc, RuntimeError) and (
-        "modal" in lower or "hf_token" in lower or "model generation" in lower
+        "json parse" in lower
+        or "cabinet json" in lower
+        or "minicpm cabinet" in lower
+    ):
+        code = "model_output_invalid"
+    elif isinstance(exc, RuntimeError) and (
+        ("modal play disabled" in lower)
+        or ("modal sdk not installed" in lower)
+        or ("hf_token" in lower and "required" in lower)
+        or (lower == MODEL_REQUIRED_MSG.lower())
     ):
         code = "backend_unavailable"
     elif isinstance(exc, FileNotFoundError):

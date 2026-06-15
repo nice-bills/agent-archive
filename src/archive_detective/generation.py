@@ -60,6 +60,13 @@ def _allow_heuristic() -> bool:
     return os.environ.get("ARCHIVE_DETECTIVE_ALLOW_HEURISTIC", "").lower() in {"1", "true", "yes"}
 
 
+def _space_json_fallback(exc: Exception) -> bool:
+    if not os.environ.get("SPACE_ID"):
+        return False
+    msg = str(exc).lower()
+    return "json parse" in msg or "cabinet json" in msg or "minicpm cabinet" in msg
+
+
 def _use_cache_reads() -> bool:
     return os.environ.get("ARCHIVE_DETECTIVE_USE_CACHE", "").lower() in {"1", "true", "yes"}
 
@@ -91,7 +98,7 @@ def _try_heuristic_fallback(
     cache_path: Path,
     exc: Exception,
 ) -> tuple[EvidenceCase, dict[str, Any]] | None:
-    if not _allow_heuristic():
+    if not _allow_heuristic() and not _space_json_fallback(exc):
         return None
     case = build_heuristic_cabinet(clipping)
     meta["source"] = "heuristic"

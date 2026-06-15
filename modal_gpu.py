@@ -121,12 +121,21 @@ def _generate_case_on_gpu(
     cabinet_payload = None
     skeleton_filled: list[str] = []
     last_exc: Exception | None = None
-    for attempt in range(2):
+    for attempt in range(4):
         try:
+            retry_user = user
+            if attempt:
+                retry_user = (
+                    f"{user}\n\n"
+                    "Your last reply was invalid or echoed the schema template. "
+                    "Return ONE complete JSON object with real OCR-grounded text — "
+                    "no placeholder strings like \"Short case title\" or \"...\"."
+                )
             raw_payload = local_chat_json(
                 system=system,
-                user=user,
-                temperature=0.1 + 0.05 * attempt,
+                user=retry_user,
+                temperature=0.1 + 0.08 * attempt,
+                max_tokens=6144,
             )
             cabinet_payload, skeleton_filled = finalize_cabinet_payload(
                 raw_payload,
