@@ -93,6 +93,12 @@ tags:
   - off-brand
   - field-notes
   - sharing-is-caring
+  - track:wood
+  - sponsor:openbmb
+  - sponsor:modal
+  - achievement:offbrand
+  - achievement:sharing
+  - achievement:fieldnotes
 models:
   - openbmb/MiniCPM-V-4.6
   - openbmb/MiniCPM5-1B
