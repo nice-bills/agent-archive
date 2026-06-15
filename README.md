@@ -22,6 +22,8 @@ Play short mystery cases built from **public-domain newspaper fragments** (Chron
 
 Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clippings.
 
+**GitHub:** [nice-bills/agent-archive](https://github.com/nice-bills/agent-archive)
+
 **Live Space:** [build-small-hackathon/archive-detective-nice-bill](https://huggingface.co/spaces/build-small-hackathon/archive-detective-nice-bill)
 
 **Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
