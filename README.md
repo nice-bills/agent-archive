@@ -14,6 +14,11 @@ tags:
   - off-brand
   - field-notes
   - sharing-is-caring
+models:
+  - openbmb/MiniCPM-V-4.6
+  - openbmb/MiniCPM5-1B
+datasets:
+  - nice-bill/archive-detective-agent-trace
 ---
 
 # Archive Detective
@@ -25,6 +30,8 @@ Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clip
 **GitHub:** [nice-bills/agent-archive](https://github.com/nice-bills/agent-archive)
 
 **Live Space:** [build-small-hackathon/archive-detective-nice-bill](https://huggingface.co/spaces/build-small-hackathon/archive-detective-nice-bill)
+
+**Agent trace:** [nice-bill/archive-detective-agent-trace](https://huggingface.co/datasets/nice-bill/archive-detective-agent-trace)
 
 **Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
 

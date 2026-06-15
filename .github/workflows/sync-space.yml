@@ -1,0 +1,29 @@
+# Deploy the minimal Space bundle to Hugging Face on every push to main.
+# Requires GitHub repo secret: HF_TOKEN (write access to build-small-hackathon/archive-detective-nice-bill)
+name: Sync Space to Hugging Face
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-space:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Verify local smoke test
+        run: uv run python scripts/verify_local.py
+
+      - name: Deploy minimal Space bundle
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: uv run python scripts/deploy_space.py --confirm-local

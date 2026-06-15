@@ -69,7 +69,15 @@ SPACE_FILES = [
 # Hackathon submission Space (Build Small org). Override with --repo or personal default.
 DEFAULT_SPACE_REPO = "build-small-hackathon/archive-detective-nice-bill"
 
-SPACE_README = """---
+GITHUB_REPO_URL = "https://github.com/nice-bills/agent-archive"
+SPACE_REPO_URL = (
+    "https://huggingface.co/spaces/build-small-hackathon/archive-detective-nice-bill"
+)
+AGENT_TRACE_URL = (
+    "https://huggingface.co/datasets/nice-bill/archive-detective-agent-trace"
+)
+
+SPACE_README = f"""---
 title: Archive Detective
 emoji: 🕵️
 colorFrom: yellow
@@ -85,6 +93,11 @@ tags:
   - off-brand
   - field-notes
   - sharing-is-caring
+models:
+  - openbmb/MiniCPM-V-4.6
+  - openbmb/MiniCPM5-1B
+datasets:
+  - nice-bill/archive-detective-agent-trace
 ---
 
 # Archive Detective
@@ -93,18 +106,30 @@ Play short mystery cases built from **public-domain newspaper fragments** (Chron
 
 Pick a curated case **or** generate a new Evidence Cabinet from bundled LOC clippings.
 
+**GitHub:** [nice-bills/agent-archive]({GITHUB_REPO_URL})
+
+**Live Space:** [build-small-hackathon/archive-detective-nice-bill]({SPACE_REPO_URL})
+
+**Agent trace:** [nice-bill/archive-detective-agent-trace]({AGENT_TRACE_URL})
+
+**Demo video:** _(add YouTube/Loom URL before judging)_
+
+**Social post:** _(add X/LinkedIn link before judging)_
+
 **Gallery polaroids:** pre-built cabinets in `data/generated_cases/` open instantly (no Modal wait). Use **Regenerate** for a fresh OpenBMB GPU run.
 
 **Live path (OpenBMB):** one Modal GPU job per regenerate — MiniCPM-V-4.6 OCR → MiniCPM5-1B cabinet JSON.
 
-**Field notes:** build report in repo `docs/artifacts/field-notes.html` (publish as HF blog post for judges if preferred).
+**Hackathon:** Adventure in Thousand Token Wood · **Models:** [MiniCPM-V-4.6](https://huggingface.co/openbmb/MiniCPM-V-4.6) (OCR) + [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) (cabinet JSON) · **Infra:** Modal (`generate_case_play`, one A10G job per pick)
+
+**Field notes:** [docs/artifacts/field-notes.html]({GITHUB_REPO_URL}/blob/main/docs/artifacts/field-notes.html) on GitHub (publish as HF blog post for judges if preferred)
 
 Space secrets:
 - `MODAL_TOKEN_ID` + `MODAL_TOKEN_SECRET` — required for live generation
 - `HF_TOKEN` — Modal weight download + deploy
 - `ARCHIVE_DETECTIVE_MODAL_PLAY=auto`
 
-Deploy GPU fn first: `./scripts/deploy_modal_gpu.sh`
+Deploy GPU fn first: `./scripts/deploy_modal_gpu.sh` (from the GitHub repo)
 """
 
 
