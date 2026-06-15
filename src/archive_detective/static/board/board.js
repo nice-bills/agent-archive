@@ -531,6 +531,8 @@ async function onGenerateGallery(clippingId, regenerate) {
     showError(formatGenerationError(err, "gallery"));
   }
 }
+
+async function onRegenerateCabinet() {
   const clippingId = state.currentState?.generation?.clipping_id || state.activeClippingId;
   if (!clippingId || state.busy) return;
   await onGenerateGallery(clippingId, true);
@@ -613,6 +615,8 @@ async function onUploadGenerate(event) {
     showError(formatGenerationError(err, "upload"));
   }
 }
+
+async function startCase(caseId) {
   if (state.busy) return;
   setBusy(true, "Opening case file…", "case");
   for (const id of ["reveal-panel", "beat-reveal-panel"]) {
